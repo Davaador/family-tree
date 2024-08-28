@@ -1,0 +1,17 @@
+import { User } from "pages/public/auth/auth.model";
+
+export interface AuthState {
+  authenticated?: boolean;
+  auth?: AuthStateToken;
+  phone?: string;
+  authUser?: User;
+}
+
+export type LanguageState = {
+  language: "en" | "mn";
+  changeLanguage: (language: "en" | "mn") => void;
+};
+
+export interface AuthStateToken {
+  token: string;
+}
