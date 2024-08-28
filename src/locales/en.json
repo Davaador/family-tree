@@ -1,0 +1,46 @@
+{
+    "general": {
+        "hello": "hello",
+        "registerText": "Register",
+        "loginText": "Login",
+        "save": "Save",
+        "welcome": "Welcome",
+        "ok": "OK",
+        "cancel": "Cancel"
+    },
+    "register": {
+        "phoneNumber": "Phone number",
+        "enterPhone": "Please enter a phone number",
+        "lastName": "Last name",
+        "enterLastName": "Please enter a Last name",
+        "firstName": "First name",
+        "enterName": "Please enter a First name",
+        "password": "New Password",
+        "enterPassword": "Please enter a new password",
+        "confirmPassword": "Confirm New Password",
+        "confirmPasswordRequired": "Please confirm your new password",
+        "enterPhoneRegex": "Please enter a valid phone number",
+        "enterNewPasswordRegex": "Your entered password is incorrect",
+        "matchOldPassword": "The passwords do not match",
+        "registerNumber": "Register number",
+        "surName": "surname"
+    },
+    "login": {
+        "password": "Password",
+        "enterPassword": "Please enter a password"
+    },
+    "profile": {
+        "firstName": "First name",
+        "email": "Email",
+        "birthDate": "Birth date",
+        "editInfo": "Please correct your information?",
+        "editModalContent": "You are about to edit your information."
+    },
+    "modal": {
+        "editNameTitle": "Edit your information"
+    },
+    "dashboard": {
+        "dashboard": "Dashboard",
+        "requests": "Requests"
+    }
+}

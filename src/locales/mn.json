@@ -1,0 +1,46 @@
+{
+    "general": {
+        "hello": "Сайн уу",
+        "registerText": "Бүртгүүлэх",
+        "loginText": "Нэвтрэх",
+        "save": "Хадгалах",
+        "welcome": "Тавтай морил",
+        "ok": "Тийм",
+        "cancel": "Үгүй"
+    },
+    "register": {
+        "phoneNumber": "Утасны дугаар",
+        "enterPhone": "Утасны дугаараа оруулна уу!",
+        "lastName": "Овог",
+        "enterLastName": "Овгоо оруулна уу!",
+        "firstName": "Өөрийн нэр",
+        "enterName": "Өөрийн нэрээ оруулна уу!",
+        "password": "Шинэ нууц үг",
+        "enterPassword": "Шинэ нууц үгээ оруулна уу!",
+        "confirmPassword": "Нууц үг давтах",
+        "confirmPasswordRequired": "Нууц үгээ давтаж оруулна уу!",
+        "enterPhoneRegex": "Утасны дугаараа зөв оруулна уу!",
+        "enterNewPasswordRegex": "Таны оруулсан нууц үг буруу байна.",
+        "matchOldPassword": "Нууц үг таарахгүй байна",
+        "registerNumber": "Регистрийн дугаар",
+        "surName": "Ургийн овог"
+    },
+    "login": {
+        "password": "Нууц үг",
+        "enterPassword": "Шинэ нууц үгээ оруулна уу!"
+    },
+    "profile": {
+        "firstName": "Нэр",
+        "email": "И-мэйл",
+        "birthDate": "Төрсөн өдөр",
+        "editInfo": "Мэдээллээ засах уу?",
+        "editModalContent": "Та мэдээллээ засах гэж байна."
+    },
+    "modal": {
+        "editNameTitle": "Хувийн мэдээллээ солих"
+    },
+    "dashboard": {
+        "dashboard": "Нүүр хуудас",
+        "requests": "Хүсэлтүүд"
+    }
+}
