@@ -1,9 +1,9 @@
-import { AuthAction } from "context/actions/auth.action";
-import { AuthState, LanguageState } from "context/entities/auth.model";
-import { zStorage } from "context/reducers/reducers";
-import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
-import i18n from "../../i18n";
+import { AuthAction } from 'context/actions/auth.action';
+import { AuthState, LanguageState } from 'context/entities/auth.model';
+import { zStorage } from 'context/reducers/reducers';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
+import i18n from '../../i18n';
 
 const authStore = create<AuthState & AuthAction>()(
   persist(
@@ -12,12 +12,18 @@ const authStore = create<AuthState & AuthAction>()(
       auth: undefined,
       phone: undefined,
       authUser: undefined,
+      roleUser: undefined,
       setAuth: (token) => set({ auth: token }),
       setAuthentication(authBoolean) {
         set({ authenticated: authBoolean });
       },
       clearAccessToken() {
-        set({ authenticated: false, auth: undefined, authUser: undefined });
+        set({
+          authenticated: false,
+          auth: undefined,
+          authUser: undefined,
+          roleUser: undefined,
+        });
       },
       setPhoneRemember(phone) {
         set({ phone: phone });
@@ -28,22 +34,25 @@ const authStore = create<AuthState & AuthAction>()(
       setAuthUser(authUser) {
         set({ authUser: authUser });
       },
+      setRoles(roles) {
+        set({ roleUser: roles });
+      },
     }),
-    { name: "auth-store", storage: createJSONStorage(() => zStorage) }
+    { name: 'auth-store', storage: createJSONStorage(() => zStorage) }
   )
 );
 
 const languageStore = create<LanguageState>()(
   persist(
     (set) => ({
-      language: "mn",
+      language: 'mn',
       changeLanguage(language) {
-        i18n.changeLanguage(language === "mn" ? "en" : "mn").then(() => {
-          set({ language: language === "mn" ? "en" : "mn" });
+        i18n.changeLanguage(language === 'mn' ? 'en' : 'mn').then(() => {
+          set({ language: language === 'mn' ? 'en' : 'mn' });
         });
       },
     }),
-    { name: "language-store", storage: createJSONStorage(() => zStorage) }
+    { name: 'language-store', storage: createJSONStorage(() => zStorage) }
   )
 );
 

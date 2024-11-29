@@ -3,7 +3,7 @@ import {
   LogoutOutlined,
   MenuOutlined,
   UserOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 import {
   Button,
   ConfigProvider,
@@ -14,49 +14,51 @@ import {
   MenuProps,
   theme,
   Typography,
-} from "antd";
-import { Content, Header } from "antd/es/layout/layout";
-import Sider from "antd/es/layout/Sider";
-import Dropdown from "antd/lib/dropdown/dropdown";
-import { authStore, languageStore } from "context/auth/store";
-import dayjs from "dayjs";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Link, Outlet } from "react-router-dom";
-import Flag from "react-world-flags";
-import AppMenu from "./AppMenu";
+} from 'antd';
+import { Content, Footer, Header } from 'antd/es/layout/layout';
+import Sider from 'antd/es/layout/Sider';
+import Dropdown from 'antd/lib/dropdown/dropdown';
+import { authStore, languageStore } from 'context/auth/store';
+import dayjs from 'dayjs';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link, Outlet } from 'react-router-dom';
+import Flag from 'react-world-flags';
+import AppMenu from './AppMenu';
 const { Text } = Typography;
 
 const AuthLayout = () => {
   const [isCollapsed, toggleCollapse] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const { token } = theme.useToken();
   const { authUser } = authStore();
   const { language, changeLanguage } = languageStore();
   const { t } = useTranslation();
-  const items: MenuProps["items"] = [
+  const { innerWidth } = window;
+  const items: MenuProps['items'] = [
     {
-      key: "1",
+      key: '1',
 
       icon: <UserOutlined />,
-      label: <Link to={"/profile"}>{"dashboard.profile"}</Link>,
+      label: <Link to={'/profile'}>{t('general.profile')}</Link>,
     },
     {
-      key: "2",
+      key: '2',
       icon: <LogoutOutlined />,
-      label: <Link to={"/logout"}>{"dashboard.logout"}</Link>,
+      label: <Link to={'/logout'}>{t('general.logout')}</Link>,
     },
   ];
+  console.log(token, 'sssss');
+
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: '100vh' }}>
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: "#65eaae",
+            colorPrimary: '#65eaae',
             borderRadius: 5,
-            colorBgContainer: "#f6ffed",
+            colorBgBase: '#f0f2f5',
+            colorBgContainer: '#f6ffed',
           },
         }}
       >
@@ -65,41 +67,42 @@ const AuthLayout = () => {
           onClose={() => setOpenMenu(false)}
           placement="left"
           closable={false}
+          width={innerWidth / 1.5}
         >
-          <AppMenu />
+          <AppMenu onPress={() => setOpenMenu(false)} />
         </Drawer>
 
         <Layout>
-          <Header style={{ padding: 0, background: "transparent" }}>
-            <Flex vertical={false} style={{ width: "100%" }}>
-              <Flex style={{ margin: "16px 16px" }} className="menuIcon">
+          <Header style={{ padding: 0, background: 'transparent' }}>
+            <Flex vertical={false} style={{ width: '100%' }}>
+              <Flex style={{ margin: '16px 16px' }} className="menuIcon">
                 <MenuOutlined onClick={() => setOpenMenu(!openMenu)} />
               </Flex>
               <Flex
                 style={{
-                  margin: "16px 16px",
+                  margin: '16px 16px',
                   flex: 1,
-                  flexDirection: "column",
+                  flexDirection: 'column',
                 }}
               >
                 <Text strong>
-                  {t("general.welcome")}, {authUser?.firstName}
+                  {t('general.welcome')}, {authUser?.firstName}
                 </Text>
-                <Text style={{ color: "#ADA7A7" }}>
-                  {dayjs().format("YYYY-MM-DD  HH:mm:ss")}
+                <Text style={{ color: '#ADA7A7' }}>
+                  {dayjs().format('YYYY-MM-DD  HH:mm:ss')}
                 </Text>
               </Flex>
               <Flex justify="flex-end" style={{ flex: 1 }}>
                 <Button
                   type="text"
                   icon={<BellOutlined />}
-                  style={{ fontSize: "16px", width: 64, height: 64 }}
+                  style={{ fontSize: '16px', width: 64, height: 64 }}
                 />
                 <Dropdown menu={{ items }} placement="bottomRight">
                   <Button
                     type="text"
                     icon={<UserOutlined />}
-                    style={{ fontSize: "16px", width: 64, height: 64 }}
+                    style={{ fontSize: '16px', width: 64, height: 64 }}
                   />
                 </Dropdown>
               </Flex>
@@ -121,11 +124,11 @@ const AuthLayout = () => {
 
             <Content
               style={{
-                margin: "24px 16px",
-                padding: 24,
-                minHeight: "auto",
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
+                margin: '0px 12px',
+                padding: 12,
+                // minHeight: 'auto',
+                borderRadius: token.borderRadiusLG,
+                backgroundColor: token.colorBgBlur,
               }}
             >
               <Outlet />
@@ -134,19 +137,18 @@ const AuthLayout = () => {
                   onClick={() => changeLanguage(language)}
                   icon={
                     <Flag
-                      code={language === "mn" ? "US" : "MN"}
+                      code={language === 'mn' ? 'US' : 'MN'}
                       style={{ width: 20, height: 20 }}
                     />
                   }
                 />
-                {/* <FloatButton.BackTop visibilityHeight={0} /> */}
               </FloatButton.Group>
             </Content>
           </Layout>
 
-          {/* <Footer style={{ textAlign: "center" }}>
+          <Footer style={{ textAlign: 'center' }}>
             © Copyright By {new Date().getFullYear()}
-          </Footer> */}
+          </Footer>
         </Layout>
       </ConfigProvider>
     </Layout>

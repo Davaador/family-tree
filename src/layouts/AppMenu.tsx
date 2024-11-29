@@ -1,27 +1,49 @@
-import { DashboardOutlined, MailOutlined } from "@ant-design/icons";
-import { Menu } from "antd";
-import { useTranslation } from "react-i18next";
-import { NavLink, useLocation } from "react-router-dom";
+import {
+  ClusterOutlined,
+  DashboardOutlined,
+  HistoryOutlined,
+  MailOutlined,
+} from '@ant-design/icons';
+import { Menu } from 'antd';
+import { authStore } from 'context/auth/store';
+import { useTranslation } from 'react-i18next';
+import { NavLink, useLocation } from 'react-router-dom';
 
-const AppMenu = () => {
+interface AppMenuProps {
+  onPress?: () => void;
+}
+
+const AppMenu = ({ onPress }: AppMenuProps) => {
   const location = useLocation();
   const { t } = useTranslation();
+  const { roleUser } = authStore();
 
   const menuItems = [
     {
-      key: "/",
+      key: '/',
       icon: <DashboardOutlined />,
-      label: <NavLink to="/">{t("dashboard.dashboard")}</NavLink>,
+      label: <NavLink to="/">{t('dashboard.dashboard')}</NavLink>,
     },
     {
-      key: "/request",
+      key: '/requests',
       icon: <MailOutlined />,
-      label: <NavLink to="/dash">{t("dashboard.requests")}</NavLink>,
+      label: <NavLink to="/requests">{t('dashboard.requests')}</NavLink>,
+    },
+    {
+      key: '/tree',
+      icon: <ClusterOutlined />,
+      label: <NavLink to="/tree">{t('dashboard.familyTree')}</NavLink>,
+    },
+    {
+      key: '/biography',
+      icon: <HistoryOutlined />,
+      label: <NavLink to="/biography">{t('dashboard.biography')}</NavLink>,
     },
   ];
   return (
     <div className="p-2">
       <Menu
+        onClick={onPress && onPress}
         selectedKeys={[location.pathname]}
         theme="light"
         mode="inline"

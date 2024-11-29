@@ -1,15 +1,16 @@
-import { User } from "pages/public/auth/auth.model";
+import { CustomerDetail, Role } from 'pages/public/auth/auth.model';
 
 export interface AuthState {
   authenticated?: boolean;
   auth?: AuthStateToken;
   phone?: string;
-  authUser?: User;
+  authUser?: CustomerDetail;
+  roleUser?: Role[];
 }
 
 export type LanguageState = {
-  language: "en" | "mn";
-  changeLanguage: (language: "en" | "mn") => void;
+  language: 'en' | 'mn';
+  changeLanguage: (language: 'en' | 'mn') => void;
 };
 
 export interface AuthStateToken {

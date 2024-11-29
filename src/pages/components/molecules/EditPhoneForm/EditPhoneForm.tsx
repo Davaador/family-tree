@@ -1,11 +1,12 @@
-import { Col, Flex, FormInstance, Row } from "antd";
-import { authStore } from "context/auth/store";
-import { t } from "i18next";
+import { Col, Flex, FormInstance, Row } from 'antd';
+import { authStore } from 'context/auth/store';
+import { t } from 'i18next';
 import {
+  CustomFormItem,
+  CustomInput,
   FormBirthDate,
-  FormInput,
   FormRegisterInput,
-} from "pages/components/atomics";
+} from 'pages/components/atomics';
 
 interface EditFormProps {
   form: FormInstance;
@@ -19,29 +20,32 @@ const EditPhoneForm = (props: EditFormProps) => {
     <Flex>
       <Row gutter={[8, 12]}>
         <Col xs={24} sm={12}>
-          <FormInput
+          <CustomFormItem
             layout="vertical"
-            label={t("profile.email")}
-            name={"email"}
-          />
+            label={t('profile.email')}
+            name={'email'}
+          >
+            <CustomInput placeholder={t('profile.email')} />
+          </CustomFormItem>
         </Col>
         <Col xs={24} sm={12}>
-          <FormInput
+          <CustomFormItem
             layout="vertical"
-            label={t("register.phoneNumber")}
-            name={"phoneNumber"}
-            holder={t("register.phoneNumber")}
-          />
+            label={t('register.phoneNumber')}
+            name={'phoneNumber'}
+          >
+            <CustomInput placeholder={t('register.phoneNumber')} />
+          </CustomFormItem>
         </Col>
         <Col xs={24} sm={12}>
           <FormRegisterInput form={form} defaultValue={authUser?.register} />
         </Col>
         <Col xs={24} sm={12}>
           <FormBirthDate
-            format={"YYYY-MM-DD"}
-            label={t("profile.birthDate")}
+            format={'YYYY-MM-DD'}
+            label={t('profile.birthDate')}
             layout="vertical"
-            name={"birthDate"}
+            name={'birthDate'}
           />
         </Col>
       </Row>

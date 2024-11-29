@@ -1,10 +1,14 @@
-import { Flex, Form, Modal, notification } from "antd";
-import { authStore } from "context/auth/store";
-import { FormInput, SubmitButton } from "pages/components/atomics";
-import { editProfileName } from "pages/private/private.service";
-import { User } from "pages/public/auth/auth.model";
-import React from "react";
-import { useTranslation } from "react-i18next";
+import { Flex, Form, Modal, notification } from 'antd';
+import { authStore } from 'context/auth/store';
+import {
+  CustomFormItem,
+  CustomInput,
+  FormInput,
+  SubmitButton,
+} from 'pages/components/atomics';
+import { editProfileName } from 'pages/private/private.service';
+import { CustomerDetail } from 'pages/public/auth/auth.model';
+import { useTranslation } from 'react-i18next';
 
 interface EditNameModalProps {
   isShow: boolean;
@@ -16,9 +20,9 @@ const EditNameModal = (props: EditNameModalProps) => {
   const { isShow, toggleModal, handleCancel } = props;
   const { authUser, setAuthUser } = authStore();
   const { t } = useTranslation();
-  const onFinish = (values: User) => {
+  const onFinish = (values: CustomerDetail) => {
     if (authUser) {
-      const body: User = {
+      const body: CustomerDetail = {
         ...authUser,
         surName: values.surName,
         firstName: values.firstName,
@@ -26,8 +30,8 @@ const EditNameModal = (props: EditNameModalProps) => {
       };
       editProfileName(values).then(() => {
         notification.success({
-          message: "Амжилттай",
-          description: "Таны мэдээлэл амжилттай өөрчлөгдлөө!",
+          message: 'Амжилттай',
+          description: 'Таны мэдээлэл амжилттай өөрчлөгдлөө!',
         });
         setAuthUser(body);
         toggleModal();
@@ -38,7 +42,7 @@ const EditNameModal = (props: EditNameModalProps) => {
   };
   return (
     <Modal
-      title={t("modal.editNameTitle")}
+      title={t('modal.editNameTitle')}
       open={isShow}
       onCancel={handleCancel}
       footer
@@ -49,27 +53,30 @@ const EditNameModal = (props: EditNameModalProps) => {
         initialValues={{ ...authUser }}
         onFinish={onFinish}
       >
-        <FormInput
+        <CustomFormItem
           name="surName"
-          label={t("register.surName")}
+          label={t('register.surName')}
           rules={[{ required: true }]}
-          holder={t("register.surName")}
-        />
-        <FormInput
+        >
+          <CustomInput placeholder={t('register.surName')} />
+        </CustomFormItem>
+        <CustomFormItem
           name="lastName"
-          label={t("register.lastName")}
+          label={t('register.lastName')}
           rules={[{ required: true }]}
-          holder={t("register.lastName")}
-        />
-        <FormInput
+        >
+          <CustomInput placeholder={t('register.lastName')} />
+        </CustomFormItem>
+        <CustomFormItem
           name="firstName"
-          label={t("profile.firstName")}
+          label={t('profile.firstName')}
           rules={[{ required: true }]}
-          holder={t("profile.firstName")}
-        />
+        >
+          <CustomInput placeholder={t('register.firstName')} />
+        </CustomFormItem>
         <Flex
           justify="center"
-          children={<SubmitButton text={t("general.save")} size="small" />}
+          children={<SubmitButton text={t('general.save')} size="small" />}
         />
       </Form>
     </Modal>

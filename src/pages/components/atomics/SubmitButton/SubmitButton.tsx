@@ -1,6 +1,6 @@
-import { Button, ButtonProps, Typography } from "antd";
-import React from "react";
-import { useTranslation } from "react-i18next";
+import { Button, ButtonProps, Typography } from 'antd';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 const { Text } = Typography;
 
 export interface SubmitButtonProps extends ButtonProps {
@@ -26,7 +26,7 @@ const SubmitButton = (props: Readonly<SubmitButtonProps>) => {
       {...props}
     >
       <Text strong color="dark">
-        {text ?? t("general.continue")}
+        {text ?? t('general.save')}
       </Text>
     </Button>
   );

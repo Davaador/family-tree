@@ -6,7 +6,10 @@
         "save": "Save",
         "welcome": "Welcome",
         "ok": "OK",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "perPage": "/page",
+        "profile": "Profile",
+        "logout": "Logout"
     },
     "register": {
         "phoneNumber": "Phone number",

@@ -1,3 +1,4 @@
+import { CustomerModel } from './../../../context/entities/customer.model';
 export interface LoginSavedData {
   rememberMe: boolean;
   savedPhoneNumber?: string;
@@ -25,7 +26,7 @@ export interface Auth {
   token: string;
 }
 
-export interface User {
+export interface CustomerDetail {
   id: number;
   email: string;
   firstName: string;
@@ -35,16 +36,34 @@ export interface User {
   surName: string;
   registeredDate: string;
   lastLoginDate: string;
-  editUser: boolean;
+  editCustomer: boolean;
   birthDate: Date | string;
   age: number;
+  gender: string;
+  husband: CustomerModel.Customer;
+  parent: CustomerModel.Customer;
+  wife: CustomerModel.Customer;
+  user: UserDetail;
+}
+
+export interface UserDetail {
+  id: number;
+  phoneNumber: number;
+  roles: Role[];
+}
+
+export interface Role {
+  id: number;
+  name: string;
 }
 
 export type RegisterType = {
   registerNumber?: string;
 };
 
-export interface EditUserForm {
+export interface AddParentForm {
+  parentId: number;
+  isParent: number;
   email: string;
   surName: string;
   age: number;
