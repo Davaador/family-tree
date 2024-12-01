@@ -53,7 +53,6 @@ const FamileTree = () => {
   const [familyData, setFamilyData] =
     useState<CustomerModel.ParentDto>(treeData);
 
-  const [childrenData, setChildrenData] = useState<CustomerModel.ParentDto>();
   const [loading, setLoading] = useState<boolean>(false);
   const addChildren = (id: number[]) => {
     console.log(id, 'sdss');
@@ -63,11 +62,10 @@ const FamileTree = () => {
         .findByParentId(id)
         .then((res) => {
           console.log(res, 'sdsd');
-          const data = childrenData;
           // if (childrenData) {
           //   childrenData?.children = res;
           // }
-          setChildrenData(res);
+          setFamilyData(res);
         })
         .catch(() => {})
         .finally(() => {
@@ -82,10 +80,6 @@ const FamileTree = () => {
     // }));
   };
 
-  useEffect(() => {
-    console.log('familyData', childrenData);
-  }, [childrenData]);
-
   if (loading)
     return (
       <div className="flex justify-center">
@@ -95,21 +89,12 @@ const FamileTree = () => {
   return (
     <div className="tree whitespace-nowrap">
       <ul className="relative flex flex-row items-baseline justify-center">
-        {childrenData ? (
-          <SubFamilyTree
-            treeData={childrenData}
-            addChildren={addChildren}
-            parentId={[familyData.id]}
-            level={0}
-          />
-        ) : (
-          <SubFamilyTree
-            treeData={familyData}
-            addChildren={addChildren}
-            parentId={[familyData.id]}
-            level={0}
-          />
-        )}
+        <SubFamilyTree
+          treeData={familyData}
+          addChildren={addChildren}
+          parentId={[familyData.id]}
+          level={0}
+        />
       </ul>
     </div>
   );

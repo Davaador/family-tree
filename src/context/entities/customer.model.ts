@@ -1,3 +1,4 @@
+import { ImageField } from 'pages/private/private.model';
 import { CustomerDetail } from 'pages/public/auth/auth.model';
 
 export namespace CustomerModel {
@@ -36,6 +37,7 @@ export namespace CustomerModel {
     husband?: ParentDto;
 
     children?: ParentDto[];
+    profilePicture?: ImageField;
   }
 
   export interface SubFamilyTreeProps {

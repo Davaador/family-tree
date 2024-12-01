@@ -1,6 +1,8 @@
+import { RcFile } from 'antd/es/upload';
 import { CustomerModel } from 'context/entities/customer.model';
 import { apiClient } from 'context/http';
 import { AddParentForm, CustomerDetail } from 'pages/public/auth/auth.model';
+import { ImageField } from './private.model';
 function getUserDetail(): Promise<CustomerDetail> {
   return apiClient.get('/auth/introspect', {});
 }
@@ -11,10 +13,6 @@ function editUser(editUser: AddParentForm) {
 
 function editProfile(editUser: CustomerDetail) {
   return apiClient.post('/auth/user/profile/update', editUser, {});
-}
-
-function editProfileName(editUser: CustomerDetail) {
-  return apiClient.post('/auth/user/profile/update/name', editUser, {});
 }
 
 function getPendingRequest(size: number, page: number) {
@@ -40,15 +38,23 @@ function getTrees(): Promise<CustomerModel.ParentDto> {
   return apiClient.get('/api/parent');
 }
 
+function uploadFile(file: string | Blob | RcFile): Promise<ImageField> {
+  const form = new FormData();
+  form.append('file', file);
+  return apiClient.post('/api/file', form, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+}
+
 export {
   getUserDetail,
   editUser,
   editProfile,
-  editProfileName,
   getPendingRequest,
   updateActiveUser,
   deleteActiveUser,
   getCouplesData,
   getCouple,
   getTrees,
+  uploadFile,
 };

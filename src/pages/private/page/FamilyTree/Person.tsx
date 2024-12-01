@@ -19,8 +19,6 @@ const Person = ({
   }
 
   const addItem = () => {
-    console.log(parentId, 'member');
-
     if (member && addChildren) {
       if (parentId.length === 0) {
         addChildren(parentId);
@@ -37,6 +35,7 @@ const Person = ({
         title={`Avatar for ${member?.firstName}`}
         isDescendant={isDescendant}
         onClick={addItem}
+        member={member}
       />
       <p className="m-0 text-gray-500">{member?.firstName}</p>
     </div>

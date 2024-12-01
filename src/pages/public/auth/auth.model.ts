@@ -1,3 +1,4 @@
+import { ImageField } from 'pages/private/private.model';
 import { CustomerModel } from './../../../context/entities/customer.model';
 export interface LoginSavedData {
   rememberMe: boolean;
@@ -44,6 +45,7 @@ export interface CustomerDetail {
   parent: CustomerModel.Customer;
   wife: CustomerModel.Customer;
   user: UserDetail;
+  profilePicture?: ImageField;
 }
 
 export interface UserDetail {

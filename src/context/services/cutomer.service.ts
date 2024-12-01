@@ -1,5 +1,6 @@
 import { CustomerModel } from 'context/entities/customer.model';
 import { apiClient } from 'context/http';
+import { CustomerDetail } from 'pages/public/auth/auth.model';
 
 function createCouple(
   body: CustomerModel.CoupleCustomer
@@ -19,4 +20,14 @@ async function getDashboard() {
   return await apiClient.post('/api/customer/dashboard', {});
 }
 
-export { createBiography, createCouple, getBiography, getDashboard };
+function editCustomerInfo(editUser: CustomerDetail): Promise<CustomerDetail> {
+  return apiClient.post('/api/customer/update/info', editUser, {});
+}
+
+export {
+  createBiography,
+  createCouple,
+  getBiography,
+  getDashboard,
+  editCustomerInfo,
+};

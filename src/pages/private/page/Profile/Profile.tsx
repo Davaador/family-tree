@@ -4,7 +4,6 @@ import {
   Card,
   Flex,
   Form,
-  Image,
   Modal,
   notification,
   Row,
@@ -13,12 +12,17 @@ import {
 import { useForm } from 'antd/es/form/Form';
 import { authStore } from 'context/auth/store';
 import dayjs from 'dayjs';
-import { EditNameModal, EditPhoneForm, SubmitButton } from 'pages/components';
+import {
+  CustomImage,
+  EditNameModal,
+  EditPhoneForm,
+  SubmitButton,
+} from 'pages/components';
 import { CustomerDetail } from 'pages/public/auth/auth.model';
-import { useTranslation } from 'react-i18next';
-import { editProfile, getUserDetail } from '../../private.service';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { editProfile, getUserDetail } from '../../private.service';
 const { confirm } = Modal;
 const Profile = () => {
   const { authUser, setAuthUser } = authStore();
@@ -53,15 +57,18 @@ const Profile = () => {
   const setModalInvisible = () => {
     setiIshowModal(false);
   };
+  console.log(authUser, 'sss');
+
   return (
     <Card size="default" style={{ background: '#fff' }}>
       <Row style={{ justifyContent: 'space-between', alignItems: 'center' }}>
         <Flex align="center">
-          <Image
+          <CustomImage
             style={{ borderRadius: 40 }}
-            preview={false}
+            preview={true}
             width={80}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+            height={80}
+            src={authUser?.profilePicture?.url}
           />
           <Flex vertical className="ml-20">
             <Typography.Text>{authUser?.surName}</Typography.Text>

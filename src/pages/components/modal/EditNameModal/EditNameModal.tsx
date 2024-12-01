@@ -1,13 +1,20 @@
-import { Flex, Form, Modal, notification } from 'antd';
+import PlusOutlined from '@ant-design/icons/lib/icons/PlusOutlined';
+import { Flex, Form, Modal, notification, Upload, UploadProps } from 'antd';
+import { RcFile } from 'antd/es/upload';
+import { UploadFile } from 'antd/lib/upload/interface';
 import { authStore } from 'context/auth/store';
+import { apiClient } from 'context/http';
+import { editCustomerInfo } from 'context/services/cutomer.service';
 import {
   CustomFormItem,
   CustomInput,
-  FormInput,
   SubmitButton,
 } from 'pages/components/atomics';
-import { editProfileName } from 'pages/private/private.service';
+import { ImageField } from 'pages/private/private.model';
+import { uploadFile } from 'pages/private/private.service';
 import { CustomerDetail } from 'pages/public/auth/auth.model';
+import { UploadRequestOption } from 'rc-upload/lib/interface';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface EditNameModalProps {
@@ -19,21 +26,60 @@ interface EditNameModalProps {
 const EditNameModal = (props: EditNameModalProps) => {
   const { isShow, toggleModal, handleCancel } = props;
   const { authUser, setAuthUser } = authStore();
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+
   const { t } = useTranslation();
-  const onFinish = (values: CustomerDetail) => {
+
+  useEffect(() => {
+    const signal = new AbortController();
+    if (!authUser?.profilePicture) return;
+    apiClient
+      .get(`/api/file/resource/${authUser.profilePicture.url}`, {
+        signal: signal.signal,
+        responseType: 'blob',
+      })
+      .then((response: any) => {
+        const url = URL.createObjectURL(response);
+        const file = new File([response], 'image.jpg', { type: 'image/jpeg' });
+        const rcFile = file as RcFile;
+        const uploadFile: UploadFile = {
+          uid: authUser.profilePicture!.id.toString(),
+          name: authUser.profilePicture!.name,
+          status: 'done',
+          url: url,
+          originFileObj: rcFile,
+        };
+        setFileList([uploadFile]);
+      })
+      .catch((e) => {});
+    return () => {
+      signal.abort();
+    };
+  }, [authUser]);
+
+  const handleUpload = async ({ file, onSuccess }: UploadRequestOption) => {
+    if (onSuccess) {
+      onSuccess(file);
+    }
+  };
+
+  const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
+
+  const onFinish = async (values: CustomerDetail) => {
     if (authUser) {
-      const body: CustomerDetail = {
-        ...authUser,
-        surName: values.surName,
-        firstName: values.firstName,
-        lastName: values.lastName,
-      };
-      editProfileName(values).then(() => {
+      if (fileList) {
+        const val: ImageField = await uploadFile(fileList[0].originFileObj!);
+        values.profilePicture = val;
+      }
+      editCustomerInfo(values).then((res: CustomerDetail) => {
         notification.success({
           message: 'Амжилттай',
           description: 'Таны мэдээлэл амжилттай өөрчлөгдлөө!',
         });
-        setAuthUser(body);
+        console.log(res, 'sdsdsds modal');
+        setAuthUser(res);
         toggleModal();
         return;
       });
@@ -53,6 +99,22 @@ const EditNameModal = (props: EditNameModalProps) => {
         initialValues={{ ...authUser }}
         onFinish={onFinish}
       >
+        <CustomFormItem name={'profilePicture'} label={'Өөрийн зураг'}>
+          <Upload
+            maxCount={1}
+            listType="picture-card"
+            accept="image/png, image/jpeg"
+            fileList={fileList}
+            customRequest={handleUpload}
+            onChange={handleChange}
+          >
+            {fileList?.length >= 1 ? null : (
+              <button type="button">
+                <PlusOutlined /> <div style={{ marginTop: 8 }}>Upload</div>
+              </button>
+            )}
+          </Upload>
+        </CustomFormItem>
         <CustomFormItem
           name="surName"
           label={t('register.surName')}
