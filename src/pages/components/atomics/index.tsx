@@ -8,6 +8,7 @@ import CardHeader from './CardHeader/CardHeader';
 import CustomInput from './CustomInput/CustomInput';
 import CustomFormItem from './CustomFormItem/CustomFormItem';
 import DashboardCard from './DashboardCard/DashboardCard';
+import CustomImage from './CustomImage/CustomImage';
 export {
   SubmitButton,
   TextButton,
@@ -19,4 +20,5 @@ export {
   CustomInput,
   CustomFormItem,
   DashboardCard,
+  CustomImage,
 };

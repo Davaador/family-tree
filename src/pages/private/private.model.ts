@@ -32,3 +32,10 @@ export interface DashboardData {
 export interface DashboardProps {
   dashboardData: DashboardData;
 }
+
+export interface ImageField {
+  id: number;
+  name: string;
+  url: string;
+  extension: string;
+}
