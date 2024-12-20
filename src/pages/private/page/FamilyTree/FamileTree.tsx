@@ -1,7 +1,7 @@
 import { Spin } from 'antd';
 import { CustomerModel, Gender } from 'context/entities/customer.model';
 import { parentService } from 'context/services/parent.service';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import SubFamilyTree from './SubFamilyTree/SubFamilyTree';
 

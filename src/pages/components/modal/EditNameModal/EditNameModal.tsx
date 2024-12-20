@@ -4,7 +4,7 @@ import { RcFile } from 'antd/es/upload';
 import { UploadFile } from 'antd/lib/upload/interface';
 import { authStore } from 'context/auth/store';
 import { apiClient } from 'context/http';
-import { editCustomerInfo } from 'context/services/cutomer.service';
+import { editCustomerInfo } from 'context/services/customer.service';
 import {
   CustomFormItem,
   CustomInput,

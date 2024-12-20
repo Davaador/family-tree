@@ -26,7 +26,8 @@
         "enterNewPasswordRegex": "Your entered password is incorrect",
         "matchOldPassword": "The passwords do not match",
         "registerNumber": "Register number",
-        "surName": "surname"
+        "surName": "surname",
+        "age": "Age"
     },
     "login": {
         "password": "Password",

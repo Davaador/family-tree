@@ -11,7 +11,7 @@ import {
 } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { CustomerModel } from 'context/entities/customer.model';
-import { createCouple } from 'context/services/cutomer.service';
+import { createCouple } from 'context/services/customer.service';
 import { CardHeader } from 'pages/components';
 import { AddFamilyProps } from 'pages/private/private.model';
 import { useState } from 'react';

@@ -39,3 +39,23 @@ export interface ImageField {
   url: string;
   extension: string;
 }
+
+export interface CustomerListProps {
+  customers: CustomerListData;
+}
+
+export interface CustomerListData {
+  content: CustomerDetail[];
+  totalElements: number;
+  perPage: number;
+  currentPage: number;
+  number: number;
+  totalPages: number;
+}
+
+export interface CustomerListPropsData {
+  data: CustomerDetail[];
+  total: number;
+  perPage: number;
+  currentPage: number;
+}
