@@ -24,10 +24,15 @@ function editCustomerInfo(editUser: CustomerDetail): Promise<CustomerDetail> {
   return apiClient.post('/api/customer/update/info', editUser, {});
 }
 
+function findAllActiveCustomers(): Promise<CustomerDetail[]> {
+  return apiClient.get('/api/customer/all');
+}
+
 export {
   createBiography,
   createCouple,
   getBiography,
   getDashboard,
   editCustomerInfo,
+  findAllActiveCustomers,
 };

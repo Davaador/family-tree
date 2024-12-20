@@ -2,7 +2,7 @@ import { RcFile } from 'antd/es/upload';
 import { CustomerModel } from 'context/entities/customer.model';
 import { apiClient } from 'context/http';
 import { AddParentForm, CustomerDetail } from 'pages/public/auth/auth.model';
-import { ImageField } from './private.model';
+import { CustomerListData, ImageField } from './private.model';
 function getUserDetail(): Promise<CustomerDetail> {
   return apiClient.get('/auth/introspect', {});
 }
@@ -46,15 +46,32 @@ function uploadFile(file: string | Blob | RcFile): Promise<ImageField> {
   });
 }
 
+function getActiveCustomerList(
+  size: number,
+  page: number,
+  isSortAscending: number,
+  searchLabel?: string,
+  searchValue?: string
+): Promise<CustomerListData> {
+  let url = `/api/customer/active/all?size=${size}&page=${page}&isSortAscending=${isSortAscending}`;
+
+  if (searchLabel && searchValue) {
+    url += `&${searchLabel}=${encodeURIComponent(searchValue)}`;
+  }
+
+  return apiClient.get(url, {});
+}
+
 export {
-  getUserDetail,
-  editUser,
-  editProfile,
-  getPendingRequest,
-  updateActiveUser,
   deleteActiveUser,
-  getCouplesData,
+  editProfile,
+  editUser,
+  getActiveCustomerList,
   getCouple,
+  getCouplesData,
+  getPendingRequest,
   getTrees,
+  getUserDetail,
+  updateActiveUser,
   uploadFile,
 };

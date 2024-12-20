@@ -1,19 +1,20 @@
 import { AuthAction } from 'context/actions/auth.action';
+import { authStore } from 'context/auth/store';
 import { AuthState } from 'context/entities/auth.model';
+import { CustomerModel } from 'context/entities/customer.model';
+import { getBiography, getDashboard } from 'context/services/customer.service';
+import { CustomerDetail } from 'pages/public/auth/auth.model';
 import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 import { StoreApi } from 'zustand';
+import { CustomerListData } from '../private.model';
 import {
+  getActiveCustomerList,
   getCouple,
   getCouplesData,
   getPendingRequest,
   getTrees,
   getUserDetail,
 } from '../private.service';
-import { CustomerDetail } from 'pages/public/auth/auth.model';
-import { authStore } from 'context/auth/store';
-import { CustomerModel, Gender } from 'context/entities/customer.model';
-import { getBiography, getDashboard } from 'context/services/cutomer.service';
-import { IMember } from '../page/FamilyTree/FamileTree';
 
 const authGuard = async (store: StoreApi<AuthState & AuthAction>) => {
   try {
@@ -67,8 +68,31 @@ const requestLoader = async ({ request }: LoaderFunctionArgs) => {
 
   return {
     requests: {
-      data: datas.content,
-      total: datas.totalElements,
+      content: datas.content,
+      totalElements: datas.totalElements,
+      perPage: size,
+      currentPage: page,
+    },
+  };
+};
+
+const customerListLoader = async ({ request }: LoaderFunctionArgs) => {
+  const url = new URL(request.url);
+  const page = parseOrDefault(url.searchParams.get('page') || '', 0);
+  const size = parseOrDefault(url.searchParams.get('perPage') || '', 10);
+  const isSortAscending = parseOrDefault(
+    url.searchParams.get('isSortAscending') || '',
+    0
+  );
+  const datas: CustomerListData = await getActiveCustomerList(
+    size,
+    page,
+    isSortAscending
+  );
+
+  return {
+    customers: {
+      ...datas,
       perPage: size,
       currentPage: page,
     },
@@ -86,56 +110,6 @@ const coupleLoader = async () => {
 
 const treeLoader = async () => {
   const treeData: CustomerModel.ParentDto = await getTrees();
-  // const rootMember: IMember = {
-  //   name: 'test',
-  //   gender: Gender.MALE,
-  //   spouse: {
-  //     name: 'test em',
-  //     gender: Gender.FEMALE,
-  //     spouse: null,
-  //     children: [
-  //       {
-  //         name: 'tsedes',
-  //         gender: Gender.MALE,
-  //         spouse: null,
-  //         children: [],
-  //       },
-  //     ],
-  //   },
-  //   children: [
-  //     {
-  //       name: 'tsede',
-  //       gender: Gender.MALE,
-  //       spouse: null,
-  //       children: [],
-  //     },
-  //     {
-  //       name: 'davaa',
-  //       gender: Gender.MALE,
-  //       spouse: {
-  //         name: 'test em',
-  //         gender: Gender.FEMALE,
-  //         spouse: null,
-  //         children: [],
-  //       },
-  //       children: [
-  //         {
-  //           name: 'test em',
-  //           gender: Gender.FEMALE,
-  //           spouse: null,
-  //           children: [
-  //             {
-  //               name: 'ss',
-  //               gender: Gender.FEMALE,
-  //               spouse: null,
-  //               children: [],
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // };
   return {
     treeData: treeData,
   };
@@ -143,25 +117,22 @@ const treeLoader = async () => {
 
 const biographyLoader = async () => {
   const biographyData = await getBiography();
-  console.log(biographyData, 'sss');
-
   return { biographyData: biographyData };
 };
 
 const dashboardLoader = async () => {
   const dashboardData = await getDashboard();
-  console.log(dashboardData, 'dashboardLoader');
-
   return { dashboardData };
 };
 
 export {
   authGuard,
   authLogout,
+  biographyLoader,
+  coupleLoader,
+  customerListLoader,
+  dashboardLoader,
   getAuth,
   requestLoader,
-  coupleLoader,
   treeLoader,
-  biographyLoader,
-  dashboardLoader,
 };

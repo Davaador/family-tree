@@ -1,7 +1,7 @@
 import { Col, Form, Layout, notification, Row, Input } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { CustomerModel } from 'context/entities/customer.model';
-import { createBiography } from 'context/services/cutomer.service';
+import { createBiography } from 'context/services/customer.service';
 import { CardHeader, CustomFormItem, SubmitButton } from 'pages/components';
 import { BiographyProps } from 'pages/private/private.model';
 import { useState } from 'react';

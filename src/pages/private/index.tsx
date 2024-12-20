@@ -7,11 +7,13 @@ import {
   authLogout,
   biographyLoader,
   coupleLoader,
+  customerListLoader,
   dashboardLoader,
   requestLoader,
   treeLoader,
 } from './hooks/usePrivateHook';
 import EditBiography from './page/Biography/EditBiography/EditBiography';
+import CustomerList from './page/Customer/CustomerList/CustomerList';
 import Dashboard from './page/Dashboard';
 import FamileTree from './page/FamilyTree/FamileTree';
 import AddFamily from './page/Profile/AddFamily/AddFamily';
@@ -52,6 +54,11 @@ const privateRoute: RouteObject = {
       path: '/biography',
       loader: biographyLoader,
       element: <EditBiography />,
+    },
+    {
+      path: '/customers',
+      loader: customerListLoader,
+      element: <CustomerList />,
     },
     {
       path: '/logout',

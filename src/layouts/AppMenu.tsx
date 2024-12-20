@@ -3,6 +3,7 @@ import {
   DashboardOutlined,
   HistoryOutlined,
   MailOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { authStore } from 'context/auth/store';
@@ -38,6 +39,11 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       key: '/biography',
       icon: <HistoryOutlined />,
       label: <NavLink to="/biography">{t('dashboard.biography')}</NavLink>,
+    },
+    {
+      key: '/customers',
+      icon: <UserOutlined />,
+      label: <NavLink to="/customers">{t('dashboard.customers')}</NavLink>,
     },
   ];
   return (

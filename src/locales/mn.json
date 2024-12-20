@@ -26,7 +26,8 @@
         "enterNewPasswordRegex": "Таны оруулсан нууц үг буруу байна.",
         "matchOldPassword": "Нууц үг таарахгүй байна",
         "registerNumber": "Регистрийн дугаар",
-        "surName": "Ургийн овог"
+        "surName": "Ургийн овог",
+        "age": "Нас"
     },
     "login": {
         "password": "Нууц үг",
@@ -46,7 +47,8 @@
         "dashboard": "Нүүр хуудас",
         "requests": "Хүсэлтүүд",
         "familyTree": "Ургийн мод",
-        "biography": "Намтар"
+        "biography": "Намтар",
+        "customers": "Харилцагч"
     },
     "request": {
         "settings": "Үйлдлүүд",
