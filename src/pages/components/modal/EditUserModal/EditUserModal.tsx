@@ -84,7 +84,6 @@ const EditUserModal = (props: EditUserModalProps) => {
     setLoading(true);
     if (isShow) {
       parentService.getParents().then((res) => {
-        console.log(res);
         setParents(res);
         setLoading(false);
       });

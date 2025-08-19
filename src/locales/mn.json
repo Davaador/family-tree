@@ -27,7 +27,8 @@
         "matchOldPassword": "Нууц үг таарахгүй байна",
         "registerNumber": "Регистрийн дугаар",
         "surName": "Ургийн овог",
-        "age": "Нас"
+        "age": "Нас",
+        "birthday": "Төрсөн огноо"
     },
     "login": {
         "password": "Нууц үг",
@@ -48,7 +49,8 @@
         "requests": "Хүсэлтүүд",
         "familyTree": "Ургийн мод",
         "biography": "Намтар",
-        "customers": "Харилцагч"
+        "customers": "Харилцагч",
+        "childs": "Миний хүүхэд"
     },
     "request": {
         "settings": "Үйлдлүүд",
@@ -64,5 +66,12 @@
     },
     "family": {
         "header": "Гэр бүлийн гишүүнээ бүртгэх"
+    },
+    "child": {
+        "lastName": "Хүүхдийн овог",
+        "firstName": "Хүүхдийн нэр",
+        "surName": "Хүүхдийн ургийн овог",
+        "enterName": "Хүүхдийн нэрийг оруулна уу!",
+        "enterSurName": "Хүүхдийн ургийн овог оруулна уу!"
     }
 }

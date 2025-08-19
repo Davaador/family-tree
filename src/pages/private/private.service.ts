@@ -62,6 +62,10 @@ function getActiveCustomerList(
   return apiClient.get(url, {});
 }
 
+function getChildList(): Promise<CustomerModel.ParentDto[]> {
+  return apiClient.get('/api/child/list');
+}
+
 export {
   deleteActiveUser,
   editProfile,
@@ -74,4 +78,5 @@ export {
   getUserDetail,
   updateActiveUser,
   uploadFile,
+  getChildList,
 };

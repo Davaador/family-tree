@@ -3,6 +3,7 @@ import {
   DashboardOutlined,
   HistoryOutlined,
   MailOutlined,
+  UsergroupAddOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { Menu } from 'antd';
@@ -44,6 +45,11 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       key: '/customers',
       icon: <UserOutlined />,
       label: <NavLink to="/customers">{t('dashboard.customers')}</NavLink>,
+    },
+    {
+      key: '/childs',
+      icon: <UsergroupAddOutlined />,
+      label: <NavLink to="/childs">{t('dashboard.childs')}</NavLink>,
     },
   ];
   return (

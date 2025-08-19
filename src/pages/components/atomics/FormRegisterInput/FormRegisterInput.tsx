@@ -1,8 +1,8 @@
-import { Col, Form, FormInstance, Input, Row, Select } from "antd";
-import validations from "context/validations";
-import { RegisterType } from "pages/public/auth/auth.model";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Col, Form, FormInstance, Input, Row, Select } from 'antd';
+import validations from 'context/validations';
+import { RegisterType } from 'pages/public/auth/auth.model';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 const { Option } = Select;
 
 type RegisterInputProps = {
@@ -23,8 +23,8 @@ const FormRegisterInput = (props: RegisterInputProps) => {
 
   useEffect(() => {
     form.setFieldValue(
-      "register",
-      [firstLetter, secondLetter, numbers].join("")
+      'register',
+      [firstLetter, secondLetter, numbers].join('')
     );
   }, [firstLetter, secondLetter, numbers, form]);
 
@@ -42,7 +42,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
   return (
     <>
       <Form.Item<RegisterType>
-        label={t("register.registerNumber")}
+        label={t('register.registerNumber')}
         required={true}
         layout="vertical"
       >
@@ -76,9 +76,9 @@ const FormRegisterInput = (props: RegisterInputProps) => {
           <Col span={12}>
             <Form.Item
               noStyle
-              name={"register"}
+              name={'register'}
               rules={[
-                { required: true, message: "oruulssna uu" },
+                { required: true, message: 'oruulssna uu' },
                 ({ setFieldValue }) => ({
                   validator(rule, value) {
                     if (
@@ -86,10 +86,10 @@ const FormRegisterInput = (props: RegisterInputProps) => {
                         (firstLetter && firstLetter.length > 0) ||
                         (secondLetter && secondLetter.length > 0)) &&
                       !validations.register.test(
-                        [firstLetter, secondLetter, numbers].join("")
+                        [firstLetter, secondLetter, numbers].join('')
                       )
                     ) {
-                      return Promise.reject("utga buruu bna");
+                      return Promise.reject('utga buruu bna');
                     }
 
                     return Promise.resolve();

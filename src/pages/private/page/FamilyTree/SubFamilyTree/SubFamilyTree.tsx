@@ -7,7 +7,7 @@ const SubFamilyTree = ({
   addChildren,
   parentId,
 }: CustomerModel.SubFamilyTreeProps) => {
-  console.log(parentId, 'level');
+  console.log(treeData, 'level');
 
   const renderCouple = () => (
     <div className="border-solid border-gray-300 border p-2 rounded-md inline-block">

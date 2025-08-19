@@ -44,6 +44,10 @@ export interface CustomerListProps {
   customers: CustomerListData;
 }
 
+export interface ChildListProps {
+  child: { datas: CustomerModel.ParentDto[] };
+}
+
 export interface CustomerListData {
   content: CustomerDetail[];
   totalElements: number;

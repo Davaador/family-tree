@@ -6,6 +6,7 @@ import {
   authGuard,
   authLogout,
   biographyLoader,
+  childListLoader,
   coupleLoader,
   customerListLoader,
   dashboardLoader,
@@ -19,6 +20,8 @@ import FamileTree from './page/FamilyTree/FamileTree';
 import AddFamily from './page/Profile/AddFamily/AddFamily';
 import Profile from './page/Profile/Profile';
 import RequestList from './page/Requests/RequestList/RequestList';
+import ChildList from './page/Child/ChildList/ChildList';
+import AddChild from './page/Child/AddChild/AddChild';
 
 const privateRoute: RouteObject = {
   path: '/',
@@ -59,6 +62,15 @@ const privateRoute: RouteObject = {
       path: '/customers',
       loader: customerListLoader,
       element: <CustomerList />,
+    },
+    {
+      path: '/childs',
+      loader: childListLoader,
+      element: <ChildList />,
+    },
+    {
+      path: '/add/child',
+      element: <AddChild />,
     },
     {
       path: '/logout',

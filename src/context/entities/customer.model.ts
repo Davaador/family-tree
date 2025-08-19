@@ -32,6 +32,7 @@ export namespace CustomerModel {
     firstName: string;
     lastName: string;
     gender: string;
+    birthDate: Date | string;
     // spouse?: ParentDto;
     wife?: ParentDto;
     husband?: ParentDto;

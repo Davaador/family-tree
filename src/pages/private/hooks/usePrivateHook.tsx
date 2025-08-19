@@ -9,6 +9,7 @@ import { StoreApi } from 'zustand';
 import { CustomerListData } from '../private.model';
 import {
   getActiveCustomerList,
+  getChildList,
   getCouple,
   getCouplesData,
   getPendingRequest,
@@ -99,6 +100,12 @@ const customerListLoader = async ({ request }: LoaderFunctionArgs) => {
   };
 };
 
+const childListLoader = async () => {
+  const datas: CustomerModel.ParentDto[] = await getChildList();
+
+  return { child: { datas: datas } };
+};
+
 const coupleLoader = async () => {
   const coupleData: CustomerModel.Customer = await getCouple();
   const selectData: CustomerModel.Customer[] = await getCouplesData();
@@ -135,4 +142,5 @@ export {
   getAuth,
   requestLoader,
   treeLoader,
+  childListLoader,
 };

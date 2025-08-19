@@ -30,14 +30,18 @@ const Person = ({
 
   return (
     <div className="!border-none py-1 px-2 inline-block">
-      <Avatar
-        color={member?.gender === Gender.MALE ? 'bg-male' : 'bg-female'}
-        title={`Avatar for ${member?.firstName}`}
-        isDescendant={isDescendant}
-        onClick={addItem}
-        member={member}
-      />
-      <p className="m-0 text-gray-500">{member?.firstName}</p>
+      {member && (
+        <>
+          <Avatar
+            color={member.gender === Gender.MALE ? 'bg-male' : 'bg-female'}
+            title={`Avatar for ${member?.firstName}`}
+            isDescendant={isDescendant}
+            onClick={addItem}
+            member={member}
+          />
+          <p className="m-0 text-gray-500">{member.firstName}</p>
+        </>
+      )}
     </div>
   );
 };

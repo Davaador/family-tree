@@ -22,6 +22,7 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import './CustomerList.css';
 import { useForm } from 'antd/es/form/Form';
 import { CustomFormItem } from 'pages/components';
+import dayjs from 'dayjs';
 
 const CustomerList = () => {
   const { t } = useTranslation();
@@ -32,7 +33,6 @@ const CustomerList = () => {
   const [form] = useForm();
 
   useEffect(() => {
-    // setCustomerLists(customers.data);
     setTotalSize(customers);
   }, [customers]);
 
@@ -73,11 +73,16 @@ const CustomerList = () => {
       width: '25%',
     },
     {
-      title: t('register.age'),
-      dataIndex: 'age',
-      key: 'age',
+      title: t('register.birthday'),
+      dataIndex: 'birthDate',
+      key: 'birthDate',
       width: '25%',
-      sorter: (a, b) => a.age - b.age,
+      render: (date) => (date ? dayjs(date).format('YYYY-MM-DD') : ''),
+      sorter: (a, b) => {
+        const dateA = a.birthDate ? dayjs(a.birthDate).valueOf() : 0;
+        const dateB = b.birthDate ? dayjs(b.birthDate).valueOf() : 0;
+        return dateA - dateB;
+      },
     },
   ];
 
@@ -124,7 +129,11 @@ const CustomerList = () => {
           >
             <CustomFormItem name={'label'} className="w-1/3">
               <Select
-                options={[{ value: 'phoneNumber', label: 'Утасны дугаар' }]}
+                options={[
+                  { value: 'phoneNumber', label: 'Утасны дугаар' },
+                  { value: 'lastName', label: 'Овог' },
+                  { value: 'firstName', label: 'Нэр' },
+                ]}
               ></Select>
             </CustomFormItem>
             <CustomFormItem name={'value'} className="w-1/3">

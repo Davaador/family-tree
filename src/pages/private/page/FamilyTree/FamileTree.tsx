@@ -12,42 +12,6 @@ export interface IMember {
   children: IMember[];
 }
 
-// const SubFamilyTree = ({
-//   level = 0,
-//   treeData,
-//   addChildren,
-// }: CustomerModel.SubFamilyTreeProps) => {
-//   const renderCouple = () => (
-//     <div className="border-solid border-gray-300 border p-2 rounded-md inline-block">
-//       <Person member={treeData} addChildren={addChildren} />
-//       <Person member={treeData?.spouse} isDescendant={level === 0 && true} />
-//     </div>
-//   );
-
-//   const renderChildren = () => (
-//     // <p>test</p>
-//     <ul
-//       key={treeData.id}
-//       className="pt-14 relative flex flex-row items-baseline justify-center"
-//     >
-//       {treeData.children &&
-//         treeData.children.map((member) => (
-//           // <p>testss</p>
-//           <SubFamilyTree level={level + 1} key={member.id} treeData={member} />
-//         ))}
-//     </ul>
-//   );
-
-//   console.log(treeData.children, 'tttttttt');
-
-//   return (
-//     <li className="float-left list-none relative pt-14 px-2">
-//       {renderCouple()}
-//       {treeData.children && treeData.children.length > 0 && renderChildren()}
-//     </li>
-//   );
-// };
-
 const FamileTree = () => {
   const { treeData } = useLoaderData() as CustomerModel.SubFamilyTreeProps;
   const [familyData, setFamilyData] =
@@ -61,10 +25,6 @@ const FamileTree = () => {
       parentService
         .findByParentId(id)
         .then((res) => {
-          console.log(res, 'sdsd');
-          // if (childrenData) {
-          //   childrenData?.children = res;
-          // }
           setFamilyData(res);
         })
         .catch(() => {})
@@ -72,12 +32,6 @@ const FamileTree = () => {
           setLoading(false);
         });
     }
-
-    // console.log('aaa', newChildren);
-    // setFamilyData((prevFamilyData) => ({
-    //   ...prevFamilyData,
-    //   children: [...(prevFamilyData.children || []), newChildren],
-    // }));
   };
 
   if (loading)
