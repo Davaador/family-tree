@@ -6,11 +6,13 @@ import { DashboardProps } from 'pages/private/private.model';
 import { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import './Dashboard.less';
+import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
   const { authUser, roleUser } = authStore();
   const [isShowModal, setIshowModal] = useState<boolean>(false);
   const { dashboardData } = useLoaderData() as DashboardProps;
+  const { t } = useTranslation();
 
   const setModalInvisible = () => {
     setIshowModal(false);
@@ -34,12 +36,12 @@ const Dashboard = () => {
             <DashboardCard value={dashboardData.total} />
             <DashboardCard
               value={dashboardData.activeCount}
-              title="Идэвхитэй тоо"
+              title={t('dashboard.activeCount')}
               type="success"
             />
             <DashboardCard
               value={dashboardData.pendingCount}
-              title="Хүсэлт илгээсэн тоо"
+              title={t('dashboard.requestsSent')}
               type="warning"
             />
           </Row>

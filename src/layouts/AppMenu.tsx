@@ -19,6 +19,7 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
   const location = useLocation();
   const { t } = useTranslation();
   const { roleUser } = authStore();
+  console.log(roleUser, 'test');
 
   const menuItems = [
     {

@@ -12,7 +12,13 @@ import { authLogout } from 'pages/private/hooks/usePrivateHook';
 
 const requestSuccessStatusCodes: number[] = [200, 201, 202, 204];
 const failedRequestCodes: number[] = [400, 404, 405];
-const excludeUrls: string[] = ['/auth/token', '/auth/user/register'];
+const excludeUrls: string[] = [
+  '/auth/token',
+  '/auth/user/register',
+  '/auth/sent/otp',
+  '/auth/check/otp',
+  '/auth/reset/password',
+];
 type ErrorResponse = {
   message: string;
   code: string;

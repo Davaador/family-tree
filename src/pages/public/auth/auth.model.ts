@@ -1,3 +1,4 @@
+import { ForgotPassword } from './ResetPassword/ForgotPassword/ForgotPassword';
 import { ImageField } from 'pages/private/private.model';
 import { CustomerModel } from './../../../context/entities/customer.model';
 export interface LoginSavedData {
@@ -70,4 +71,20 @@ export interface AddParentForm {
   surName: string;
   age: number;
   birthDate: Date | string;
+}
+
+export interface SendEmailForm {
+  email: string;
+}
+
+export interface CheckOtpForm {
+  email: string;
+  otp: string;
+}
+
+export interface ForgotPasswordForm {
+  email: string;
+  resetToken: string;
+  password: string;
+  confirmPassword: string;
 }

@@ -5,6 +5,9 @@ import { loginLoader, redirectIfLoggedIn } from './hooks/usePublicHook';
 import { authStore } from 'context/auth/store';
 import Register from './Register/Register';
 import ErrorResult from 'layouts/ErrorResult';
+import SendOtp from './ResetPassword/SendOtp/SendOtp';
+import EnterOtp from './ResetPassword/EnterOtp/EnterOtp';
+import ForgotPassword from './ResetPassword/ForgotPassword/ForgotPassword';
 
 const authRoutes: RouteObject = {
   path: 'auth',
@@ -20,6 +23,18 @@ const authRoutes: RouteObject = {
     {
       path: 'register',
       element: <Register />,
+    },
+    {
+      path: 'reset',
+      element: <SendOtp />,
+    },
+    {
+      path: 'enter/otp',
+      element: <EnterOtp />,
+    },
+    {
+      path: 'forgot/password',
+      element: <ForgotPassword />,
     },
   ],
 };

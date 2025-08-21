@@ -1,50 +1,98 @@
 {
     "general": {
-        "hello": "hello",
+        "hello": "Hello",
         "registerText": "Register",
         "loginText": "Login",
         "save": "Save",
         "welcome": "Welcome",
-        "ok": "OK",
-        "cancel": "Cancel",
+        "ok": "Yes",
+        "cancel": "No",
         "perPage": "/page",
         "profile": "Profile",
-        "logout": "Logout"
+        "logout": "Logout",
+        "continue": "Continue"
     },
     "register": {
         "phoneNumber": "Phone number",
-        "enterPhone": "Please enter a phone number",
+        "enterPhone": "Please enter your phone number!",
         "lastName": "Last name",
-        "enterLastName": "Please enter a Last name",
+        "enterLastName": "Please enter your last name!",
         "firstName": "First name",
-        "enterName": "Please enter a First name",
-        "password": "New Password",
-        "enterPassword": "Please enter a new password",
-        "confirmPassword": "Confirm New Password",
-        "confirmPasswordRequired": "Please confirm your new password",
-        "enterPhoneRegex": "Please enter a valid phone number",
-        "enterNewPasswordRegex": "Your entered password is incorrect",
-        "matchOldPassword": "The passwords do not match",
-        "registerNumber": "Register number",
-        "surName": "surname",
-        "age": "Age"
+        "enterName": "Please enter your first name!",
+        "password": "New password",
+        "enterPassword": "Please enter your new password!",
+        "confirmPassword": "Confirm password",
+        "confirmPasswordRequired": "Please confirm your password!",
+        "enterPhoneRegex": "Please enter a valid phone number!",
+        "enterNewPasswordRegex": "Your entered password is incorrect.",
+        "matchOldPassword": "Passwords do not match",
+        "registerNumber": "Registration number",
+        "surName": "Clan name",
+        "age": "Age",
+        "birthday": "Date of birth"
     },
     "login": {
         "password": "Password",
-        "enterPassword": "Please enter a password"
+        "enterPassword": "Please enter your new password!",
+        "remember": "Remember me",
+        "resetPassword": "Reset password",
+        "register": "Register now!"
     },
     "profile": {
-        "firstName": "First name",
+        "firstName": "Name",
         "email": "Email",
         "birthDate": "Birth date",
-        "editInfo": "Please correct your information?",
+        "editInfo": "Edit your information?",
         "editModalContent": "You are about to edit your information."
     },
     "modal": {
-        "editNameTitle": "Edit your information"
+        "editNameTitle": "Change personal information"
     },
     "dashboard": {
         "dashboard": "Dashboard",
-        "requests": "Requests"
+        "requests": "Requests",
+        "familyTree": "Family tree",
+        "biography": "Biography",
+        "customers": "Customer",
+        "childs": "My children",
+        "totalRegistered": "Total number of registered users",
+        "activeCount": "Number of active users",
+        "requestsSent": "Number of requests sent"
+    },
+    "request": {
+        "settings": "Actions",
+        "approveTitle": "Approve this customer",
+        "approveDesc": "Are you sure you want to approve this customer?",
+        "notification": {
+            "success": "Successful",
+            "sucessMessage": "Customer added successfully.",
+            "deleteMessage": "Customer deleted successfully."
+        },
+        "deleteTitle": "Delete this customer",
+        "deleteDesc": "Are you sure you want to delete this customer?"
+    },
+    "family": {
+        "header": "Register a family member"
+    },
+    "child": {
+        "lastName": "Child's last name",
+        "firstName": "Child's first name",
+        "surName": "Child's clan name",
+        "enterName": "Please enter the child's name!",
+        "enterSurName": "Please enter the child's clan name!"
+    },
+    "reset": {
+        "success": {
+            "message": "A one-time password has been sent to your email. Please check your inbox.",
+            "enterOtpMessage": "Your one-time password is valid.",
+            "forgotMessage": "Your password has been successfully changed."
+        },
+        "inputEmail": "Enter email",
+        "enterEmail": "Email address",
+        "enterEmailRequired": "Please enter your email address.",
+        "incorrectEmail": "Please enter a valid email address.",
+        "enterOtp": "One-time password",
+        "enterOtpRequired": "Please enter the one-time password.",
+        "forgotPassword": "New password"
     }
 }

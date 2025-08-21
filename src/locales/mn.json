@@ -9,7 +9,8 @@
         "cancel": "Үгүй",
         "perPage": "/хуудас",
         "profile": "Хувийн мэдээлэл",
-        "logout": "Гарах"
+        "logout": "Гарах",
+        "continue": "Үргэлжлүүлэх"
     },
     "register": {
         "phoneNumber": "Утасны дугаар",
@@ -32,7 +33,10 @@
     },
     "login": {
         "password": "Нууц үг",
-        "enterPassword": "Шинэ нууц үгээ оруулна уу!"
+        "enterPassword": "Шинэ нууц үгээ оруулна уу!",
+        "remember": "Сануулах",
+        "resetPassword": "Нууц үг сэргээх",
+        "register": "Шинээр бүртгүүлэх!"
     },
     "profile": {
         "firstName": "Нэр",
@@ -50,7 +54,10 @@
         "familyTree": "Ургийн мод",
         "biography": "Намтар",
         "customers": "Харилцагч",
-        "childs": "Миний хүүхэд"
+        "childs": "Миний хүүхэд",
+        "totalRegistered": "Нийт бүртгүүлсэн тоо",
+        "activeCount": "Идэвхитэй тоо",
+        "requestsSent": "Хүсэлт илгээсэн тоо"
     },
     "request": {
         "settings": "Үйлдлүүд",
@@ -73,5 +80,19 @@
         "surName": "Хүүхдийн ургийн овог",
         "enterName": "Хүүхдийн нэрийг оруулна уу!",
         "enterSurName": "Хүүхдийн ургийн овог оруулна уу!"
+    },
+    "reset": {
+        "success": {
+            "message": "Таны И-майл хаягруу нэг удаагийн нууц үг амжилттай явсан тул та майл хаягаа шалгана уу.",
+            "enterOtpMessage": "Таны нэг удаагийн нууц үг зөв байна.",
+            "forgotMessage": "Таны нууц үг амжилттай солигдлоо."
+        },
+        "inputEmail": "И-майл оруулах",
+        "enterEmail": "И-майл хаяг",
+        "enterEmailRequired": "И-майл хаягаа оруулна уу.",
+        "incorrectEmail": "Зөв И-майл хаяг оруулна уу.",
+        "enterOtp": "Нэг удаагийн нууц үг",
+        "enterOtpRequired": "Нэг удаагийн нууц үгээ оруулна уу.",
+        "forgotPassword": "Шинэ нууц үг"
     }
 }

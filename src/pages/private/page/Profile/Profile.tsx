@@ -109,7 +109,7 @@ const Profile = () => {
             onFinish={onFinish}
           >
             <EditPhoneForm form={form} />
-            <SubmitButton className="mt-20" size="small" />
+            <SubmitButton className="mt-30 mr-30" size="middle" />
           </Form>
         }
       />

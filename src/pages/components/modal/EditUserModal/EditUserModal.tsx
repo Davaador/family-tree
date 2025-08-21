@@ -49,7 +49,6 @@ const EditUserModal = (props: EditUserModalProps) => {
       ...values,
       birthDate: dayjs(values.birthDate).format('YYYY-MM-DD'),
     };
-    console.log(values, 'body', body);
     parentService
       .addParent(body)
       .then((res: CustomerModel.Customer) => {

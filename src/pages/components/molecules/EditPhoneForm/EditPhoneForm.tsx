@@ -18,7 +18,7 @@ const EditPhoneForm = (props: EditFormProps) => {
 
   return (
     <Flex>
-      <Row gutter={[8, 12]}>
+      <Row gutter={[24, 12]}>
         <Col xs={24} sm={12}>
           <CustomFormItem
             layout="vertical"

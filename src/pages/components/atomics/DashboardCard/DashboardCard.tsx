@@ -1,6 +1,7 @@
 import { Col, Space, Row, Typography, theme } from 'antd';
 import { BaseType } from 'antd/es/typography/Base';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface DashboardCardProps {
   value: number | string;
@@ -14,6 +15,7 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
   type,
 }) => {
   const { token } = theme.useToken();
+  const { t } = useTranslation();
   return (
     <Col className="gutter-row" xs={24} sm={12} md={12} lg={6} xl={6}>
       <Space
@@ -27,7 +29,7 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
             className="dashboard-label-text"
             type={type ?? 'secondary'}
           >
-            {title ?? 'Нийт бүртгүүлсэн тоо'}
+            {title ?? t('dashboard.totalRegistered')}
           </Typography.Text>
         </Row>
         <Row>
