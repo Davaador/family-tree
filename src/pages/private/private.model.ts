@@ -3,7 +3,7 @@ import { CustomerDetail } from 'pages/public/auth/auth.model';
 
 export interface RequestListProps {
   requests: {
-    data: CustomerDetail[];
+    content: CustomerDetail[];
     total: number;
     perPage: number;
     currentPage: number;

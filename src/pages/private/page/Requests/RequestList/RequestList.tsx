@@ -25,13 +25,15 @@ const RequestList = () => {
   const { t } = useTranslation();
   const { requests } = useLoaderData() as RequestListProps;
   const [requestLists, setRequestLists] = useState<CustomerDetail[]>(
-    requests.data
+    requests.content
   );
   const location = useLocation();
 
   const navigate = useNavigate();
   useEffect(() => {
-    setRequestLists(requests.data);
+    console.log(requests);
+
+    setRequestLists(requests.content);
   }, [requests]);
 
   function onChangePagination(page: number, perPage: number) {
