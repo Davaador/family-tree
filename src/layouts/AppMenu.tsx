@@ -21,6 +21,12 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
   const { roleUser } = authStore();
   console.log(roleUser, 'test');
 
+  const canSee = (userRole: string, allowedRoles?: string | string[]) => {
+    if (!allowedRoles) return true; // зөвшөөрөл заагаагүй бол бүгдэд харагдана
+    const list = Array.isArray(allowedRoles) ? allowedRoles : [allowedRoles];
+    return list.includes(userRole);
+  };
+
   const menuItems = [
     {
       key: '/',
@@ -31,6 +37,7 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       key: '/requests',
       icon: <MailOutlined />,
       label: <NavLink to="/requests">{t('dashboard.requests')}</NavLink>,
+      visibleFor: ['ROOT', 'ADMIN'],
     },
     {
       key: '/tree',
@@ -53,6 +60,10 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       label: <NavLink to="/childs">{t('dashboard.childs')}</NavLink>,
     },
   ];
+
+  const items = menuItems.filter((item) =>
+    canSee(roleUser ? roleUser[0].name : 'USER', item.visibleFor)
+  );
   return (
     <div className="p-2">
       <Menu
@@ -60,7 +71,7 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
         selectedKeys={[location.pathname]}
         theme="light"
         mode="inline"
-        items={menuItems}
+        items={items}
       />
     </div>
   );
