@@ -78,7 +78,6 @@ const EditNameModal = (props: EditNameModalProps) => {
           message: 'Амжилттай',
           description: 'Таны мэдээлэл амжилттай өөрчлөгдлөө!',
         });
-        console.log(res, 'sdsdsds modal');
         setAuthUser(res);
         toggleModal();
         return;

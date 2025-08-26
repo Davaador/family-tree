@@ -23,12 +23,16 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { editProfile, getUserDetail } from '../../private.service';
+import { RolesConstants } from 'context/constants/auth.constants';
+import AddRoleUserModal from 'pages/components/modal/AddRoleUserModal/AddRoleUserModal';
 const { confirm } = Modal;
 const Profile = () => {
-  const { authUser, setAuthUser } = authStore();
+  const { authUser, setAuthUser, roleUser } = authStore();
   const { t } = useTranslation();
   const [form] = useForm();
   const [isShowModal, setiIshowModal] = useState<boolean>(false);
+  const [isShowAddUserModal, setIshowAddUserModal] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const onFinish = (values: CustomerDetail) => {
     const body: CustomerDetail = {
@@ -57,7 +61,6 @@ const Profile = () => {
   const setModalInvisible = () => {
     setiIshowModal(false);
   };
-  console.log(authUser, 'sss');
 
   return (
     <Card size="default" style={{ background: '#fff' }}>
@@ -85,6 +88,16 @@ const Profile = () => {
           />
         </Flex>
         <Flex>
+          {roleUser?.find((role) => role.name === RolesConstants.ROOT) && (
+            <Button
+              onClick={() => {
+                setIshowAddUserModal(!isShowAddUserModal);
+              }}
+              className="mr-5"
+            >
+              {t('profile.add.role')}
+            </Button>
+          )}
           <Button
             onClick={() => {
               navigate('/add/family');
@@ -117,6 +130,13 @@ const Profile = () => {
         isShow={isShowModal}
         toggleModal={setModalInvisible}
         handleCancel={() => setiIshowModal(false)}
+      />
+      <AddRoleUserModal
+        isShow={isShowAddUserModal}
+        toggleModal={setIshowAddUserModal}
+        handleCancel={() => {
+          setIshowAddUserModal(!isShowAddUserModal);
+        }}
       />
     </Card>
   );

@@ -4,9 +4,9 @@ import { RolesConstants } from 'context/constants/auth.constants';
 import { DashboardCard, EditUserModal } from 'pages/components';
 import { DashboardProps } from 'pages/private/private.model';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLoaderData } from 'react-router-dom';
 import './Dashboard.less';
-import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
   const { authUser, roleUser } = authStore();

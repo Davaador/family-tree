@@ -43,10 +43,20 @@
         "email": "Email",
         "birthDate": "Birth date",
         "editInfo": "Edit your information?",
-        "editModalContent": "You are about to edit your information."
+        "editModalContent": "You are about to edit your information.",
+        "add": {
+            "role": "Register Admin"
+        }
     },
     "modal": {
-        "editNameTitle": "Change personal information"
+        "editNameTitle": "Change personal information",
+        "addUser": "Register Admin",
+        "add": {
+            "userPhone": "Admin's Phone Number",
+            "enterPhoneNumber": "Please enter phone number.",
+            "roleName": "Admin Role",
+            "enterroleName": "Please enter the role."
+        }
     },
     "dashboard": {
         "dashboard": "Dashboard",

@@ -43,10 +43,20 @@
         "email": "И-мэйл",
         "birthDate": "Төрсөн өдөр",
         "editInfo": "Мэдээллээ засах уу?",
-        "editModalContent": "Та мэдээллээ засах гэж байна."
+        "editModalContent": "Та мэдээллээ засах гэж байна.",
+        "add": {
+            "role": "Админ бүртгэх"
+        }
     },
     "modal": {
-        "editNameTitle": "Хувийн мэдээллээ солих"
+        "editNameTitle": "Хувийн мэдээллээ солих",
+        "addUser": "Админ бүртгэх",
+        "add": {
+            "userPhone": "Админы утасны дугаар",
+            "enterPhoneNumber": "Утасны дугаар оруулна уу.",
+            "roleName": "Админы төрөл",
+            "enterroleName": "Төрлөө бичнэ үү."
+        }
     },
     "dashboard": {
         "dashboard": "Нүүр хуудас",
@@ -57,7 +67,8 @@
         "childs": "Миний хүүхэд",
         "totalRegistered": "Нийт бүртгүүлсэн тоо",
         "activeCount": "Идэвхитэй тоо",
-        "requestsSent": "Хүсэлт илгээсэн тоо"
+        "requestsSent": "Хүсэлт илгээсэн тоо",
+        "addCustomer": "Гэр бүлийн гишүүн бүртгэх"
     },
     "request": {
         "settings": "Үйлдлүүд",

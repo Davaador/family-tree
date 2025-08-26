@@ -1,4 +1,5 @@
 import { RcFile } from 'antd/es/upload';
+import { AddRoleRequest } from 'context/entities/auth.model';
 import { CustomerModel } from 'context/entities/customer.model';
 import { apiClient } from 'context/http';
 import { AddParentForm, CustomerDetail } from 'pages/public/auth/auth.model';
@@ -66,11 +67,17 @@ function getChildList(): Promise<CustomerModel.ParentDto[]> {
   return apiClient.get('/api/child/list');
 }
 
+function addRoleUser(values: AddRoleRequest): Promise<AddRoleRequest> {
+  return apiClient.post('/api/add/role/user', values, {});
+}
+
 export {
+  addRoleUser,
   deleteActiveUser,
   editProfile,
   editUser,
   getActiveCustomerList,
+  getChildList,
   getCouple,
   getCouplesData,
   getPendingRequest,
@@ -78,5 +85,4 @@ export {
   getUserDetail,
   updateActiveUser,
   uploadFile,
-  getChildList,
 };

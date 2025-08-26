@@ -16,3 +16,9 @@ export type LanguageState = {
 export interface AuthStateToken {
   token: string;
 }
+
+export interface AddRoleRequest {
+  id: number;
+  phoneNumber: string;
+  roleName: string;
+}
