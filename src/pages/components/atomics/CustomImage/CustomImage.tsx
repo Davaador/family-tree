@@ -15,12 +15,7 @@ const CustomImage: React.FC<CustomImageProps> = ({ src, ...props }) => {
     const fetchImage = async () => {
       if (!src) return;
       try {
-        const response: any = await apiClient.get(`/api/file/resource/${src}`, {
-          signal: abortController.signal,
-          responseType: 'blob',
-        });
-        const url = URL.createObjectURL(response);
-        setImage(url);
+        setImage(src);
       } catch (e) {
       } finally {
         requestOnGoing = false;

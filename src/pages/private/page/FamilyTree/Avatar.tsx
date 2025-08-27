@@ -30,9 +30,9 @@ const Avatar = ({
         isDescendant && 'ring-4 ring-slate-300'
       )}
     >
-      {member?.profilePicture ? (
+      {member?.profileImage ? (
         <CustomImage
-          src={member?.profilePicture?.url}
+          src={member?.profileImage?.url}
           height={'100%'}
           width={'100%'}
           preview={false}

@@ -46,7 +46,7 @@ export interface CustomerDetail {
   parent: CustomerModel.Customer;
   wife: CustomerModel.Customer;
   user: UserDetail;
-  profilePicture?: ImageField;
+  profileImage?: ImageField;
 }
 
 export interface UserDetail {

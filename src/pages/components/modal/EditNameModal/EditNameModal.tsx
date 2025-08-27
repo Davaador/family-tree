@@ -32,26 +32,27 @@ const EditNameModal = (props: EditNameModalProps) => {
 
   useEffect(() => {
     const signal = new AbortController();
-    if (!authUser?.profilePicture) return;
-    apiClient
-      .get(`/api/file/resource/${authUser.profilePicture.url}`, {
-        signal: signal.signal,
-        responseType: 'blob',
-      })
-      .then((response: any) => {
-        const url = URL.createObjectURL(response);
-        const file = new File([response], 'image.jpg', { type: 'image/jpeg' });
-        const rcFile = file as RcFile;
-        const uploadFile: UploadFile = {
-          uid: authUser.profilePicture!.id.toString(),
-          name: authUser.profilePicture!.name,
-          status: 'done',
-          url: url,
-          originFileObj: rcFile,
-        };
-        setFileList([uploadFile]);
-      })
-      .catch((e) => {});
+    if (!authUser?.profileImage) return;
+    const uploadFile: UploadFile = {
+      uid: authUser.profileImage!.id.toString(),
+      name: authUser.profileImage!.name,
+      status: 'done',
+      url: authUser.profileImage?.url,
+      // originFileObj: rcFile,
+    };
+    setFileList([uploadFile]);
+    // apiClient
+    //   .get(`/api/file/resource/${authUser.profilePicture.url}`, {
+    //     signal: signal.signal,
+    //     responseType: 'blob',
+    //   })
+    //   .then((response: any) => {
+    //     const url = URL.createObjectURL(response);
+    //     const file = new File([response], 'image.jpg', { type: 'image/jpeg' });
+    //     const rcFile = file as RcFile;
+
+    //   })
+    //   .catch((e) => {});
     return () => {
       signal.abort();
     };
@@ -71,7 +72,7 @@ const EditNameModal = (props: EditNameModalProps) => {
     if (authUser) {
       if (fileList) {
         const val: ImageField = await uploadFile(fileList[0].originFileObj!);
-        values.profilePicture = val;
+        values.profileImage = val;
       }
       editCustomerInfo(values).then((res: CustomerDetail) => {
         notification.success({
@@ -98,7 +99,7 @@ const EditNameModal = (props: EditNameModalProps) => {
         initialValues={{ ...authUser }}
         onFinish={onFinish}
       >
-        <CustomFormItem name={'profilePicture'} label={'Өөрийн зураг'}>
+        <CustomFormItem name={'profileImage'} label={'Өөрийн зураг'}>
           <Upload
             maxCount={1}
             listType="picture-card"

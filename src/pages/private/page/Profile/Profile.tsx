@@ -71,7 +71,7 @@ const Profile = () => {
             preview={true}
             width={80}
             height={80}
-            src={authUser?.profilePicture?.url}
+            src={authUser?.profileImage?.url}
           />
           <Flex vertical className="ml-20">
             <Typography.Text>{authUser?.surName}</Typography.Text>

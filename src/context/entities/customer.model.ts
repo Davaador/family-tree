@@ -38,7 +38,7 @@ export namespace CustomerModel {
     husband?: ParentDto;
 
     children?: ParentDto[];
-    profilePicture?: ImageField;
+    profileImage?: ImageField;
   }
 
   export interface SubFamilyTreeProps {
