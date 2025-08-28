@@ -123,6 +123,9 @@ const EditUserModal = (props: EditUserModalProps) => {
               value: p.id,
               label: renderLastName(p.lastName, p.firstName),
             }))}
+            filterOption={(input, option) =>
+              (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+            }
           />
         </CustomFormItem>
         <CustomFormItem
@@ -150,7 +153,7 @@ const EditUserModal = (props: EditUserModalProps) => {
             { required: true, message: 'email oruulna uu' },
             () => ({
               validator(rule, value) {
-                if (validations.email.test(value)) {
+                if (validations.regex.email.test(value)) {
                   return Promise.resolve();
                 } else {
                   return Promise.reject('email hayg zuv oruulna uu.');

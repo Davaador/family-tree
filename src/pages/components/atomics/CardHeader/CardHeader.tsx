@@ -29,23 +29,36 @@ const CardHeader = ({
     <Row
       style={{ alignItems: 'center', display: 'flex', marginBottom: '16px' }}
     >
-      <Col span={4}>
+      <Col xs={4} sm={4} md={4} lg={4}>
         {onBack && <ArrowLeftOutlined onClick={onPress ?? handleGoBack} />}
       </Col>
       <Col
-        span={16}
+        xs={16}
+        sm={16}
+        md={16}
+        lg={16}
         style={{
           justifyContent: 'center',
           display: 'flex',
         }}
       >
-        <Typography.Title level={5} style={{ margin: 0 }}>
+        <Typography.Title level={5} style={{ margin: 0, textAlign: 'center' }}>
           {headerTitle ?? t('family.header')}
         </Typography.Title>
       </Col>
-      <Col span={4}>
+      <Col
+        xs={24}
+        sm={4}
+        md={4}
+        lg={4}
+        style={{ display: 'flex', justifyContent: 'flex-end' }}
+      >
         {onAddClick && (
-          <Button size="small" onClick={onAddClick}>
+          <Button
+            size="small"
+            onClick={onAddClick}
+            style={{ fontSize: '12px', padding: '16px 6px' }}
+          >
             {addClickTitle ?? 'Хүүхэд бүртгэх'}
           </Button>
         )}
