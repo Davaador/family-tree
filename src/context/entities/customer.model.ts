@@ -2,18 +2,24 @@ import { ImageField } from 'pages/private/private.model';
 import { CustomerDetail } from 'pages/public/auth/auth.model';
 
 export namespace CustomerModel {
-  export interface Customer {
+  export interface AdminCustomer {
     age: number;
     birthDate: Date | string;
-    editCustomer: boolean;
     email: string;
     firstName: string;
-    gender: string;
-    id: number;
     lastName: string;
     phoneNumber: string;
     register: string;
     surName?: string;
+    password: string;
+    confirmPassword: string;
+    lastNameId?: number;
+    id: number;
+  }
+
+  export interface Customer extends AdminCustomer {
+    editCustomer: boolean;
+    gender: string;
     user: CustomerDetail;
     wife: Customer;
     husband: Customer;

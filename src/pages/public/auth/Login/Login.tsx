@@ -69,7 +69,7 @@ const Login = () => {
           rules={[
             { required: true, message: `${t('register.enterPhone')}` },
             {
-              pattern: validations.phoneNumber,
+              pattern: validations.regex.phoneNumber,
               message: `${t('register.enterPhoneRegex')}`,
             },
           ]}

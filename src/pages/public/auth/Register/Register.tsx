@@ -1,17 +1,17 @@
-import { Card, Flex, Form, Input, Typography, notification } from "antd";
-import { useForm } from "antd/es/form/Form";
-import validations from "context/validations";
+import { Card, Flex, Form, Input, Typography, notification } from 'antd';
+import { useForm } from 'antd/es/form/Form';
+import validations from 'context/validations';
 import {
   FormRegisterInput,
   LanguageButton,
   SubmitButton,
   TextButton,
-} from "pages/components";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { UserRegisterForm } from "../auth.model";
-import { userRegister } from "../auth.service";
+} from 'pages/components';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { UserRegisterForm } from '../auth.model';
+import { userRegister } from '../auth.service';
 
 const { Title } = Typography;
 const Register = () => {
@@ -24,10 +24,10 @@ const Register = () => {
     userRegister(values)
       .then(() => {
         notification.success({
-          message: "Амжилттай",
-          description: "Таны бүртгэл амжилттай хийгдлээ. Та нэвтэрч орно уу.",
+          message: 'Амжилттай',
+          description: 'Таны бүртгэл амжилттай хийгдлээ. Та нэвтэрч орно уу.',
         });
-        navigate("/auth/login");
+        navigate('/auth/login');
       })
       .catch(() => {})
       .finally(() => {
@@ -37,7 +37,7 @@ const Register = () => {
   return (
     <Card hoverable size="default">
       <Flex justify="space-between">
-        <Title level={3}>{t("general.registerText")}</Title>
+        <Title level={3}>{t('general.registerText')}</Title>
         <LanguageButton />
       </Flex>
       <Form
@@ -49,77 +49,77 @@ const Register = () => {
         form={form}
       >
         <Form.Item
-          label={t("register.phoneNumber")}
+          label={t('register.phoneNumber')}
           name="phoneNumber"
           rules={[
-            { required: true, message: `${t("register.enterPhone")}` },
+            { required: true, message: `${t('register.enterPhone')}` },
             {
-              pattern: validations.phoneNumber,
-              message: `${t("register.enterPhoneRegex")}`,
+              pattern: validations.regex.phoneNumber,
+              message: `${t('register.enterPhoneRegex')}`,
             },
           ]}
         >
-          <Input placeholder={t("register.phoneNumber")} />
+          <Input placeholder={t('register.phoneNumber')} />
         </Form.Item>
 
         <Form.Item
-          label={t("register.lastName")}
+          label={t('register.lastName')}
           name="lastName"
           rules={[
             {
               required: true,
               min: 2,
-              message: `${t("register.enterLastName")}`,
+              message: `${t('register.enterLastName')}`,
             },
           ]}
         >
-          <Input placeholder={t("register.lastName")} />
+          <Input placeholder={t('register.lastName')} />
         </Form.Item>
         <Form.Item
-          label={t("register.firstName")}
+          label={t('register.firstName')}
           name="firstName"
           rules={[
-            { required: true, min: 2, message: `${t("register.enterName")}` },
+            { required: true, min: 2, message: `${t('register.enterName')}` },
           ]}
         >
-          <Input placeholder={t("register.firstName")} />
+          <Input placeholder={t('register.firstName')} />
         </Form.Item>
 
         <Form.Item
-          label={t("register.password")}
+          label={t('register.password')}
           name="password"
           rules={[
-            { required: true, message: `${t("register.enterPassword")}` },
-            { min: 8, message: `${t("register.enterNewPasswordRegex")}` },
+            { required: true, message: `${t('register.enterPassword')}` },
+            { min: 8, message: `${t('register.enterNewPasswordRegex')}` },
           ]}
           hasFeedback
         >
-          <Input.Password placeholder={t("register.password")} allowClear />
+          <Input.Password placeholder={t('register.password')} allowClear />
         </Form.Item>
         <Form.Item
-          label={t("register.confirmPassword")}
+          label={t('register.confirmPassword')}
           name="confirmPassword"
           rules={[
             {
               required: true,
-              message: `${t("register.confirmPasswordRequired")}`,
+              message: `${t('register.confirmPasswordRequired')}`,
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
+                if (!value || getFieldValue('password') === value) {
                   return Promise.resolve();
                 }
                 return Promise.reject(
-                  new Error(`${t("register.matchOldPassword")}`)
+                  new Error(`${t('register.matchOldPassword')}`)
                 );
               },
             }),
           ]}
           hasFeedback
-          dependencies={["passwords"]}
+          dependencies={['passwords']}
         >
           <Input.Password
-            placeholder={t("register.confirmPassword")}
+            placeholder={t('register.confirmPassword')}
             allowClear
           />
         </Form.Item>
@@ -127,10 +127,10 @@ const Register = () => {
 
         <Flex justify="space-evenly" align="center" gap="middle">
           <TextButton
-            text={t("general.loginText")}
-            onPress={() => navigate("/auth/login")}
+            text={t('general.loginText')}
+            onPress={() => navigate('/auth/login')}
           />
-          <SubmitButton text={t("general.registerText")} loading={loading} />
+          <SubmitButton text={t('general.registerText')} loading={loading} />
         </Flex>
       </Form>
     </Card>

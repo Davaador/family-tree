@@ -27,6 +27,7 @@
         "enterNewPasswordRegex": "Таны оруулсан нууц үг буруу байна.",
         "matchOldPassword": "Нууц үг таарахгүй байна",
         "registerNumber": "Регистрийн дугаар",
+        "enterRegisterNumber": "Регистрийн дугаар оруулна уу.",
         "surName": "Ургийн овог",
         "age": "Нас",
         "birthday": "Төрсөн огноо"
@@ -105,5 +106,20 @@
         "enterOtp": "Нэг удаагийн нууц үг",
         "enterOtpRequired": "Нэг удаагийн нууц үгээ оруулна уу.",
         "forgotPassword": "Шинэ нууц үг"
+    },
+    "admin": {
+        "success": {
+            "title": "Амжилттай",
+            "message": "Бүртгэл амжилттай хийгдлээ."
+        },
+        "add": {
+            "customerTitle": "Шинээр харилцагч бүртгэх",
+            "buttonTitle": "Шинээр бүртгэх",
+            "enterSurName": "Ургийн овог оруулна уу!",
+            "lastName": "Овгоо сонгоно уу.",
+            "customerList": {
+                "header": "Таны бүртгэсэн харилцагч"
+            }
+        }
     }
 }

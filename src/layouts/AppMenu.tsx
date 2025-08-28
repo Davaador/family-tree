@@ -3,6 +3,7 @@ import {
   DashboardOutlined,
   HistoryOutlined,
   MailOutlined,
+  UserAddOutlined,
   UsergroupAddOutlined,
   UserOutlined,
 } from '@ant-design/icons';
@@ -34,12 +35,6 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       label: <NavLink to="/">{t('dashboard.dashboard')}</NavLink>,
     },
     {
-      key: '/requests',
-      icon: <MailOutlined />,
-      label: <NavLink to="/requests">{t('dashboard.requests')}</NavLink>,
-      visibleFor: ['ROOT', 'ADMIN'],
-    },
-    {
       key: '/tree',
       icon: <ClusterOutlined />,
       label: <NavLink to="/tree">{t('dashboard.familyTree')}</NavLink>,
@@ -58,6 +53,21 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       key: '/childs',
       icon: <UsergroupAddOutlined />,
       label: <NavLink to="/childs">{t('dashboard.childs')}</NavLink>,
+    },
+    {
+      key: '/add/customer/list',
+      icon: <UserAddOutlined />,
+      label: (
+        <NavLink to="/add/customer/list">{t('dashboard.addCustomer')}</NavLink>
+      ),
+      visibleFor: ['ROOT', 'ADMIN'],
+    },
+
+    {
+      key: '/requests',
+      icon: <MailOutlined />,
+      label: <NavLink to="/requests">{t('dashboard.requests')}</NavLink>,
+      visibleFor: ['ROOT', 'ADMIN'],
     },
   ];
 

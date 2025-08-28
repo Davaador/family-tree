@@ -1,4 +1,3 @@
-import { ForgotPassword } from './ResetPassword/ForgotPassword/ForgotPassword';
 import { ImageField } from 'pages/private/private.model';
 import { CustomerModel } from './../../../context/entities/customer.model';
 export interface LoginSavedData {

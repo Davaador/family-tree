@@ -1,9 +1,7 @@
 import PlusOutlined from '@ant-design/icons/lib/icons/PlusOutlined';
 import { Flex, Form, Modal, notification, Upload, UploadProps } from 'antd';
-import { RcFile } from 'antd/es/upload';
 import { UploadFile } from 'antd/lib/upload/interface';
 import { authStore } from 'context/auth/store';
-import { apiClient } from 'context/http';
 import { editCustomerInfo } from 'context/services/customer.service';
 import {
   CustomFormItem,

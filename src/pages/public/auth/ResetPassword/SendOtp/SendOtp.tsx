@@ -60,7 +60,7 @@ const SendOtp = () => {
             { required: true, message: `${t('reset.enterEmailRequired')}` },
             () => ({
               validator(_, value) {
-                if (validations.email.test(value)) {
+                if (validations.regex.email.test(value)) {
                   return Promise.resolve();
                 } else {
                   return Promise.reject(`${t('reset.incorrectEmail')}`);
