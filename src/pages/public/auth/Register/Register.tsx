@@ -10,12 +10,7 @@ import {
 } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import validations from 'context/validations';
-import {
-  FormRegisterInput,
-  LanguageButton,
-  SubmitButton,
-  TextButton,
-} from 'pages/components';
+import { LanguageButton, SubmitButton, TextButton } from 'pages/components';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -35,11 +30,54 @@ import './Register.css';
 
 const { Title, Text } = Typography;
 
+const MONGOLIAN_ALPHABET = [
+  'А',
+  'Б',
+  'В',
+  'Г',
+  'Д',
+  'Е',
+  'Ё',
+  'Ж',
+  'З',
+  'И',
+  'Й',
+  'К',
+  'Л',
+  'М',
+  'Н',
+  'О',
+  'Ө',
+  'П',
+  'Р',
+  'С',
+  'Т',
+  'У',
+  'Ү',
+  'Ф',
+  'Х',
+  'Ц',
+  'Ч',
+  'Ш',
+  'Щ',
+  'Ъ',
+  'Ы',
+  'Ь',
+  'Э',
+  'Ю',
+  'Я',
+];
+
 const Register = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
   const [form] = useForm();
+
+  // Register number state
+  const [firstLetter, setFirstLetter] = useState<string>('');
+  const [secondLetter, setSecondLetter] = useState<string>('');
+  const [numbers, setNumbers] = useState<string>('');
 
   const onFinish = (values: UserRegisterForm) => {
     setLoading(true);
@@ -55,6 +93,12 @@ const Register = () => {
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  // Update register field when letters or numbers change
+  const updateRegisterField = () => {
+    const registerValue = [firstLetter, secondLetter, numbers].join('');
+    form.setFieldValue('register', registerValue);
   };
 
   return (
@@ -248,7 +292,88 @@ const Register = () => {
                 />
               </Form.Item>
 
-              <FormRegisterInput form={form} />
+              {/* Register Number */}
+              <Form.Item
+                label={t('register.registerNumber')}
+                name="register"
+                rules={[
+                  {
+                    required: true,
+                    message: `${t('register.enterRegisterNumber')}`,
+                  },
+                  {
+                    pattern: validations.regex.register,
+                    message: `${t('register.invalidRegisterNumber')}`,
+                  },
+                ]}
+              >
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <select
+                    value={firstLetter}
+                    onChange={(e) => {
+                      setFirstLetter(e.target.value);
+                      updateRegisterField();
+                    }}
+                    style={{
+                      flex: 1,
+                      padding: '12px 16px',
+                      borderRadius: '12px',
+                      border: '2px solid #e2e8f0',
+                      fontSize: '16px',
+                      background: '#f7fafc',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <option value="">Үсэг</option>
+                    {MONGOLIAN_ALPHABET.map((letter) => (
+                      <option key={letter} value={letter}>
+                        {letter}
+                      </option>
+                    ))}
+                  </select>
+
+                  <select
+                    value={secondLetter}
+                    onChange={(e) => {
+                      setSecondLetter(e.target.value);
+                      updateRegisterField();
+                    }}
+                    style={{
+                      flex: 1,
+                      padding: '12px 16px',
+                      borderRadius: '12px',
+                      border: '2px solid #e2e8f0',
+                      fontSize: '16px',
+                      background: '#f7fafc',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <option value="">Үсэг</option>
+                    {MONGOLIAN_ALPHABET.map((letter) => (
+                      <option key={letter} value={letter}>
+                        {letter}
+                      </option>
+                    ))}
+                  </select>
+
+                  <Input
+                    value={numbers}
+                    onChange={(e) => {
+                      setNumbers(e.target.value);
+                      updateRegisterField();
+                    }}
+                    maxLength={8}
+                    placeholder="8 орон"
+                    style={{
+                      flex: 2,
+                      borderRadius: '12px',
+                      border: '2px solid #e2e8f0',
+                      fontSize: '16px',
+                      background: '#f7fafc',
+                    }}
+                  />
+                </div>
+              </Form.Item>
 
               <Button
                 type="primary"
