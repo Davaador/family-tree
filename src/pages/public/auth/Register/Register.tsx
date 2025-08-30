@@ -7,6 +7,7 @@ import {
   notification,
   Button,
   Divider,
+  Select,
 } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import validations from 'context/validations';
@@ -308,53 +309,51 @@ const Register = () => {
                 ]}
               >
                 <div style={{ display: 'flex', gap: '8px' }}>
-                  <select
+                  <Select
+                    showSearch
+                    allowClear
+                    placeholder="Үсэг сонгох"
                     value={firstLetter}
-                    onChange={(e) => {
-                      setFirstLetter(e.target.value);
+                    onChange={(value) => {
+                      setFirstLetter(value);
                       updateRegisterField();
                     }}
-                    style={{
-                      flex: 1,
-                      padding: '12px 16px',
-                      borderRadius: '12px',
-                      border: '2px solid #e2e8f0',
-                      fontSize: '16px',
-                      background: '#f7fafc',
-                      cursor: 'pointer',
-                    }}
+                    style={{ flex: 1 }}
+                    size="large"
+                    getPopupContainer={(triggerNode) =>
+                      triggerNode.parentNode || document.body
+                    }
                   >
-                    <option value="">Үсэг</option>
+                    <Select.Option value="">Бүгд</Select.Option>
                     {MONGOLIAN_ALPHABET.map((letter) => (
-                      <option key={letter} value={letter}>
+                      <Select.Option key={letter} value={letter}>
                         {letter}
-                      </option>
+                      </Select.Option>
                     ))}
-                  </select>
+                  </Select>
 
-                  <select
+                  <Select
+                    showSearch
+                    allowClear
+                    placeholder="Үсэг сонгох"
                     value={secondLetter}
-                    onChange={(e) => {
-                      setSecondLetter(e.target.value);
+                    onChange={(value) => {
+                      setSecondLetter(value);
                       updateRegisterField();
                     }}
-                    style={{
-                      flex: 1,
-                      padding: '12px 16px',
-                      borderRadius: '12px',
-                      border: '2px solid #e2e8f0',
-                      fontSize: '16px',
-                      background: '#f7fafc',
-                      cursor: 'pointer',
-                    }}
+                    style={{ flex: 1 }}
+                    size="large"
+                    getPopupContainer={(triggerNode) =>
+                      triggerNode.parentNode || document.body
+                    }
                   >
-                    <option value="">Үсэг</option>
+                    <Select.Option value="">Бүгд</Select.Option>
                     {MONGOLIAN_ALPHABET.map((letter) => (
-                      <option key={letter} value={letter}>
+                      <Select.Option key={letter} value={letter}>
                         {letter}
-                      </option>
+                      </Select.Option>
                     ))}
-                  </select>
+                  </Select>
 
                   <Input
                     value={numbers}
