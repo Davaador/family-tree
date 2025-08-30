@@ -8,19 +8,20 @@ import {
   Button,
   ConfigProvider,
   Drawer,
+  Dropdown,
   Flex,
   FloatButton,
   Layout,
+  Menu,
   MenuProps,
   theme,
   Typography,
 } from 'antd';
 import { Content, Footer, Header } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
-import Dropdown from 'antd/lib/dropdown/dropdown';
 import { authStore, languageStore } from 'context/auth/store';
 import dayjs from 'dayjs';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Outlet } from 'react-router-dom';
 import Flag from 'react-world-flags';
@@ -30,20 +31,38 @@ const { Text } = Typography;
 const AuthLayout = () => {
   const [isCollapsed, toggleCollapse] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const { token } = theme.useToken();
   const { authUser } = authStore();
   const { language, changeLanguage } = languageStore();
   const { t } = useTranslation();
   const { innerWidth } = window;
+  const profileDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        profileDropdownRef.current &&
+        !profileDropdownRef.current.contains(event.target as Node)
+      ) {
+        setProfileDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   const items: MenuProps['items'] = [
     {
-      key: '1',
-
+      key: 'profile',
       icon: <UserOutlined />,
       label: <Link to={'/profile'}>{t('general.profile')}</Link>,
     },
     {
-      key: '2',
+      key: 'logout',
       icon: <LogoutOutlined />,
       label: <Link to={'/logout'}>{t('general.logout')}</Link>,
     },
@@ -98,13 +117,23 @@ const AuthLayout = () => {
                   icon={<BellOutlined />}
                   style={{ fontSize: '16px', width: 64, height: 64 }}
                 />
-                <Dropdown menu={{ items }} placement="bottomRight">
+                <div className="relative" ref={profileDropdownRef}>
                   <Button
                     type="text"
                     icon={<UserOutlined />}
                     style={{ fontSize: '16px', width: 64, height: 64 }}
+                    onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                   />
-                </Dropdown>
+                  {profileDropdownOpen && (
+                    <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[120px]">
+                      <Menu
+                        items={items}
+                        style={{ border: 'none', boxShadow: 'none' }}
+                        onClick={() => setProfileDropdownOpen(false)}
+                      />
+                    </div>
+                  )}
+                </div>
               </Flex>
             </Flex>
           </Header>
