@@ -115,66 +115,60 @@ const FormRegisterInput = (props: RegisterInputProps) => {
       layout={layout}
       className={className}
     >
-
-
       <Row gutter={8}>
         <Col span={6}>
-          <select
-            value={firstLetter || ''}
-            onChange={(e) => {
-              console.log('First letter changed:', e.target.value);
-              setFirstLetter(e.target.value);
-              const registerValue = [
-                e.target.value,
-                secondLetter,
-                numbers,
-              ].join('');
+          <Select
+            showSearch
+            allowClear
+            placeholder="Үсэг сонгох"
+            value={firstLetter}
+            onChange={(value) => {
+              console.log('First letter changed:', value);
+              setFirstLetter(value);
+              const registerValue = [value, secondLetter, numbers].join('');
               form.setFieldValue('register', registerValue);
             }}
-            style={{
-              width: '100%',
-              padding: '12px 16px',
-              borderRadius: '12px',
-              border: '2px solid #e2e8f0',
-              fontSize: '16px',
-              background: '#f7fafc',
-            }}
+            style={{ width: '100%' }}
+            size="large"
+            getPopupContainer={(triggerNode) =>
+              triggerNode.parentNode || document.body
+            }
+            dropdownStyle={{ zIndex: 99999 }}
           >
-            <option value="">Бүгд</option>
+            <Select.Option value="">Бүгд</Select.Option>
             {MONGOLIAN_ALPHABET.map((letter) => (
-              <option key={letter} value={letter}>
+              <Select.Option key={letter} value={letter}>
                 {letter}
-              </option>
+              </Select.Option>
             ))}
-          </select>
+          </Select>
         </Col>
         <Col span={6}>
-          <select
-            value={secondLetter || ''}
-            onChange={(e) => {
-              console.log('Second letter changed:', e.target.value);
-              setSecondLetter(e.target.value);
-              const registerValue = [firstLetter, e.target.value, numbers].join(
-                ''
-              );
+          <Select
+            showSearch
+            allowClear
+            placeholder="Үсэг сонгох"
+            value={secondLetter}
+            onChange={(value) => {
+              console.log('Second letter changed:', value);
+              setSecondLetter(value);
+              const registerValue = [firstLetter, value, numbers].join('');
               form.setFieldValue('register', registerValue);
             }}
-            style={{
-              width: '100%',
-              padding: '12px 16px',
-              borderRadius: '12px',
-              border: '2px solid #e2e8f0',
-              fontSize: '16px',
-              background: '#f7fafc',
-            }}
+            style={{ width: '100%' }}
+            size="large"
+            getPopupContainer={(triggerNode) =>
+              triggerNode.parentNode || document.body
+            }
+            dropdownStyle={{ zIndex: 99999 }}
           >
-            <option value="">Бүгд</option>
+            <Select.Option value="">Бүгд</Select.Option>
             {MONGOLIAN_ALPHABET.map((letter) => (
-              <option key={letter} value={letter}>
+              <Select.Option key={letter} value={letter}>
                 {letter}
-              </option>
+              </Select.Option>
             ))}
-          </select>
+          </Select>
         </Col>
         <Col span={12}>
           <Form.Item
