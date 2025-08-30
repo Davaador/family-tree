@@ -5,8 +5,6 @@ import { RegisterType } from 'pages/public/auth/auth.model';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const { Option } = Select;
-
 type RegisterInputProps = {
   name?: string;
   defaultValue?: string;
@@ -120,49 +118,43 @@ const FormRegisterInput = (props: RegisterInputProps) => {
       <Row gutter={8}>
         <Col span={6}>
           <Select
-            showSearch
-            allowClear
-            value={firstLetter || undefined}
-            optionFilterProp="children"
+            placeholder="Үсэг сонгох"
+            value={firstLetter}
             onChange={(value) => {
+              console.log('First letter changed:', value);
               setFirstLetter(value);
               const registerValue = [value, secondLetter, numbers].join('');
               form.setFieldValue('register', registerValue);
             }}
-            onInputKeyDown={(e) => onTouch(setFirstLetter, e.key)}
-            className="w-full rounded-lg border-gray-300 hover:border-blue-400 focus:border-blue-500 focus:ring-blue-500"
-            placeholder="Үсэг сонгох"
+            style={{ width: '100%' }}
             size="large"
           >
-            <Option value="">Бүгд</Option>
+            <Select.Option value="">Бүгд</Select.Option>
             {MONGOLIAN_ALPHABET.map((letter) => (
-              <Option key={letter} value={letter}>
+              <Select.Option key={letter} value={letter}>
                 {letter}
-              </Option>
+              </Select.Option>
             ))}
           </Select>
         </Col>
         <Col span={6}>
           <Select
-            showSearch
-            allowClear
-            value={secondLetter || undefined}
-            optionFilterProp="children"
+            placeholder="Үсэг сонгох"
+            value={secondLetter}
             onChange={(value) => {
+              console.log('Second letter changed:', value);
               setSecondLetter(value);
               const registerValue = [firstLetter, value, numbers].join('');
               form.setFieldValue('register', registerValue);
             }}
-            onInputKeyDown={(e) => onTouch(setSecondLetter, e.key)}
-            className="w-full rounded-lg border-gray-300 hover:border-blue-400 focus:border-blue-500 focus:ring-blue-500"
-            placeholder="Үсэг сонгох"
+            style={{ width: '100%' }}
             size="large"
           >
-            <Option value="">Бүгд</Option>
+            <Select.Option value="">Бүгд</Select.Option>
             {MONGOLIAN_ALPHABET.map((letter) => (
-              <Option key={letter} value={letter}>
+              <Select.Option key={letter} value={letter}>
                 {letter}
-              </Option>
+              </Select.Option>
             ))}
           </Select>
         </Col>

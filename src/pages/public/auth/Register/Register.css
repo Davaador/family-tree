@@ -590,3 +590,90 @@ html {
 .ant-layout-content {
   background: transparent !important;
 }
+
+/* FormRegisterInput Styling */
+.ant-select {
+  border-radius: 12px !important;
+  border: 2px solid #e2e8f0 !important;
+  transition: all 0.3s ease;
+  background: #f7fafc !important;
+}
+
+.ant-select:hover {
+  border-color: #65eaae !important;
+  background: white !important;
+}
+
+.ant-select-focused,
+.ant-select.ant-select-focused {
+  border-color: #65eaae !important;
+  box-shadow: 0 0 0 3px rgba(101, 234, 174, 0.1) !important;
+  background: white !important;
+}
+
+.ant-select-selector {
+  border: none !important;
+  background: transparent !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  font-size: 16px !important;
+}
+
+.ant-select-selection-item {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.ant-select-selection-placeholder {
+  color: #a0aec0;
+}
+
+.ant-select-dropdown {
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e2e8f0 !important;
+  z-index: 9999 !important;
+}
+
+.ant-select-item {
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  margin: 2px 8px !important;
+  transition: all 0.2s ease;
+}
+
+.ant-select-item:hover {
+  background-color: rgba(101, 234, 174, 0.1) !important;
+}
+
+.ant-select-item-option-selected {
+  background-color: #65eaae !important;
+  color: white !important;
+}
+
+.ant-select-item-option-active {
+  background-color: rgba(101, 234, 174, 0.1) !important;
+}
+
+/* Input styling for numbers */
+.register-form .ant-input {
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #f7fafc;
+}
+
+.register-form .ant-input:hover {
+  border-color: #65eaae;
+  background: white;
+}
+
+.register-form .ant-input:focus,
+.register-form .ant-input-focused {
+  border-color: #65eaae;
+  box-shadow: 0 0 0 3px rgba(101, 234, 174, 0.1);
+  background: white;
+  transform: scale(1.02);
+}
