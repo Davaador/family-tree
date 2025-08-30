@@ -1,7 +1,16 @@
 import { notification } from 'antd';
 import { useForm } from 'antd/es/form/Form';
-import { Col, Flex, Form, Layout, Row, Select } from 'antd/lib';
-import { CustomerModel } from 'context/entities/customer.model';
+import {
+  Col,
+  Flex,
+  Form,
+  Layout,
+  Row,
+  Select,
+  Checkbox,
+  DatePicker,
+} from 'antd/lib';
+import { CustomerModel } from 'types/customer.types';
 import { createAdminCustomer } from 'context/services/admin.service';
 import { parentService } from 'context/services/parent.service';
 import validations from 'context/validations';
@@ -22,6 +31,7 @@ import { useTranslation } from 'react-i18next';
 const AddCustomer = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [parents, setParents] = useState<CustomerModel.Customer[]>([]);
+  const [isDeceased, setIsDeceased] = useState<boolean>(false);
   const { t } = useTranslation();
   const [form] = useForm();
 
@@ -48,6 +58,11 @@ const AddCustomer = () => {
       ...values,
       birthDate: dayjs(values.birthDate).format('YYYY-MM-DD'),
       age: dayjs().diff(values.birthDate, 'year'),
+      isDeceased: isDeceased,
+      deceasedDate:
+        isDeceased && values.deceasedDate
+          ? dayjs(values.deceasedDate).format('YYYY-MM-DD')
+          : undefined,
     };
 
     setLoading(true);
@@ -132,7 +147,13 @@ const AddCustomer = () => {
             </Col>
 
             <Col xs={24} sm={8}>
-              <FormRegisterInput form={form} />
+              <FormRegisterInput
+                form={form}
+                label={t('register.registerNumber')}
+                required={true}
+                layout="vertical"
+                showIcon={false}
+              />
             </Col>
 
             <Col xs={24} sm={8}>
@@ -199,6 +220,45 @@ const AddCustomer = () => {
                 rules={validations.rules.birthDate(t)}
               />
             </Col>
+
+            <Col xs={24} sm={8}>
+              <CustomFormItem
+                layout="vertical"
+                label={t('customer.isDeceased')}
+                name="isDeceased"
+              >
+                <Checkbox
+                  checked={isDeceased}
+                  onChange={(e) => setIsDeceased(e.target.checked)}
+                  className="text-gray-700"
+                >
+                  {t('customer.isDeceasedLabel')}
+                </Checkbox>
+              </CustomFormItem>
+            </Col>
+
+            {isDeceased && (
+              <Col xs={24} sm={8}>
+                <CustomFormItem
+                  layout="vertical"
+                  label={t('customer.deceasedDate')}
+                  name="deceasedDate"
+                  rules={[
+                    {
+                      required: true,
+                      message: t('customer.deceasedDateRequired'),
+                    },
+                  ]}
+                >
+                  <DatePicker
+                    format="YYYY-MM-DD"
+                    placeholder={t('customer.deceasedDatePlaceholder')}
+                    className="w-full"
+                    size="small"
+                  />
+                </CustomFormItem>
+              </Col>
+            )}
 
             <Col xs={24} className="justify-center flex">
               <SubmitButton

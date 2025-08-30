@@ -9,6 +9,7 @@ import { AuthState } from './entities/auth.model';
 import { AuthAction } from './actions/auth.action';
 import { notification } from 'antd';
 import { authLogout } from 'pages/private/hooks/usePrivateHook';
+import { useLoadingStore } from './auth/store';
 
 const requestSuccessStatusCodes: number[] = [200, 201, 202, 204];
 const failedRequestCodes: number[] = [400, 404, 405];
@@ -19,6 +20,7 @@ const excludeUrls: string[] = [
   '/auth/check/otp',
   '/auth/reset/password',
 ];
+const setLoading = useLoadingStore.getState().setLoading;
 type ErrorResponse = {
   message: string;
   code: string;
@@ -32,6 +34,7 @@ export const axiosInstance = (
 ) => {
   apiClient.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
+      setLoading(true);
       console.log('config axios');
       const token = store.getState().auth;
 
@@ -51,7 +54,7 @@ export const axiosInstance = (
   apiClient.interceptors.response.use(
     (response: AxiosResponse<any>): any => {
       console.log(response, 'ressss');
-
+      setLoading(false);
       if (
         response.config &&
         (response.config.responseType === 'arraybuffer' ||
@@ -93,6 +96,7 @@ export const axiosInstance = (
     },
     (error: AxiosError<ErrorResponse>) => {
       console.log('tttttttt', error);
+      setLoading(false);
       if (error) {
         notification.error({
           message: 'Алдаа',

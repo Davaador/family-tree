@@ -7,6 +7,7 @@ import {
   CustomFormItem,
   CustomInput,
   SubmitButton,
+  FormRegisterInput,
 } from 'pages/components/atomics';
 import { ImageField } from 'pages/private/private.model';
 import { uploadFile } from 'pages/private/private.service';
@@ -14,6 +15,7 @@ import { CustomerDetail } from 'pages/public/auth/auth.model';
 import { UploadRequestOption } from 'rc-upload/lib/interface';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useForm } from 'antd/es/form/Form';
 
 interface EditNameModalProps {
   isShow: boolean;
@@ -25,8 +27,13 @@ const EditNameModal = (props: EditNameModalProps) => {
   const { isShow, toggleModal, handleCancel } = props;
   const { authUser, setAuthUser } = authStore();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [form] = useForm();
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    console.log('EditNameModal authUser?.register:', authUser?.register);
+  }, [authUser]);
 
   useEffect(() => {
     const signal = new AbortController();
@@ -67,31 +74,51 @@ const EditNameModal = (props: EditNameModalProps) => {
   };
 
   const onFinish = async (values: CustomerDetail) => {
-    if (authUser) {
-      if (fileList) {
-        const val: ImageField = await uploadFile(fileList[0].originFileObj!);
+    if (!authUser) return;
+
+    try {
+      console.log(fileList, 'sss');
+
+      // Хэрэв зураг байгаа бол upload хийх
+      if (fileList && fileList.length > 0 && fileList[0].originFileObj) {
+        const val: ImageField = await uploadFile(fileList[0].originFileObj);
         values.profileImage = val;
+      } else if (fileList.length === 0) {
+        // Хоосон байвал зураггүй гэсэн утга өгч болох юм
+        values.profileImage = undefined; // эсвэл өмнөх утгыг хадгалах
+      } else {
+        values.profileImage = authUser.profileImage;
       }
-      editCustomerInfo(values).then((res: CustomerDetail) => {
-        notification.success({
-          message: 'Амжилттай',
-          description: 'Таны мэдээлэл амжилттай өөрчлөгдлөө!',
-        });
-        setAuthUser(res);
-        toggleModal();
-        return;
+
+      const res: CustomerDetail = await editCustomerInfo(values);
+
+      notification.success({
+        message: 'Амжилттай',
+        description: 'Таны мэдээлэл амжилттай өөрчлөгдлөө!',
       });
+
+      setAuthUser(res);
+    } catch (error) {
+      notification.error({
+        message: 'Алдаа',
+        description: 'Мэдээлэл хадгалахад алдаа гарлаа',
+      });
+    } finally {
+      toggleModal();
     }
-    toggleModal();
   };
+
   return (
     <Modal
       title={t('modal.editNameTitle')}
       open={isShow}
       onCancel={handleCancel}
       footer
+      width={600}
+      style={{ maxWidth: '90vw' }}
     >
       <Form
+        form={form}
         layout="vertical"
         autoComplete="off"
         initialValues={{ ...authUser }}
@@ -134,6 +161,17 @@ const EditNameModal = (props: EditNameModalProps) => {
         >
           <CustomInput placeholder={t('register.firstName')} />
         </CustomFormItem>
+        <FormRegisterInput
+          form={form}
+          name="register"
+          defaultValue={authUser?.register}
+          label={t('register.registerNumber')}
+          required={true}
+          layout="vertical"
+          showIcon={true}
+          placeholder={t('register.registerNumberPlaceholder')}
+          className="w-full"
+        />
         <Flex
           justify="center"
           children={<SubmitButton text={t('general.save')} size="small" />}

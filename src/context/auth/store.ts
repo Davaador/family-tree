@@ -1,5 +1,9 @@
 import { AuthAction } from 'context/actions/auth.action';
-import { AuthState, LanguageState } from 'context/entities/auth.model';
+import {
+  AuthState,
+  LanguageState,
+  LoadingState,
+} from 'context/entities/auth.model';
 import { zStorage } from 'context/reducers/reducers';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
@@ -56,4 +60,9 @@ const languageStore = create<LanguageState>()(
   )
 );
 
-export { authStore, languageStore };
+const useLoadingStore = create<LoadingState>((set) => ({
+  loading: false,
+  setLoading: (value: boolean) => set({ loading: value }),
+}));
+
+export { authStore, languageStore, useLoadingStore };

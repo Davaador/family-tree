@@ -37,7 +37,7 @@ const EditPhoneForm = (props: EditFormProps) => {
             <CustomInput placeholder={t('register.phoneNumber')} />
           </CustomFormItem>
         </Col>
-        <Col xs={24} sm={12}>
+        <Col xs={24} sm={24}>
           <FormRegisterInput form={form} defaultValue={authUser?.register} />
         </Col>
         <Col xs={24} sm={12}>
