@@ -632,7 +632,30 @@ html {
   border-radius: 12px !important;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
   border: 1px solid #e2e8f0 !important;
-  z-index: 9999 !important;
+  z-index: 99999 !important;
+  position: fixed !important;
+}
+
+/* Force all dropdowns to be visible */
+.ant-select-dropdown:not(.ant-select-dropdown-hidden) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure dropdown container is above everything */
+.ant-select-dropdown .rc-virtual-list {
+  z-index: 99999 !important;
+}
+
+/* Fix background animation interference */
+.register-background {
+  z-index: 1 !important;
+}
+
+.register-content {
+  z-index: 10 !important;
+  position: relative !important;
 }
 
 .ant-select-item {
