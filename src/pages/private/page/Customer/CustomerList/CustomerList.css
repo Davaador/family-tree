@@ -1,4 +1,173 @@
+/* Customer List Styles */
 .searchCol {
   display: flex;
   justify-content: space-between;
+}
+
+/* Table Styling */
+.customer-table .ant-table-thead > tr > th {
+  background: linear-gradient(135deg, #65eaae 0%, #4fd1c7 100%);
+  color: white;
+  font-weight: 600;
+  border: none;
+}
+
+.customer-table .ant-table-tbody > tr:hover > td {
+  background-color: #f0fdf4;
+}
+
+.customer-table .ant-table-tbody > tr > td {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 12px 16px;
+}
+
+/* Pagination Styling */
+.customer-table .ant-pagination-item-active {
+  border-color: #65eaae;
+}
+
+.customer-table .ant-pagination-item-active a {
+  color: #65eaae;
+}
+
+.customer-table .ant-pagination-item:hover {
+  border-color: #65eaae;
+}
+
+.customer-table .ant-pagination-item:hover a {
+  color: #65eaae;
+}
+
+/* Search Form Styling */
+.customer-table .ant-form-item {
+  margin-bottom: 0;
+}
+
+.customer-table .ant-input,
+.customer-table .ant-select-selector {
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  transition: all 0.3s ease;
+}
+
+.customer-table .ant-input:focus,
+.customer-table .ant-select-focused .ant-select-selector {
+  border-color: #65eaae;
+  box-shadow: 0 0 0 2px rgba(101, 234, 174, 0.2);
+}
+
+/* Button Styling */
+.customer-table .ant-btn-primary {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.customer-table .ant-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(101, 234, 174, 0.3);
+}
+
+/* Avatar Styling */
+.customer-table .ant-avatar {
+  border: 2px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.customer-table .ant-avatar:hover {
+  border-color: #65eaae;
+  transform: scale(1.05);
+}
+
+/* Tag Styling */
+.customer-table .ant-tag {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.customer-table .ant-tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Action Button Styling */
+.customer-table .ant-btn-text {
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.customer-table .ant-btn-text:hover {
+  background-color: rgba(101, 234, 174, 0.1);
+  transform: scale(1.1);
+}
+
+/* Modal Styling */
+.customer-detail-modal .ant-modal-content {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.customer-detail-modal .ant-modal-header {
+  background: linear-gradient(135deg, #65eaae 0%, #4fd1c7 100%);
+  border-bottom: none;
+}
+
+.customer-detail-modal .ant-modal-title {
+  color: white;
+}
+
+.customer-detail-modal .ant-modal-close {
+  color: white;
+}
+
+.customer-detail-modal .ant-modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Card Styling */
+.customer-detail-modal .ant-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.customer-detail-modal .ant-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .customer-table .ant-table {
+    font-size: 12px;
+  }
+
+  .customer-table .ant-table-thead > tr > th,
+  .customer-table .ant-table-tbody > tr > td {
+    padding: 8px 12px;
+  }
+
+  .customer-table .ant-avatar {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Loading State */
+.customer-table .ant-spin-dot-item {
+  background-color: #65eaae;
+}
+
+/* Empty State */
+.customer-table .ant-empty-description {
+  color: #666;
+}
+
+/* Tooltip Styling */
+.customer-table .ant-tooltip-inner {
+  background-color: #333;
+  border-radius: 6px;
+}
+
+.customer-table .ant-tooltip-arrow::before {
+  background-color: #333;
 }
