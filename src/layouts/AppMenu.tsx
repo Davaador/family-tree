@@ -28,31 +28,36 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
     return list.includes(userRole);
   };
 
-  const menuItems = [
+  const allMenuItems = [
     {
       key: '/',
       icon: <DashboardOutlined />,
       label: <NavLink to="/">{t('dashboard.dashboard')}</NavLink>,
+      allowedRoles: undefined,
     },
     {
       key: '/tree',
       icon: <ClusterOutlined />,
       label: <NavLink to="/tree">{t('dashboard.familyTree')}</NavLink>,
+      allowedRoles: undefined,
     },
     {
       key: '/biography',
       icon: <HistoryOutlined />,
       label: <NavLink to="/biography">{t('dashboard.biography')}</NavLink>,
+      allowedRoles: undefined,
     },
     {
       key: '/customers',
       icon: <UserOutlined />,
       label: <NavLink to="/customers">{t('dashboard.customers')}</NavLink>,
+      allowedRoles: undefined,
     },
     {
       key: '/childs',
       icon: <UsergroupAddOutlined />,
       label: <NavLink to="/childs">{t('dashboard.childs')}</NavLink>,
+      allowedRoles: undefined,
     },
     {
       key: '/add/customer/list',
@@ -60,20 +65,22 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       label: (
         <NavLink to="/add/customer/list">{t('dashboard.addCustomer')}</NavLink>
       ),
-      visibleFor: ['ROOT', 'ADMIN'],
+      allowedRoles: ['ROOT', 'ADMIN'],
     },
-
     {
       key: '/requests',
       icon: <MailOutlined />,
       label: <NavLink to="/requests">{t('dashboard.requests')}</NavLink>,
-      visibleFor: ['ROOT', 'ADMIN'],
+      allowedRoles: ['ROOT', 'ADMIN'],
     },
   ];
 
-  const items = menuItems.filter((item) =>
-    canSee(roleUser ? roleUser[0].name : 'USER', item.visibleFor)
-  );
+  // Filter menu items based on user role
+  const items = allMenuItems
+    .filter((item) =>
+      canSee(roleUser ? roleUser[0].name : 'USER', item.allowedRoles)
+    )
+    .map(({ allowedRoles, ...item }) => item); // Remove allowedRoles from final items
   return (
     <div className="p-2">
       <Menu

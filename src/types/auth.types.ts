@@ -8,11 +8,6 @@ export interface AuthState {
   roleUser?: Role[];
 }
 
-export type LanguageState = {
-  language: 'en' | 'mn';
-  changeLanguage: (language: 'en' | 'mn') => void;
-};
-
 export interface AuthStateToken {
   token: string;
 }
@@ -22,6 +17,21 @@ export interface AddRoleRequest {
   phoneNumber: string;
   roleName: string;
 }
+
+export type AuthAction = {
+  setAuthentication: (auth: boolean) => void;
+  clearAccessToken: () => void;
+  setAuth: (auth?: AuthStateToken) => void;
+  setPhoneRemember: (phone: string) => void;
+  clearRemember: () => void;
+  setAuthUser: (authUser: CustomerDetail) => void;
+  setRoles: (roles: Role[]) => void;
+};
+
+export type LanguageState = {
+  language: 'en' | 'mn';
+  changeLanguage: (language: 'en' | 'mn') => void;
+};
 
 export type LoadingState = {
   loading: boolean;

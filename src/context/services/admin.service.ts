@@ -1,4 +1,4 @@
-import { CustomerModel } from 'context/entities/customer.model';
+import { CustomerModel } from 'types/customer.types';
 import { apiClient } from 'context/http';
 
 function createAdminCustomer(
@@ -7,4 +7,19 @@ function createAdminCustomer(
   return apiClient.post('/api/admin', data);
 }
 
-export { createAdminCustomer };
+function getAdminList(): Promise<CustomerModel.AdminCustomer[]> {
+  return apiClient.get('/api/admin/customers');
+}
+
+function deleteAdmin(id: number): Promise<void> {
+  return apiClient.delete(`/api/admin/${id}`);
+}
+
+function updateAdmin(
+  id: number,
+  data: CustomerModel.AdminCustomer
+): Promise<CustomerModel.AdminCustomer> {
+  return apiClient.put(`/api/admin/${id}`, data);
+}
+
+export { createAdminCustomer, getAdminList, deleteAdmin, updateAdmin };

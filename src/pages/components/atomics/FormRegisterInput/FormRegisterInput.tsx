@@ -1,8 +1,10 @@
 import { Col, Form, FormInstance, Input, Row, Select } from 'antd';
+import { IdcardOutlined } from '@ant-design/icons';
 import validations from 'context/validations';
 import { RegisterType } from 'pages/public/auth/auth.model';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
 const { Option } = Select;
 
 type RegisterInputProps = {
@@ -10,6 +12,12 @@ type RegisterInputProps = {
   defaultValue?: string;
   onChange?(e: string): void;
   form: FormInstance;
+  label?: string;
+  required?: boolean;
+  layout?: 'horizontal' | 'vertical';
+  className?: string;
+  showIcon?: boolean;
+  placeholder?: string;
 };
 
 const MONGOLIAN_ALPHABET = [
@@ -51,7 +59,17 @@ const MONGOLIAN_ALPHABET = [
 ];
 
 const FormRegisterInput = (props: RegisterInputProps) => {
-  const { form, defaultValue } = props;
+  const {
+    form,
+    defaultValue,
+    label,
+    required = true,
+    layout = 'vertical',
+    className = '',
+    showIcon = false,
+    placeholder,
+  } = props;
+
   const [numbers, setNumbers] = useState<string | undefined>(
     defaultValue?.substring(2, 10)
   );
@@ -60,15 +78,16 @@ const FormRegisterInput = (props: RegisterInputProps) => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    form.setFieldValue(
-      'register',
-      [firstLetter, secondLetter, numbers].join('')
-    );
-  }, [firstLetter, secondLetter, numbers, form]);
-
-  useEffect(() => {
-    setFirstLetter(defaultValue?.charAt(0));
-    setSecondLetter(defaultValue?.charAt(1));
+    console.log('FormRegisterInput defaultValue:', defaultValue);
+    if (defaultValue) {
+      const first = defaultValue.charAt(0);
+      const second = defaultValue.charAt(1);
+      const nums = defaultValue.substring(2, 10);
+      console.log('Setting values:', { first, second, nums });
+      setFirstLetter(first);
+      setSecondLetter(second);
+      setNumbers(nums);
+    }
   }, [defaultValue]);
 
   const onTouch = (fn: any, key: string) => {
@@ -77,89 +96,129 @@ const FormRegisterInput = (props: RegisterInputProps) => {
     }
   };
 
-  return (
-    <>
-      <Form.Item<RegisterType>
-        label={t('register.registerNumber')}
-        required={true}
-        layout="vertical"
-      >
-        <Row gutter={12}>
-          <Col span={6}>
-            <Select
-              showSearch
-              allowClear
-              value={firstLetter}
-              optionFilterProp="children" // хайлтыг label биш children дээр хийх
-              onChange={(value) => setFirstLetter(value)}
-              onInputKeyDown={(e) => onTouch(setFirstLetter, e.key)}
-              style={{ width: 120 }}
-              placeholder="Үсэг сонгох"
-            >
-              <Option value="">Бүгд</Option>
-              {MONGOLIAN_ALPHABET.map((letter) => (
-                <Option key={letter} value={letter}>
-                  {letter}
-                </Option>
-              ))}
-            </Select>
-          </Col>
-          <Col span={6}>
-            <Select
-              showSearch
-              allowClear
-              value={secondLetter}
-              optionFilterProp="children" // хайлтыг label биш children дээр хийх
-              onChange={(value) => setSecondLetter(value)}
-              onInputKeyDown={(e) => onTouch(setSecondLetter, e.key)}
-              style={{ width: 120 }}
-              placeholder="Үсэг сонгох"
-            >
-              <Option value="">Бүгд</Option>
-              {MONGOLIAN_ALPHABET.map((letter) => (
-                <Option key={letter} value={letter}>
-                  {letter}
-                </Option>
-              ))}
-            </Select>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              noStyle
-              name={'register'}
-              rules={[
-                { required: true, message: t('register.enterRegisterNumber') },
-                ({ setFieldValue }) => ({
-                  validator(rule, value) {
-                    if (
-                      ((numbers && numbers.length > 0) ||
-                        (firstLetter && firstLetter.length > 0) ||
-                        (secondLetter && secondLetter.length > 0)) &&
-                      !validations.regex.register.test(
-                        [firstLetter, secondLetter, numbers].join('')
-                      )
-                    ) {
-                      return Promise.reject('utga buruu bna');
-                    }
+  const getLabel = () => {
+    if (label) return label;
+    return t('register.registerNumber');
+  };
 
-                    return Promise.resolve();
-                  },
-                }),
-              ]}
-            >
-              <Input type="hidden" />
-            </Form.Item>
-            <Form.Item>
-              <Input
-                defaultValue={numbers}
-                maxLength={8}
-                onChange={(e) => setNumbers(e.target.value)}
-              />
-            </Form.Item>
-          </Col>
-        </Row>
-      </Form.Item>
-    </>
+  return (
+    <Form.Item<RegisterType>
+      label={
+        showIcon ? (
+          <span className="flex items-center gap-2 font-medium">
+            <IdcardOutlined className="text-blue-500" />
+            {getLabel()}
+          </span>
+        ) : (
+          getLabel()
+        )
+      }
+      required={required}
+      layout={layout}
+      className={className}
+    >
+      <Row gutter={8}>
+        <Col span={6}>
+          <Select
+            showSearch
+            allowClear
+            value={firstLetter || undefined}
+            optionFilterProp="children"
+            onChange={(value) => {
+              setFirstLetter(value);
+              const registerValue = [value, secondLetter, numbers].join('');
+              form.setFieldValue('register', registerValue);
+            }}
+            onInputKeyDown={(e) => onTouch(setFirstLetter, e.key)}
+            className="w-full rounded-lg border-gray-300 hover:border-blue-400 focus:border-blue-500 focus:ring-blue-500"
+            placeholder="Үсэг сонгох"
+            size="large"
+          >
+            <Option value="">Бүгд</Option>
+            {MONGOLIAN_ALPHABET.map((letter) => (
+              <Option key={letter} value={letter}>
+                {letter}
+              </Option>
+            ))}
+          </Select>
+        </Col>
+        <Col span={6}>
+          <Select
+            showSearch
+            allowClear
+            value={secondLetter || undefined}
+            optionFilterProp="children"
+            onChange={(value) => {
+              setSecondLetter(value);
+              const registerValue = [firstLetter, value, numbers].join('');
+              form.setFieldValue('register', registerValue);
+            }}
+            onInputKeyDown={(e) => onTouch(setSecondLetter, e.key)}
+            className="w-full rounded-lg border-gray-300 hover:border-blue-400 focus:border-blue-500 focus:ring-blue-500"
+            placeholder="Үсэг сонгох"
+            size="large"
+          >
+            <Option value="">Бүгд</Option>
+            {MONGOLIAN_ALPHABET.map((letter) => (
+              <Option key={letter} value={letter}>
+                {letter}
+              </Option>
+            ))}
+          </Select>
+        </Col>
+        <Col span={12}>
+          <Form.Item
+            noStyle
+            name={'register'}
+            rules={[
+              {
+                required,
+                message: t('register.enterRegisterNumber'),
+              },
+              ({ setFieldValue }) => ({
+                validator(rule, value) {
+                  const fullValue = [firstLetter, secondLetter, numbers].join(
+                    ''
+                  );
+
+                  if (
+                    ((numbers && numbers.length > 0) ||
+                      (firstLetter && firstLetter.length > 0) ||
+                      (secondLetter && secondLetter.length > 0)) &&
+                    !validations.regex.register.test(fullValue)
+                  ) {
+                    return Promise.reject(t('register.invalidRegisterNumber'));
+                  }
+
+                  return Promise.resolve();
+                },
+              }),
+            ]}
+          >
+            <Input type="hidden" />
+          </Form.Item>
+          <Form.Item noStyle>
+            <Input
+              value={numbers}
+              maxLength={8}
+              onChange={(e) => {
+                const newNumbers = e.target.value;
+                setNumbers(newNumbers);
+                const registerValue = [
+                  firstLetter,
+                  secondLetter,
+                  newNumbers,
+                ].join('');
+                form.setFieldValue('register', registerValue);
+              }}
+              className="rounded-lg border-gray-300 hover:border-blue-400 focus:border-blue-500 focus:ring-blue-500"
+              placeholder={placeholder || '8 орон'}
+              size="large"
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+    </Form.Item>
   );
 };
 

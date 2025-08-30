@@ -28,6 +28,7 @@
         "matchOldPassword": "Нууц үг таарахгүй байна",
         "registerNumber": "Регистрийн дугаар",
         "enterRegisterNumber": "Регистрийн дугаар оруулна уу.",
+        "invalidRegisterNumber": "Регистрийн дугаар буруу байна",
         "surName": "Ургийн овог",
         "age": "Нас",
         "birthday": "Төрсөн огноо"
@@ -40,11 +41,20 @@
         "register": "Шинээр бүртгүүлэх!"
     },
     "profile": {
+        "title": "Хэрэглэгчийн Профайл",
+        "subtitle": "Таны хувийн мэдээлэл",
         "firstName": "Нэр",
         "email": "И-мэйл",
         "birthDate": "Төрсөн өдөр",
         "editInfo": "Мэдээллээ засах уу?",
         "editModalContent": "Та мэдээллээ засах гэж байна.",
+        "edit": "Засах",
+        "addFamily": "Гэр бүл бүртгэх",
+        "personalInfo": "Хувийн мэдээлэл",
+        "contactInfo": "Холбоо барих мэдээлэл",
+        "phoneNumber": "Утасны дугаар",
+        "birthDateLabel": "Төрсөн огноо",
+        "age": "нас",
         "add": {
             "role": "Админ бүртгэх"
         }
@@ -93,6 +103,13 @@
         "enterName": "Хүүхдийн нэрийг оруулна уу!",
         "enterSurName": "Хүүхдийн ургийн овог оруулна уу!"
     },
+    "customer": {
+        "isDeceased": "Нас барсан эсэх",
+        "isDeceasedLabel": "Нас барсан",
+        "deceasedDate": "Нас барсан огноо",
+        "deceasedDateRequired": "Нас барсан огноог оруулна уу!",
+        "deceasedDatePlaceholder": "Нас барсан огноо"
+    },
     "reset": {
         "success": {
             "message": "Таны И-майл хаягруу нэг удаагийн нууц үг амжилттай явсан тул та майл хаягаа шалгана уу.",
@@ -112,14 +129,70 @@
             "title": "Амжилттай",
             "message": "Бүртгэл амжилттай хийгдлээ."
         },
+        "error": {
+            "title": "Алдаа",
+            "message": "Алдаа гарлаа."
+        },
         "add": {
             "customerTitle": "Шинээр харилцагч бүртгэх",
             "buttonTitle": "Шинээр бүртгэх",
             "enterSurName": "Ургийн овог оруулна уу!",
             "lastName": "Овгоо сонгоно уу.",
             "customerList": {
-                "header": "Таны бүртгэсэн харилцагч"
+                "header": "Бүртгэсэн админууд"
             }
+        },
+        "delete": {
+            "title": "Админ устгах",
+            "description": "Энэ админыг устгахдаа итгэлтэй байна уу?",
+            "success": "Админ амжилттай устгагдлаа"
+        },
+        "detail": {
+            "title": "Админ дэлгэрэнгүй мэдээлэл",
+            "contactInfo": "Холбоо барих мэдээлэл",
+            "additionalInfo": "Нэмэлт мэдээлэл",
+            "phoneNumber": "Утасны дугаар",
+            "email": "И-мэйл хаяг",
+            "registerNumber": "Регистрийн дугаар",
+            "birthDate": "Төрсөн огноо",
+            "age": "Нас",
+            "surName": "Ургийн овог",
+            "id": "ID дугаар",
+            "type": "Төрөл",
+            "admin": "Админ"
+        },
+        "edit": {
+            "title": "Админ мэдээлэл засах",
+            "profileInfo": "Хувийн мэдээлэл",
+            "contactInfo": "Холбоо барих мэдээлэл",
+            "firstName": "Нэр",
+            "lastName": "Овог",
+            "surName": "Ургийн овог",
+            "birthDate": "Төрсөн огноо",
+            "phoneNumber": "Утасны дугаар",
+            "email": "И-мэйл хаяг",
+            "registerNumber": "Регистрийн дугаар",
+            "firstNameRequired": "Нэрээ оруулна уу",
+            "firstNameMin": "Нэр хамгийн багадаа 2 тэмдэгт байх",
+            "lastNameRequired": "Овгоо оруулна уу",
+            "lastNameMin": "Овог хамгийн багадаа 2 тэмдэгт байх",
+            "birthDateRequired": "Төрсөн огноогоо оруулна уу",
+            "phoneNumberRequired": "Утасны дугаараа оруулна уу",
+            "phoneNumberFormat": "Зөв утасны дугаар оруулна уу (8 орон)",
+            "emailRequired": "И-мэйл хаягаа оруулна уу",
+            "emailFormat": "Зөв и-мэйл хаяг оруулна уу",
+            "registerNumberRequired": "Регистрийн дугаараа оруулна уу",
+            "registerNumberFormat": "Зөв регистрийн дугаар оруулна уу (10 орон)",
+            "firstNamePlaceholder": "Нэрээ оруулна уу",
+            "lastNamePlaceholder": "Овгоо оруулна уу",
+            "surNamePlaceholder": "Ургийн овгоо оруулна уу",
+            "birthDatePlaceholder": "Төрсөн огноогоо сонгоно уу",
+            "phoneNumberPlaceholder": "Утасны дугаараа оруулна уу",
+            "emailPlaceholder": "И-мэйл хаягаа оруулна уу",
+            "registerNumberPlaceholder": "Регистрийн дугаараа оруулна уу",
+            "cancel": "Цуцлах",
+            "save": "Хадгалах",
+            "success": "Админ мэдээлэл амжилттай шинэчлэгдлээ"
         }
     }
 }
