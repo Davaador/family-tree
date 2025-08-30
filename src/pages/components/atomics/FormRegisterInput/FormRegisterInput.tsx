@@ -133,7 +133,6 @@ const FormRegisterInput = (props: RegisterInputProps) => {
             getPopupContainer={(triggerNode) =>
               triggerNode.parentNode || document.body
             }
-            dropdownStyle={{ zIndex: 99999 }}
           >
             <Select.Option value="">Бүгд</Select.Option>
             {MONGOLIAN_ALPHABET.map((letter) => (
@@ -160,7 +159,6 @@ const FormRegisterInput = (props: RegisterInputProps) => {
             getPopupContainer={(triggerNode) =>
               triggerNode.parentNode || document.body
             }
-            dropdownStyle={{ zIndex: 99999 }}
           >
             <Select.Option value="">Бүгд</Select.Option>
             {MONGOLIAN_ALPHABET.map((letter) => (

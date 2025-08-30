@@ -632,8 +632,16 @@ html {
   border-radius: 12px !important;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
   border: 1px solid #e2e8f0 !important;
-  z-index: 99999 !important;
+  z-index: 999999 !important;
   position: fixed !important;
+}
+
+/* Force dropdown to be visible */
+.ant-select-dropdown:not(.ant-select-dropdown-hidden) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 999999 !important;
 }
 
 /* Force all dropdowns to be visible */
