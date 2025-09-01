@@ -1,30 +1,30 @@
-import React, { useCallback, useEffect, useState } from 'react';
 import {
-  Modal,
+  CalendarOutlined,
+  CloseOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  SaveOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import {
+  Avatar,
+  Button,
+  Card,
+  Checkbox,
+  Col,
+  DatePicker,
   Form,
   Input,
-  DatePicker,
-  Button,
-  Row,
-  Col,
-  Card,
-  Typography,
-  Avatar,
   message,
-  Checkbox,
+  Modal,
+  Row,
+  Typography,
 } from 'antd';
-import {
-  UserOutlined,
-  PhoneOutlined,
-  MailOutlined,
-  CalendarOutlined,
-  SaveOutlined,
-  CloseOutlined,
-} from '@ant-design/icons';
-import { CustomerModel } from 'types/customer.types';
-import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
-import { FormBirthDate, FormRegisterInput } from 'pages/components';
+import { FormRegisterInput } from 'pages/components';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { CustomerModel } from 'types/customer.types';
 
 const { Title, Text } = Typography;
 
@@ -81,7 +81,7 @@ const EditAdminModal: React.FC<EditAdminModalProps> = ({
     } catch (error) {
       console.error('Form validation failed:', error);
     }
-  }, [form, admin, onSave, t, handleCancel]);
+  }, [form, admin, isDeceased, onSave, t, handleCancel]);
 
   // Reset form when admin data changes
   useEffect(() => {

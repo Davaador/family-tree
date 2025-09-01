@@ -774,7 +774,7 @@ html {
 .register-number-container {
   background: #f8fafc;
   border-radius: 16px;
-  padding: 20px;
+  padding: 20px 12px;
   border: 2px solid #e2e8f0;
   transition: all 0.3s ease;
 }
@@ -802,6 +802,14 @@ html {
   color: white !important;
   letter-spacing: 2px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.register-number-placeholder {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-top: 8px !important;
+  font-style: italic;
 }
 
 .register-number-inputs {

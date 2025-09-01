@@ -48,7 +48,8 @@
         "digitsPlaceholder": "8 орон",
         "firstLetter": "Эхний үсэг",
         "secondLetter": "Дараагийн үсэг",
-        "digits": "Тоонууд"
+        "digits": "Тоонууд",
+        "registerNumberPlaceholder": "Регистрийн дугаараа оруулна уу"
     },
     "login": {
         "password": "Нууц үг",

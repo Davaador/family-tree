@@ -1,29 +1,27 @@
 import {
-  Modal,
-  Typography,
-  Row,
-  Col,
+  CalendarOutlined,
+  EditOutlined,
+  IdcardOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  TeamOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import {
   Avatar,
-  Tag,
-  Divider,
-  Space,
+  Badge,
   Button,
   Card,
+  Col,
   Descriptions,
-  Badge,
+  Modal,
+  Row,
+  Space,
+  Tag,
+  Typography,
 } from 'antd';
-import {
-  UserOutlined,
-  PhoneOutlined,
-  CalendarOutlined,
-  MailOutlined,
-  IdcardOutlined,
-  TeamOutlined,
-  EditOutlined,
-} from '@ant-design/icons';
-import { CustomerDetail } from 'pages/public/auth/auth.model';
 import dayjs from 'dayjs';
-import { useTranslation } from 'react-i18next';
+import { CustomerDetail } from 'pages/public/auth/auth.model';
 
 const { Title, Text } = Typography;
 
@@ -40,8 +38,6 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
   customer,
   onEdit,
 }) => {
-  const { t } = useTranslation();
-
   if (!customer) return null;
 
   const getAge = (birthDate: string | Date) => {

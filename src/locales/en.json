@@ -48,7 +48,8 @@
         "digitsPlaceholder": "8 digits",
         "firstLetter": "First Letter",
         "secondLetter": "Second Letter",
-        "digits": "Digits"
+        "digits": "Digits",
+        "registerNumberPlaceholder": "Enter your registration number"
     },
     "login": {
         "password": "Password",

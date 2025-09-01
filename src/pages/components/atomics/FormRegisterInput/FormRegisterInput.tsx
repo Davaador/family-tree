@@ -1,17 +1,8 @@
-import {
-  Col,
-  Form,
-  FormInstance,
-  Input,
-  Row,
-  Select,
-  Space,
-  Typography,
-} from 'antd';
 import { IdcardOutlined } from '@ant-design/icons';
+import { Col, Form, FormInstance, Input, Row, Select, Typography } from 'antd';
 import validations from 'context/validations';
 import { RegisterType } from 'pages/public/auth/auth.model';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;
@@ -99,12 +90,6 @@ const FormRegisterInput = (props: RegisterInputProps) => {
     }
   }, [defaultValue]);
 
-  const onTouch = (fn: any, key: string) => {
-    if (validations.regex.mongolianUpperLetter.test(key.toUpperCase())) {
-      fn(key.toUpperCase());
-    }
-  };
-
   const getLabel = () => {
     if (label) return label;
     return t('register.registerNumber');
@@ -127,17 +112,9 @@ const FormRegisterInput = (props: RegisterInputProps) => {
       className={className}
     >
       <div className="register-number-container">
-        <div className="register-number-display">
-          <div className="register-number-preview">
-            <Text className="register-number-text">
-              {firstLetter || 'А'} {secondLetter || 'А'} {numbers || '12345678'}
-            </Text>
-          </div>
-        </div>
-
         <div className="register-number-inputs">
           <Row gutter={[4, 12]}>
-            <Col xs={10} sm={8} md={6}>
+            <Col xs={11} sm={11} md={11}>
               <div className="letter-input-container">
                 <Text className="letter-label">
                   {t('register.firstLetter')}
@@ -172,7 +149,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
               </div>
             </Col>
 
-            <Col xs={10} sm={8} md={6}>
+            <Col xs={11} sm={11} md={11}>
               <div className="letter-input-container">
                 <Text className="letter-label">
                   {t('register.secondLetter')}
@@ -206,7 +183,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
               </div>
             </Col>
 
-            <Col xs={24} sm={8} md={12}>
+            <Col xs={24} sm={24} md={24}>
               <div className="number-input-container">
                 <Text className="number-label">{t('register.digits')}</Text>
                 <Form.Item

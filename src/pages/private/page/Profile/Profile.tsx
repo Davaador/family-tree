@@ -1,43 +1,34 @@
 import {
-  EditOutlined,
-  UserOutlined,
-  PhoneOutlined,
   CalendarOutlined,
-  MailOutlined,
   CrownOutlined,
+  EditOutlined,
+  MailOutlined,
+  PhoneOutlined,
   TeamOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
 import {
+  Avatar,
+  Badge,
   Button,
   Card,
-  Flex,
   Form,
   Modal,
   notification,
-  Row,
-  Typography,
-  Avatar,
   Tag,
-  Divider,
-  Space,
-  Badge,
+  Typography,
 } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { authStore } from 'context/auth/store';
+import { RolesConstants } from 'context/constants/auth.constants';
 import dayjs from 'dayjs';
-import {
-  CustomImage,
-  EditNameModal,
-  EditPhoneForm,
-  SubmitButton,
-} from 'pages/components';
+import { EditNameModal, EditPhoneForm, SubmitButton } from 'pages/components';
+import AddRoleUserModal from 'pages/components/modal/AddRoleUserModal/AddRoleUserModal';
 import { CustomerDetail } from 'pages/public/auth/auth.model';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { editProfile, getUserDetail } from '../../private.service';
-import { RolesConstants } from 'context/constants/auth.constants';
-import AddRoleUserModal from 'pages/components/modal/AddRoleUserModal/AddRoleUserModal';
 
 const { confirm } = Modal;
 const { Title, Text } = Typography;
