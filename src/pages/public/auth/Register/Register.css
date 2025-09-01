@@ -779,6 +779,43 @@ html {
   padding: 0;
 }
 
+/* Mobile responsive fixes for FormRegisterInput */
+@media (max-width: 768px) {
+  .register-form .ant-form-item .ant-row {
+    gap: 12px;
+  }
+
+  .register-form .ant-form-item .ant-col {
+    margin-bottom: 8px;
+  }
+
+  .register-form .ant-select {
+    margin-bottom: 8px;
+  }
+
+  .register-form .ant-input {
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-form .ant-form-item .ant-row {
+    gap: 16px;
+  }
+
+  .register-form .ant-form-item .ant-col {
+    margin-bottom: 12px;
+  }
+
+  .register-form .ant-select {
+    margin-bottom: 12px;
+  }
+
+  .register-form .ant-input {
+    margin-bottom: 12px;
+  }
+}
+
 /* Ensure FormRegisterInput selects match the design */
 .register-form .ant-form-item .ant-select {
   border-radius: 12px !important;

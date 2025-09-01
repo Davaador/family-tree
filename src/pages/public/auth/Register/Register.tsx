@@ -1,31 +1,30 @@
 import {
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+  LockOutlined,
+  PhoneOutlined,
+  TeamOutlined,
+  UserAddOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import {
+  Button,
   Card,
-  Flex,
+  Divider,
   Form,
   Input,
   Typography,
   notification,
-  Button,
-  Divider,
 } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import validations from 'context/validations';
-import { LanguageButton, SubmitButton, TextButton } from 'pages/components';
+import { LanguageButton } from 'pages/components';
+import FormRegisterInput from 'pages/components/atomics/FormRegisterInput/FormRegisterInput';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { UserRegisterForm } from '../auth.model';
 import { userRegister } from '../auth.service';
-import {
-  UserOutlined,
-  LockOutlined,
-  PhoneOutlined,
-  EyeInvisibleOutlined,
-  EyeTwoTone,
-  UserAddOutlined,
-  TeamOutlined,
-} from '@ant-design/icons';
-import FormRegisterInput from 'pages/components/atomics/FormRegisterInput/FormRegisterInput';
 import './Register.css';
 
 const { Title, Text } = Typography;

@@ -1,31 +1,22 @@
 import {
-  Button,
-  Card,
-  Checkbox,
-  Flex,
-  Form,
-  Input,
-  Typography,
-  Divider,
-} from 'antd';
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+  LockOutlined,
+  LoginOutlined,
+  PhoneOutlined,
+  TeamOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import { Button, Card, Checkbox, Divider, Form, Input, Typography } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { authStore } from 'context/auth/store';
 import validations from 'context/validations';
-import { LanguageButton, SubmitButton } from 'pages/components';
+import { LanguageButton } from 'pages/components';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { Auth, LoginForm } from '../auth.model';
 import { login } from '../auth.service';
-import {
-  UserOutlined,
-  LockOutlined,
-  PhoneOutlined,
-  EyeInvisibleOutlined,
-  EyeTwoTone,
-  LoginOutlined,
-  TeamOutlined,
-} from '@ant-design/icons';
 import './Login.css';
 
 const { Title, Text } = Typography;

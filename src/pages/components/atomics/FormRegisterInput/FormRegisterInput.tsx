@@ -115,8 +115,8 @@ const FormRegisterInput = (props: RegisterInputProps) => {
       layout={layout}
       className={className}
     >
-      <Row gutter={8}>
-        <Col span={6}>
+      <Row gutter={[8, 8]}>
+        <Col xs={24} sm={8} md={6}>
           <Select
             showSearch
             allowClear
@@ -142,9 +142,8 @@ const FormRegisterInput = (props: RegisterInputProps) => {
             ))}
           </Select>
         </Col>
-        <Col span={6}>
+        <Col xs={24} sm={8} md={6}>
           <Select
-            // showSearch
             allowClear
             placeholder={t('register.selectLetterPlaceholder')}
             value={secondLetter}
@@ -168,7 +167,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
             ))}
           </Select>
         </Col>
-        <Col span={10}>
+        <Col xs={24} sm={8} md={12}>
           <Form.Item
             noStyle
             name={'register'}
@@ -213,7 +212,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
                 ].join('');
                 form.setFieldValue('register', registerValue);
               }}
-              className="rounded-lg border-gray-300 hover:border-blue-400 focus:border-blue-500 focus:ring-blue-500"
+              className="register-input"
               placeholder={placeholder || t('register.digitsPlaceholder')}
               size="large"
             />
