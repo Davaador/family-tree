@@ -136,8 +136,8 @@ const FormRegisterInput = (props: RegisterInputProps) => {
         </div>
 
         <div className="register-number-inputs">
-          <Row gutter={[12, 12]}>
-            <Col xs={12} sm={8} md={6}>
+          <Row gutter={[4, 12]}>
+            <Col xs={10} sm={8} md={6}>
               <div className="letter-input-container">
                 <Text className="letter-label">
                   {t('register.firstLetter')}
@@ -172,7 +172,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
               </div>
             </Col>
 
-            <Col xs={12} sm={8} md={6}>
+            <Col xs={10} sm={8} md={6}>
               <div className="letter-input-container">
                 <Text className="letter-label">
                   {t('register.secondLetter')}
