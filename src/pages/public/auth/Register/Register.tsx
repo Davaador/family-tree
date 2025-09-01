@@ -7,7 +7,6 @@ import {
   notification,
   Button,
   Divider,
-  Select,
 } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import validations from 'context/validations';
@@ -25,60 +24,17 @@ import {
   EyeTwoTone,
   UserAddOutlined,
   TeamOutlined,
-  IdcardOutlined,
 } from '@ant-design/icons';
+import FormRegisterInput from 'pages/components/atomics/FormRegisterInput/FormRegisterInput';
 import './Register.css';
 
 const { Title, Text } = Typography;
-
-const MONGOLIAN_ALPHABET = [
-  'А',
-  'Б',
-  'В',
-  'Г',
-  'Д',
-  'Е',
-  'Ё',
-  'Ж',
-  'З',
-  'И',
-  'Й',
-  'К',
-  'Л',
-  'М',
-  'Н',
-  'О',
-  'Ө',
-  'П',
-  'Р',
-  'С',
-  'Т',
-  'У',
-  'Ү',
-  'Ф',
-  'Х',
-  'Ц',
-  'Ч',
-  'Ш',
-  'Щ',
-  'Ъ',
-  'Ы',
-  'Ь',
-  'Э',
-  'Ю',
-  'Я',
-];
 
 const Register = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
   const [form] = useForm();
-
-  // Register number state
-  const [firstLetter, setFirstLetter] = useState<string>('');
-  const [secondLetter, setSecondLetter] = useState<string>('');
-  const [numbers, setNumbers] = useState<string>('');
 
   const onFinish = (values: UserRegisterForm) => {
     setLoading(true);
@@ -94,12 +50,6 @@ const Register = () => {
       .finally(() => {
         setLoading(false);
       });
-  };
-
-  // Update register field when letters or numbers change
-  const updateRegisterField = () => {
-    const registerValue = [firstLetter, secondLetter, numbers].join('');
-    form.setFieldValue('register', registerValue);
   };
 
   return (
@@ -123,33 +73,32 @@ const Register = () => {
               <TeamOutlined />
             </div>
             <Title level={1} className="welcome-title">
-              Гэр бүлийн мод
+              {t('register.welcomeTitle')}
             </Title>
             <Title level={3} className="welcome-subtitle">
-              Таны гэр бүлийн түүх, холбоо, уялдаа
+              {t('register.welcomeSubtitle')}
             </Title>
             <Text className="welcome-description">
-              Гэр бүлийнхээ түүхийг бүртгэж, үе үеийн холбоог хадгалж, ирээдүй
-              үеэдээ үлдээх үнэ цэнэтэй өв соёлыг бий болгоно уу.
+              {t('register.welcomeDescription')}
             </Text>
 
             {/* Features */}
             <div className="features-list">
               <div className="feature-item">
                 <div className="feature-icon">🌳</div>
-                <Text>Гэр бүлийн мод бүтээх</Text>
+                <Text>{t('register.featureCreateTree')}</Text>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">📖</div>
-                <Text>Түүх, намтар бичих</Text>
+                <Text>{t('register.featureWriteHistory')}</Text>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">📸</div>
-                <Text>Зураг, бичлэг хадгалах</Text>
+                <Text>{t('register.featureSaveMedia')}</Text>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">👥</div>
-                <Text>Гэр бүлийн гишүүд удирдах</Text>
+                <Text>{t('register.featureManageMembers')}</Text>
               </div>
             </div>
           </div>
@@ -164,10 +113,10 @@ const Register = () => {
                 <UserAddOutlined />
               </div>
               <Title level={2} className="register-title">
-                Бүртгүүлэх
+                {t('register.registerTitle')}
               </Title>
               <Text className="register-subtitle">
-                Гэр бүлийн мод руу бүртгүүлж эхлээрэй
+                {t('register.registerSubtitle')}
               </Text>
             </div>
 
@@ -294,85 +243,13 @@ const Register = () => {
               </Form.Item>
 
               {/* Register Number */}
-              <Form.Item
-                label={t('register.registerNumber')}
+              <FormRegisterInput
+                form={form}
                 name="register"
-                rules={[
-                  {
-                    required: true,
-                    message: `${t('register.enterRegisterNumber')}`,
-                  },
-                  {
-                    pattern: validations.regex.register,
-                    message: `${t('register.invalidRegisterNumber')}`,
-                  },
-                ]}
-              >
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  <Select
-                    showSearch
-                    allowClear
-                    placeholder="Үсэг сонгох"
-                    value={firstLetter}
-                    onChange={(value) => {
-                      setFirstLetter(value);
-                      updateRegisterField();
-                    }}
-                    style={{ flex: 1 }}
-                    size="large"
-                    getPopupContainer={(triggerNode) =>
-                      triggerNode.parentNode || document.body
-                    }
-                  >
-                    <Select.Option value="">Бүгд</Select.Option>
-                    {MONGOLIAN_ALPHABET.map((letter) => (
-                      <Select.Option key={letter} value={letter}>
-                        {letter}
-                      </Select.Option>
-                    ))}
-                  </Select>
-
-                  <Select
-                    showSearch
-                    allowClear
-                    placeholder="Үсэг сонгох"
-                    value={secondLetter}
-                    onChange={(value) => {
-                      setSecondLetter(value);
-                      updateRegisterField();
-                    }}
-                    style={{ flex: 1 }}
-                    size="large"
-                    getPopupContainer={(triggerNode) =>
-                      triggerNode.parentNode || document.body
-                    }
-                  >
-                    <Select.Option value="">Бүгд</Select.Option>
-                    {MONGOLIAN_ALPHABET.map((letter) => (
-                      <Select.Option key={letter} value={letter}>
-                        {letter}
-                      </Select.Option>
-                    ))}
-                  </Select>
-
-                  <Input
-                    value={numbers}
-                    onChange={(e) => {
-                      setNumbers(e.target.value);
-                      updateRegisterField();
-                    }}
-                    maxLength={8}
-                    placeholder="8 орон"
-                    style={{
-                      flex: 2,
-                      borderRadius: '12px',
-                      border: '2px solid #e2e8f0',
-                      fontSize: '16px',
-                      background: '#f7fafc',
-                    }}
-                  />
-                </div>
-              </Form.Item>
+                required={true}
+                showIcon={true}
+                placeholder="8 орон"
+              />
 
               <Button
                 type="primary"
@@ -388,13 +265,13 @@ const Register = () => {
 
             {/* Divider */}
             <Divider className="register-divider">
-              <Text className="divider-text">эсвэл</Text>
+              <Text className="divider-text">{t('register.orText')}</Text>
             </Divider>
 
             {/* Login Link */}
             <div className="login-section">
               <Text className="login-text">
-                Бүртгэл байгаа юу?{' '}
+                {t('register.hasAccountText')}{' '}
                 <Button
                   type="link"
                   onClick={() => navigate('/auth/login')}

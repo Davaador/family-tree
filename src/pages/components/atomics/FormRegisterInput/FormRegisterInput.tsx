@@ -120,7 +120,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
           <Select
             showSearch
             allowClear
-            placeholder="Үсэг сонгох"
+            placeholder={t('register.selectLetterPlaceholder')}
             value={firstLetter}
             onChange={(value) => {
               console.log('First letter changed:', value);
@@ -134,7 +134,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
               triggerNode.parentNode || document.body
             }
           >
-            <Select.Option value="">Бүгд</Select.Option>
+            <Select.Option value="">{t('register.allLetters')}</Select.Option>
             {MONGOLIAN_ALPHABET.map((letter) => (
               <Select.Option key={letter} value={letter}>
                 {letter}
@@ -144,9 +144,9 @@ const FormRegisterInput = (props: RegisterInputProps) => {
         </Col>
         <Col span={6}>
           <Select
-            showSearch
+            // showSearch
             allowClear
-            placeholder="Үсэг сонгох"
+            placeholder={t('register.selectLetterPlaceholder')}
             value={secondLetter}
             onChange={(value) => {
               console.log('Second letter changed:', value);
@@ -160,7 +160,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
               triggerNode.parentNode || document.body
             }
           >
-            <Select.Option value="">Бүгд</Select.Option>
+            <Select.Option value="">{t('register.allLetters')}</Select.Option>
             {MONGOLIAN_ALPHABET.map((letter) => (
               <Select.Option key={letter} value={letter}>
                 {letter}
@@ -168,7 +168,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
             ))}
           </Select>
         </Col>
-        <Col span={12}>
+        <Col span={10}>
           <Form.Item
             noStyle
             name={'register'}
@@ -214,7 +214,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
                 form.setFieldValue('register', registerValue);
               }}
               className="rounded-lg border-gray-300 hover:border-blue-400 focus:border-blue-500 focus:ring-blue-500"
-              placeholder={placeholder || '8 орон'}
+              placeholder={placeholder || t('register.digitsPlaceholder')}
               size="large"
             />
           </Form.Item>

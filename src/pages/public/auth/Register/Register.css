@@ -633,7 +633,8 @@ html {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
   border: 1px solid #e2e8f0 !important;
   z-index: 999999 !important;
-  position: fixed !important;
+  position: absolute !important;
+  background: white !important;
 }
 
 /* Force dropdown to be visible */
@@ -642,6 +643,7 @@ html {
   visibility: visible !important;
   opacity: 1 !important;
   z-index: 999999 !important;
+  pointer-events: auto !important;
 }
 
 /* Force all dropdowns to be visible */
@@ -649,11 +651,42 @@ html {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure dropdown is above all other elements */
+.ant-select-dropdown {
+  z-index: 999999 !important;
+  position: absolute !important;
+}
+
+/* Fix dropdown positioning to appear below the select */
+.ant-select-dropdown {
+  top: 100% !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
 }
 
 /* Ensure dropdown container is above everything */
 .ant-select-dropdown .rc-virtual-list {
   z-index: 99999 !important;
+}
+
+/* Additional dropdown visibility fixes */
+.ant-select-dropdown .rc-virtual-list-holder {
+  z-index: 99999 !important;
+}
+
+.ant-select-dropdown .rc-virtual-list-holder-inner {
+  z-index: 99999 !important;
+}
+
+/* Ensure the dropdown menu is visible */
+.ant-select-dropdown .ant-select-item {
+  z-index: 99999 !important;
+  position: relative !important;
 }
 
 /* Fix background animation interference */
@@ -664,6 +697,34 @@ html {
 .register-content {
   z-index: 10 !important;
   position: relative !important;
+}
+
+/* Ensure register form doesn't interfere with dropdowns */
+.register-form {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.register-form .ant-form-item {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.register-form .ant-select {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Ensure the registration number container has proper positioning */
+.register-form .ant-form-item:has(.ant-select) {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Ensure the div containing the selects has proper positioning */
+.register-form .ant-form-item > div {
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .ant-select-item {
@@ -707,4 +768,33 @@ html {
   box-shadow: 0 0 0 3px rgba(101, 234, 174, 0.1);
   background: white;
   transform: scale(1.02);
+}
+
+/* FormRegisterInput specific styling */
+.register-form .ant-form-item .ant-row {
+  gap: 8px;
+}
+
+.register-form .ant-form-item .ant-col {
+  padding: 0;
+}
+
+/* Ensure FormRegisterInput selects match the design */
+.register-form .ant-form-item .ant-select {
+  border-radius: 12px !important;
+  border: 2px solid #e2e8f0 !important;
+  transition: all 0.3s ease;
+  background: #f7fafc !important;
+}
+
+.register-form .ant-form-item .ant-select:hover {
+  border-color: #65eaae !important;
+  background: white !important;
+}
+
+.register-form .ant-form-item .ant-select-focused,
+.register-form .ant-form-item .ant-select.ant-select-focused {
+  border-color: #65eaae !important;
+  box-shadow: 0 0 0 3px rgba(101, 234, 174, 0.1) !important;
+  background: white !important;
 }

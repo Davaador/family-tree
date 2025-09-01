@@ -8,6 +8,8 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Background Animation */
@@ -87,6 +89,9 @@
   overflow: hidden;
   z-index: 2;
   position: relative;
+  min-height: 600px;
+  flex-direction: row;
+  margin: 0 auto;
 }
 
 /* Left Side - Welcome Section */
@@ -100,6 +105,8 @@
   color: white;
   position: relative;
   overflow: hidden;
+  min-width: 0;
+  width: 50%;
 }
 
 .login-welcome::before {
@@ -117,6 +124,7 @@
   text-align: center;
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .welcome-icon {
@@ -144,6 +152,8 @@
   line-height: 1.6;
   margin-bottom: 40px;
   max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .features-list {
@@ -187,6 +197,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
+  width: 50%;
 }
 
 .login-card {
@@ -363,10 +375,13 @@
 
   .login-welcome {
     padding: 40px 20px;
+    min-height: 300px;
+    width: 100%;
   }
 
   .login-form-section {
     padding: 40px 20px;
+    width: 100%;
   }
 
   .features-list {
@@ -382,6 +397,7 @@
 
   .login-content {
     border-radius: 16px;
+    min-height: auto;
   }
 
   .welcome-title {
@@ -401,6 +417,10 @@
   .login-button {
     height: 44px;
     font-size: 14px;
+  }
+
+  .login-welcome {
+    min-height: 250px;
   }
 }
 
@@ -431,4 +451,188 @@
 
 .login-container::-webkit-scrollbar-thumb:hover {
   background: #4fd1c7;
+}
+
+/* Additional Enhancements */
+.login-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+}
+
+.login-content {
+  animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-welcome {
+  animation: fadeInLeft 1s ease-out 0.2s both;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.login-form-section {
+  animation: fadeInRight 1s ease-out 0.4s both;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced button styling */
+.login-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.login-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.login-button:hover::before {
+  left: 100%;
+}
+
+/* Enhanced input focus */
+.login-input:focus {
+  transform: scale(1.02);
+}
+
+/* Enhanced feature items */
+.feature-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.3s;
+}
+
+.feature-item:hover::before {
+  left: 100%;
+}
+
+/* Ensure full viewport coverage */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Override any conflicting styles */
+.ant-layout {
+  background: transparent !important;
+}
+
+.ant-layout-content {
+  background: transparent !important;
+}
+
+/* Enhanced welcome section */
+.welcome-content {
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced form section */
+.login-form {
+  animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+/* Better mobile experience */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 10px;
+  }
+
+  .login-content {
+    border-radius: 16px;
+    min-height: auto;
+  }
+
+  .login-welcome {
+    padding: 30px 15px;
+    min-height: 200px;
+  }
+
+  .login-form-section {
+    padding: 30px 15px;
+  }
+
+  .welcome-title {
+    font-size: 1.8rem;
+  }
+
+  .welcome-subtitle {
+    font-size: 1rem;
+  }
+
+  .welcome-description {
+    font-size: 14px;
+  }
 }
