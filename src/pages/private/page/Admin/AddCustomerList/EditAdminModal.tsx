@@ -31,8 +31,8 @@ const { Title, Text } = Typography;
 interface EditAdminModalProps {
   visible: boolean;
   onClose: () => void;
-  admin: CustomerModel.AdminCustomer | null;
-  onSave: (data: CustomerModel.AdminCustomer) => Promise<void>;
+  admin: CustomerModel.Customer | null;
+  onSave: (data: CustomerModel.Customer) => Promise<void>;
   loading?: boolean;
 }
 

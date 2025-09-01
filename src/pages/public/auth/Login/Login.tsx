@@ -89,33 +89,32 @@ const Login = () => {
               <TeamOutlined />
             </div>
             <Title level={1} className="welcome-title">
-              Гэр бүлийн мод
+              {t('login.welcomeTitle')}
             </Title>
             <Title level={3} className="welcome-subtitle">
-              Таны гэр бүлийн түүх, холбоо, уялдаа
+              {t('login.welcomeSubtitle')}
             </Title>
             <Text className="welcome-description">
-              Гэр бүлийнхээ түүхийг бүртгэж, үе үеийн холбоог хадгалж, ирээдүй
-              үеэдээ үлдээх үнэ цэнэтэй өв соёлыг бий болгоно уу.
+              {t('login.welcomeDescription')}
             </Text>
 
             {/* Features */}
             <div className="features-list">
               <div className="feature-item">
                 <div className="feature-icon">🌳</div>
-                <Text>Гэр бүлийн мод бүтээх</Text>
+                <Text>{t('login.featureCreateTree')}</Text>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">📖</div>
-                <Text>Түүх, намтар бичих</Text>
+                <Text>{t('login.featureWriteHistory')}</Text>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">📸</div>
-                <Text>Зураг, бичлэг хадгалах</Text>
+                <Text>{t('login.featureSaveMedia')}</Text>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">👥</div>
-                <Text>Гэр бүлийн гишүүд удирдах</Text>
+                <Text>{t('login.featureManageMembers')}</Text>
               </div>
             </div>
           </div>
@@ -130,11 +129,9 @@ const Login = () => {
                 <UserOutlined />
               </div>
               <Title level={2} className="login-title">
-                Нэвтрэх
+                {t('login.loginTitle')}
               </Title>
-              <Text className="login-subtitle">
-                Тавтай морил! Гэр бүлийн мод руу нэвтэрнэ үү
-              </Text>
+              <Text className="login-subtitle">{t('login.loginSubtitle')}</Text>
             </div>
 
             {/* Language Button */}
@@ -226,13 +223,13 @@ const Login = () => {
 
             {/* Divider */}
             <Divider className="login-divider">
-              <Text className="divider-text">эсвэл</Text>
+              <Text className="divider-text">{t('login.orText')}</Text>
             </Divider>
 
             {/* Register Link */}
             <div className="register-section">
               <Text className="register-text">
-                Бүртгэл байхгүй юу?{' '}
+                {t('login.noAccountText')}{' '}
                 <Link to={'/auth/register'} className="register-link">
                   {t('login.register')}
                 </Link>

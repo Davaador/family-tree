@@ -274,7 +274,7 @@ const AddCustomerList = React.memo(() => {
       <EditAdminModal
         visible={editModalVisible}
         onClose={handleCloseEditModal}
-        admin={selectedAdmin}
+        admin={selectedAdmin as any}
         onSave={handleSaveAdmin}
         loading={updateLoading}
       />
