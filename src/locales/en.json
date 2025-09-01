@@ -45,7 +45,10 @@
         "hasAccountText": "Already have an account?",
         "selectLetterPlaceholder": "Select letter",
         "allLetters": "All",
-        "digitsPlaceholder": "8 digits"
+        "digitsPlaceholder": "8 digits",
+        "firstLetter": "First Letter",
+        "secondLetter": "Second Letter",
+        "digits": "Digits"
     },
     "login": {
         "password": "Password",

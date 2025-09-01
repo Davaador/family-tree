@@ -770,6 +770,129 @@ html {
   transform: scale(1.02);
 }
 
+/* New FormRegisterInput Design */
+.register-number-container {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 20px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.register-number-container:hover {
+  border-color: #65eaae;
+  box-shadow: 0 4px 12px rgba(101, 234, 174, 0.1);
+}
+
+.register-number-display {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.register-number-preview {
+  background: linear-gradient(135deg, #65eaae 0%, #4fd1c7 100%);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(101, 234, 174, 0.2);
+}
+
+.register-number-text {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: white !important;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.register-number-inputs {
+  margin-top: 16px;
+}
+
+.letter-input-container,
+.number-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.letter-label,
+.number-label {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #4a5568 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.letter-select {
+  border-radius: 8px !important;
+  border: 2px solid #e2e8f0 !important;
+  transition: all 0.3s ease;
+  background: white !important;
+}
+
+.letter-select:hover {
+  border-color: #65eaae !important;
+  box-shadow: 0 2px 8px rgba(101, 234, 174, 0.1);
+}
+
+.letter-select.ant-select-focused {
+  border-color: #65eaae !important;
+  box-shadow: 0 0 0 3px rgba(101, 234, 174, 0.1) !important;
+}
+
+.number-input {
+  border-radius: 8px !important;
+  border: 2px solid #e2e8f0 !important;
+  padding: 12px 16px !important;
+  font-size: 16px !important;
+  transition: all 0.3s ease;
+  background: white !important;
+}
+
+.number-input:hover {
+  border-color: #65eaae !important;
+  box-shadow: 0 2px 8px rgba(101, 234, 174, 0.1);
+}
+
+.number-input:focus,
+.number-input.ant-input-focused {
+  border-color: #65eaae !important;
+  box-shadow: 0 0 0 3px rgba(101, 234, 174, 0.1) !important;
+  transform: scale(1.02);
+}
+
+/* Mobile responsive for new design */
+@media (max-width: 768px) {
+  .register-number-container {
+    padding: 16px;
+  }
+
+  .register-number-text {
+    font-size: 20px !important;
+    letter-spacing: 1px;
+  }
+
+  .letter-label,
+  .number-label {
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-number-container {
+    padding: 12px;
+  }
+
+  .register-number-text {
+    font-size: 18px !important;
+  }
+
+  .register-number-preview {
+    padding: 12px;
+  }
+}
+
 /* FormRegisterInput specific styling */
 .register-form .ant-form-item .ant-row {
   gap: 8px;

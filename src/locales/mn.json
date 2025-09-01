@@ -45,7 +45,10 @@
         "hasAccountText": "Бүртгэл байгаа юу?",
         "selectLetterPlaceholder": "Үсэг сонгох",
         "allLetters": "Бүгд",
-        "digitsPlaceholder": "8 орон"
+        "digitsPlaceholder": "8 орон",
+        "firstLetter": "Эхний үсэг",
+        "secondLetter": "Дараагийн үсэг",
+        "digits": "Тоонууд"
     },
     "login": {
         "password": "Нууц үг",
