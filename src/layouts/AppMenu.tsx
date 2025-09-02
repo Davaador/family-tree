@@ -20,7 +20,6 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
   const location = useLocation();
   const { t } = useTranslation();
   const { roleUser } = authStore();
-  console.log(roleUser, 'test');
 
   const canSee = (userRole: string, allowedRoles?: string | string[]) => {
     if (!allowedRoles) return true; // зөвшөөрөл заагаагүй бол бүгдэд харагдана
@@ -28,7 +27,7 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
     return list.includes(userRole);
   };
 
-  const allMenuItems = [
+  const allMenuItems: any[] = [
     {
       key: '/',
       icon: <DashboardOutlined />,
@@ -60,6 +59,10 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       allowedRoles: undefined,
     },
     {
+      type: 'divider',
+      allowedRoles: ['ROOT', 'ADMIN'],
+    },
+    {
       key: '/add/customer/list',
       icon: <UserAddOutlined />,
       label: (
@@ -81,14 +84,27 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       canSee(roleUser ? roleUser[0].name : 'USER', item.allowedRoles)
     )
     .map(({ allowedRoles, ...item }) => item); // Remove allowedRoles from final items
+
   return (
-    <div className="p-2">
+    <div
+      style={{
+        padding: '8px 0',
+        height: '100%',
+        overflowY: 'auto',
+      }}
+    >
       <Menu
         onClick={onPress && onPress}
         selectedKeys={[location.pathname]}
         theme="light"
         mode="inline"
         items={items}
+        style={{
+          border: 'none',
+          background: 'transparent',
+          fontSize: '14px',
+        }}
+        className="custom-menu"
       />
     </div>
   );
