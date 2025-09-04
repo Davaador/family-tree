@@ -1,4 +1,15 @@
-export const API_URL = 'https://api.urag.mn';
+// Get API URL from environment variables
+const getApiUrl = (): string => {
+  // Check if we're in development mode
+  if (process.env.NODE_ENV === 'development') {
+    return process.env.REACT_APP_API_URL || 'http://localhost:8080';
+  }
+
+  // Production mode
+  return process.env.REACT_APP_API_URL || 'https://api.urag.mn';
+};
+
+export const API_URL = getApiUrl();
 
 export const API_ENDPOINTS = {
   // Auth
