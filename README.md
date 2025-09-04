@@ -2,6 +2,20 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Environment Configuration
+
+This project supports different environments for development and production:
+
+### Environment Files
+
+- `env.development` - Development environment configuration
+- `env.production` - Production environment configuration
+
+### Environment Variables
+
+- `REACT_APP_API_URL` - API server URL
+- `REACT_APP_ENV` - Environment name (development/production)
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -13,6 +27,22 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+### `npm run start:dev`
+
+Runs the app in development mode with development environment configuration (localhost:8080).
+
+### `npm run start:prod`
+
+Runs the app in development mode with production environment configuration (api.urag.mn).
+
+### `npm run build:dev`
+
+Builds the app for development environment.
+
+### `npm run build:prod`
+
+Builds the app for production environment.
 
 ### `npm test`
 
