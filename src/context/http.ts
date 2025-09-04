@@ -1,9 +1,9 @@
-import axios from "axios";
-import { API_URL } from "constant";
+import axios from 'axios';
+import { API_URL } from '../constants';
 
 const apiClient = axios.create({
   baseURL: API_URL,
-  headers: { "Content-Type": "application/json" },
+  headers: { 'Content-Type': 'application/json' },
 });
 
 // const interceptors = (store: StoreApi<AuthState & AuthAction>) => {
