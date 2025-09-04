@@ -10,9 +10,8 @@ import {
 import { Button, Card, Checkbox, Divider, Form, Input, Typography } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { authStore } from 'context/auth/store';
-import validations from 'context/validations';
 import { LanguageButton } from 'pages/components';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { Auth, LoginForm } from '../auth.model';
@@ -24,10 +23,59 @@ const { Title, Text } = Typography;
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { setAuthentication, setAuth, phone, setPhoneRemember, clearRemember } =
-    authStore();
+
+  // Create stable translation function to prevent circular references
+  const getTranslation = useMemo(
+    () => ({
+      phoneNumber: t('register.phoneNumber'),
+      enterPhone: t('register.enterPhone'),
+      enterPhoneRegex: t('register.enterPhoneRegex'),
+      password: t('login.password'),
+      enterPassword: t('login.enterPassword'),
+      enterNewPasswordRegex: t('register.enterNewPasswordRegex'),
+      remember: t('login.remember'),
+      resetPassword: t('login.resetPassword'),
+      loginTitle: t('login.loginTitle'),
+      loginSubtitle: t('login.loginSubtitle'),
+      welcomeTitle: t('login.welcomeTitle'),
+      welcomeSubtitle: t('login.welcomeSubtitle'),
+      welcomeDescription: t('login.welcomeDescription'),
+      featureCreateTree: t('login.featureCreateTree'),
+      featureWriteHistory: t('login.featureWriteHistory'),
+      featureSaveMedia: t('login.featureSaveMedia'),
+      featureManageMembers: t('login.featureManageMembers'),
+    }),
+    [t]
+  );
+
+  // Destructure authStore functions to avoid potential circular references
+  const setAuthentication = authStore((state) => state.setAuthentication);
+  const setAuth = authStore((state) => state.setAuth);
+  const phone = authStore((state) => state.phone);
+  const setPhoneRemember = authStore((state) => state.setPhoneRemember);
+  const clearRemember = authStore((state) => state.clearRemember);
   const [loading, setLoading] = useState(false);
   const [form] = useForm();
+
+  // Memoize validation rules to prevent circular references
+  const phoneValidationRules = useMemo(
+    () => [
+      { required: true, message: getTranslation.enterPhone },
+      {
+        pattern: /^[0-9]{8}$/, // Direct regex instead of validations.regex.phoneNumber
+        message: getTranslation.enterPhoneRegex,
+      },
+    ],
+    [getTranslation]
+  );
+
+  const passwordValidationRules = useMemo(
+    () => [
+      { required: true, message: getTranslation.enterPassword },
+      { min: 8, message: getTranslation.enterNewPasswordRegex },
+    ],
+    [getTranslation]
+  );
 
   const onFinish = (values: LoginForm) => {
     setLoading(true);
@@ -53,7 +101,7 @@ const Login = () => {
     if (phone) {
       form.setFieldValue('rememberMe', true);
     }
-  }, [form, phone]);
+  }, [form, phone]); // Removed form from dependencies to prevent circular references
 
   const onClickReset = () => {
     navigate('/auth/reset');
@@ -80,32 +128,32 @@ const Login = () => {
               <TeamOutlined />
             </div>
             <Title level={1} className="welcome-title">
-              {t('login.welcomeTitle')}
+              {getTranslation.welcomeTitle}
             </Title>
             <Title level={3} className="welcome-subtitle">
-              {t('login.welcomeSubtitle')}
+              {getTranslation.welcomeSubtitle}
             </Title>
             <Text className="welcome-description">
-              {t('login.welcomeDescription')}
+              {getTranslation.welcomeDescription}
             </Text>
 
             {/* Features */}
             <div className="features-list">
               <div className="feature-item">
                 <div className="feature-icon">🌳</div>
-                <Text>{t('login.featureCreateTree')}</Text>
+                <Text>{getTranslation.featureCreateTree}</Text>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">📖</div>
-                <Text>{t('login.featureWriteHistory')}</Text>
+                <Text>{getTranslation.featureWriteHistory}</Text>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">📸</div>
-                <Text>{t('login.featureSaveMedia')}</Text>
+                <Text>{getTranslation.featureSaveMedia}</Text>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">👥</div>
-                <Text>{t('login.featureManageMembers')}</Text>
+                <Text>{getTranslation.featureManageMembers}</Text>
               </div>
             </div>
           </div>
@@ -113,16 +161,18 @@ const Login = () => {
 
         {/* Right Side - Login Form */}
         <div className="login-form-section">
-          <Card className="login-card" bordered={false}>
+          <Card className="login-card" variant="borderless">
             {/* Header */}
             <div className="login-header">
               <div className="login-avatar">
                 <UserOutlined />
               </div>
               <Title level={2} className="login-title">
-                {t('login.loginTitle')}
+                {getTranslation.loginTitle}
               </Title>
-              <Text className="login-subtitle">{t('login.loginSubtitle')}</Text>
+              <Text className="login-subtitle">
+                {getTranslation.loginSubtitle}
+              </Text>
             </div>
 
             {/* Language Button */}
@@ -132,6 +182,7 @@ const Login = () => {
 
             {/* Login Form */}
             <Form
+              key="login-form"
               form={form}
               layout={'vertical'}
               autoComplete="off"
@@ -141,38 +192,29 @@ const Login = () => {
               className="login-form"
             >
               <Form.Item
-                label={t('register.phoneNumber')}
+                label={getTranslation.phoneNumber}
                 name={'phoneNumber'}
                 required
                 initialValue={phone}
-                rules={[
-                  { required: true, message: `${t('register.enterPhone')}` },
-                  {
-                    pattern: validations.regex.phoneNumber,
-                    message: `${t('register.enterPhoneRegex')}`,
-                  },
-                ]}
+                rules={phoneValidationRules}
               >
                 <Input
-                  placeholder={t('register.phoneNumber')}
+                  placeholder={getTranslation.phoneNumber}
                   prefix={<PhoneOutlined className="input-icon" />}
                   className="login-input"
                 />
               </Form.Item>
 
               <Form.Item
-                label={t('login.password')}
+                label={getTranslation.password}
                 name={'password'}
                 required
                 initialValue={''}
-                rules={[
-                  { required: true, message: `${t('login.enterPassword')}` },
-                  { min: 8, message: `${t('register.enterNewPasswordRegex')}` },
-                ]}
+                rules={passwordValidationRules}
               >
                 <Input.Password
                   autoComplete="off"
-                  placeholder={t('login.password')}
+                  placeholder={getTranslation.password}
                   prefix={<LockOutlined className="input-icon" />}
                   iconRender={(visible) =>
                     visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
@@ -188,7 +230,7 @@ const Login = () => {
                   className="remember-me"
                 >
                   <Checkbox className="custom-checkbox">
-                    {t('login.remember')}
+                    {getTranslation.remember}
                   </Checkbox>
                 </Form.Item>
                 <Button
@@ -196,7 +238,7 @@ const Login = () => {
                   onClick={onClickReset}
                   className="reset-link"
                 >
-                  {t('login.resetPassword')}
+                  {getTranslation.resetPassword}
                 </Button>
               </div>
 

@@ -6,6 +6,38 @@ body,
   height: 100%;
 }
 
+// Fix footer overlap issue
+.ant-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-layout-content {
+  flex: 1;
+  min-height: 0;
+}
+
+.ant-layout-footer {
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+}
+
+// Ensure proper sider layout
+.ant-layout-has-sider {
+  .ant-layout-sider {
+    position: relative;
+    height: calc(100vh - 70px); // Subtract header height
+  }
+  
+  .ant-layout-sider-children {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .min-h {
   min-height: 100vh;
 }
@@ -147,6 +179,18 @@ body {
       }
     }
   }
+  
+  // Ensure sider content is visible without scroll
+  .ant-menu {
+    height: auto !important;
+    overflow: visible !important;
+    max-height: none !important;
+  }
+  
+  // Prevent sider from having scroll
+  .ant-layout-sider-children {
+    overflow: hidden !important;
+  }
 }
 
 /* Drawer Styling */
@@ -205,6 +249,7 @@ body {
   
   .ant-layout-footer {
     padding: 16px !important;
+    margin-top: 20px !important;
   }
 }
 
@@ -224,6 +269,7 @@ body {
   
   .ant-layout-footer {
     padding: 24px !important;
+    margin-top: 20px !important;
   }
 }
 

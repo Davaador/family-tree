@@ -105,7 +105,7 @@ const Register = () => {
 
         {/* Right Side - Register Form */}
         <div className="register-form-section">
-          <Card className="register-card" bordered={false}>
+          <Card className="register-card" variant="borderless">
             {/* Header */}
             <div className="register-header">
               <div className="register-avatar">

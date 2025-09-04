@@ -134,11 +134,15 @@ const AuthLayout = () => {
           placement="left"
           closable={true}
           width={280}
-          bodyStyle={{ padding: 0 }}
-          headerStyle={{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            border: 'none',
-            color: 'white',
+          styles={{
+            header: {
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              border: 'none',
+              color: 'white',
+            },
+            body: {
+              padding: 0,
+            },
           }}
           title={
             <Flex align="center" gap={12}>
@@ -364,6 +368,8 @@ const AuthLayout = () => {
                   background: '#ffffff',
                   borderRight: '1px solid #f0f0f0',
                   boxShadow: '2px 0 8px rgba(0, 0, 0, 0.06)',
+                  height: 'calc(100vh - 70px)', // Subtract header height
+                  overflow: 'hidden', // Prevent sider from scrolling
                 }}
                 width={280}
                 collapsedWidth={80}

@@ -69,7 +69,7 @@ const QuickActionsSection: React.FC<QuickActionsSectionProps> = ({
     <Card title={t('dashboard.quickActions')} className="quick-actions-card">
       <Row gutter={[16, 16]}>
         {actions.map((action) => (
-          <Col xs={24} sm={12} md={8} key={action.key}>
+          <Col xs={24} sm={12} md={12} lg={8} key={action.key}>
             <Button
               type={action.type}
               icon={action.icon}

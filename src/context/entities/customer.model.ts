@@ -15,6 +15,7 @@ export namespace CustomerModel {
     confirmPassword: string;
     lastNameId?: number;
     id: number;
+    isParent: number;
   }
 
   export interface Customer extends AdminCustomer {

@@ -2,12 +2,14 @@ import { authStore, languageStore } from 'context/auth/store';
 import { apiClient } from 'context/http';
 import { axiosInstance } from 'context/interceptors';
 import routes from 'pages';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.less';
 import i18n from './i18n';
 import { App as MyApp } from 'antd';
 import { GlobalLoading } from 'layouts/GlobalLoading';
+import { Spin } from 'antd';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Suppress React Router v7 warning
 const originalWarn = console.warn;
@@ -23,22 +25,44 @@ console.warn = (...args) => {
 };
 
 axiosInstance(apiClient, authStore);
-const router = createBrowserRouter(routes, {
-  future: {
-    v7_startTransition: true,
-  },
-});
+const router = createBrowserRouter(routes);
 function App() {
   const { language } = languageStore();
+  const [isReady, setIsReady] = useState(false);
+
   useEffect(() => {
+    console.log('App mounting, setting up language and hydration');
     i18n.changeLanguage(language);
+    // Set ready after a short delay to ensure proper hydration
+    const timer = setTimeout(() => {
+      console.log('App ready, hydration complete');
+      setIsReady(true);
+    }, 100);
+    return () => clearTimeout(timer);
   }, [language]);
 
+  if (!isReady) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <Spin size="large" />
+      </div>
+    );
+  }
+
   return (
-    <MyApp>
-      <GlobalLoading />
-      <RouterProvider router={router} />
-    </MyApp>
+    <ErrorBoundary>
+      <MyApp>
+        <GlobalLoading />
+        <RouterProvider router={router} />
+      </MyApp>
+    </ErrorBoundary>
   );
 }
 

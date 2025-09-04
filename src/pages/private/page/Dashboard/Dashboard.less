@@ -3,6 +3,7 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 24px;
+  padding-bottom: 100px; // Add extra bottom padding to prevent footer overlap
 }
 
 .dashboard-layout {
@@ -56,6 +57,20 @@
         }
       }
     }
+    
+    .admin-edit-button {
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.1);
+        color: #40a9ff !important;
+        background: rgba(24, 144, 255, 0.1);
+      }
+      
+      &:active {
+        transform: scale(0.95);
+      }
+    }
   }
 }
 
@@ -72,13 +87,23 @@
 .stats-section {
   margin-bottom: 32px;
   
-  .stat-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    border: none;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  .ant-col {
+    display: flex;
+    
+    .stat-card {
+      width: 100%;
+      flex: 1;
+    }
+  }
+  
+      .stat-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      min-width: 0; // Prevents flex items from overflowing
     
     &:hover {
       transform: translateY(-4px);
@@ -156,10 +181,21 @@
     }
     
     .action-button {
-      height: 48px;
+      height: auto;
+      min-height: 48px;
       border-radius: 12px;
       font-weight: 500;
+      font-size: 13px;
+      line-height: 1.4;
+      padding: 12px 8px;
+      white-space: normal;
+      text-align: center;
       transition: all 0.3s ease;
+      
+      .ant-btn-icon {
+        margin-right: 6px;
+        font-size: 14px;
+      }
       
       &:hover {
         transform: translateY(-2px);
@@ -284,7 +320,14 @@
   
   .actions-section {
     .action-button {
-      height: 44px;
+      min-height: 44px;
+      font-size: 12px;
+      padding: 10px 6px;
+      
+      .ant-btn-icon {
+        font-size: 13px;
+        margin-right: 4px;
+      }
     }
   }
 }
@@ -367,4 +410,17 @@
   border-radius: 16px;
   padding: 8px 16px;
   width: 100%;
+}
+
+// Footer spacing fix
+.dashboard-layout {
+  position: relative;
+  z-index: 1;
+}
+
+// Ensure footer doesn't overlap content
+.ant-layout-footer {
+  position: relative;
+  z-index: 0;
+  margin-top: auto;
 }

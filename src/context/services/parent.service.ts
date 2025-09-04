@@ -1,8 +1,8 @@
 import { CustomerModel } from 'context/entities/customer.model';
-import { apiClient } from 'context/http';
+import { apiClient } from 'services/api';
 import { AddParentForm } from 'pages/public/auth/auth.model';
 
-function getParents(): Promise<CustomerModel.Customer[]> {
+function getParents(): Promise<any[]> {
   return apiClient.get('/api/parent/all');
 }
 

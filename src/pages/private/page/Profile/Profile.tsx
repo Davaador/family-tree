@@ -103,7 +103,9 @@ const Profile = () => {
       <div className="max-w-4xl mx-auto">
         <Card
           className="backdrop-blur-sm bg-white/80 border-0 shadow-2xl rounded-3xl overflow-hidden"
-          bodyStyle={{ padding: 0 }}
+          styles={{
+            body: { padding: 0 },
+          }}
         >
           {/* Profile Header */}
           <div className="relative bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 p-8 text-white">
