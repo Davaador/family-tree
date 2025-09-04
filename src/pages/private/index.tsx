@@ -24,6 +24,7 @@ import ChildList from './page/Child/ChildList/ChildList';
 import AddChild from './page/Child/AddChild/AddChild';
 import AddCustomerList from './page/Admin/AddCustomerList/AddCustomerList';
 import AddCustomer from './page/Admin/AddCustomer/AddCustomer';
+import EditCustomerPage from './page/Admin/AddCustomerList/EditCustomerPage';
 
 const privateRoute: RouteObject = {
   path: '/',
@@ -81,6 +82,10 @@ const privateRoute: RouteObject = {
     {
       path: '/admin/add/customer',
       element: <AddCustomer />,
+    },
+    {
+      path: '/admin/edit/customer/:id',
+      element: <EditCustomerPage />,
     },
     {
       path: '/logout',
