@@ -25,7 +25,6 @@ const AddCustomerList = React.memo(() => {
   >({
     onSuccess: (data) => {
       setAdminList(data);
-      console.log('Admin list loaded:', data);
     },
   });
 
