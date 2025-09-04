@@ -27,6 +27,7 @@ export const API_ENDPOINTS = {
   // Admin
   ADMIN: '/api/admin',
   ADMIN_CUSTOMERS: '/api/admin/customers',
+  ADMIN_CUSTOMER_BY_ID: '/api/admin/customers',
 
   // Customer
   CUSTOMER: '/api/customer',

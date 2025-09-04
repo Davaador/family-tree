@@ -1,11 +1,7 @@
 import { notification, Layout, Table, Button, Space, Popconfirm } from 'antd';
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
 import { CustomerModel } from 'types/customer.types';
-import {
-  getAdminList,
-  deleteAdmin,
-  updateAdmin,
-} from 'context/services/admin.service';
+import { getAdminList, deleteAdmin } from 'context/services/admin.service';
 import { CardHeader } from 'pages/components';
 import { useApi, useTable } from 'hooks';
 import { formatDate } from 'utils';
@@ -14,7 +10,6 @@ import React, { useEffect, useMemo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import AdminDetailModal from './AdminDetailModal';
-import EditAdminModal from './EditAdminModal';
 
 const AddCustomerList = React.memo(() => {
   const { t } = useTranslation();
@@ -24,7 +19,6 @@ const AddCustomerList = React.memo(() => {
   const [selectedAdmin, setSelectedAdmin] =
     useState<CustomerModel.AdminCustomer | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [editModalVisible, setEditModalVisible] = useState(false);
 
   const { loading, execute: fetchAdminList } = useApi<
     CustomerModel.AdminCustomer[]
@@ -44,22 +38,6 @@ const AddCustomerList = React.memo(() => {
       fetchAdminList(() => getAdminList());
     },
   });
-
-  const { loading: updateLoading, execute: handleUpdate } =
-    useApi<CustomerModel.AdminCustomer>({
-      onSuccess: (updatedAdmin) => {
-        // Update the admin in the list
-        setAdminList((prev) =>
-          prev.map((admin) =>
-            admin.id === updatedAdmin.id ? updatedAdmin : admin
-          )
-        );
-        notification.success({
-          message: t('admin.success.title'),
-          description: t('admin.edit.success'),
-        });
-      },
-    });
 
   // Memoize the fetch function to prevent unnecessary re-renders
   const fetchAdminData = useCallback(() => {
@@ -81,37 +59,11 @@ const AddCustomerList = React.memo(() => {
     setSelectedAdmin(null);
   }, []);
 
-  const handleEditAdmin = useCallback((record: CustomerModel.AdminCustomer) => {
-    console.log('Edit Admin Record:', {
-      id: record.id,
-      firstName: record.firstName,
-      lastName: record.lastName,
-      birthDate: record.birthDate,
-      age: record.age,
-      isDeceased: record.isDeceased,
-      deceasedDate: record.deceasedDate,
-    });
-
-    // Ensure birthDate is available, if not, create a fallback
-    const adminWithBirthDate = {
-      ...record,
-      birthDate: record.birthDate || new Date().toISOString().split('T')[0], // Fallback to today's date
-    };
-
-    setSelectedAdmin(adminWithBirthDate);
-    setEditModalVisible(true);
-  }, []);
-
-  const handleCloseEditModal = useCallback(() => {
-    setEditModalVisible(false);
-    setSelectedAdmin(null);
-  }, []);
-
-  const handleSaveAdmin = useCallback(
-    async (data: CustomerModel.AdminCustomer) => {
-      await handleUpdate(() => updateAdmin(data.id, data));
+  const handleEditAdmin = useCallback(
+    (record: CustomerModel.AdminCustomer) => {
+      navigate(`/admin/edit/customer/${record.id}`);
     },
-    [handleUpdate]
+    [navigate]
   );
 
   const handleDeleteAdmin = useCallback(
@@ -268,15 +220,6 @@ const AddCustomerList = React.memo(() => {
         visible={modalVisible}
         onClose={handleCloseModal}
         admin={selectedAdmin}
-      />
-
-      {/* Admin Edit Modal */}
-      <EditAdminModal
-        visible={editModalVisible}
-        onClose={handleCloseEditModal}
-        admin={selectedAdmin as any}
-        onSave={handleSaveAdmin}
-        loading={updateLoading}
       />
     </Layout>
   );

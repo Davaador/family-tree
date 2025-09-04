@@ -98,6 +98,61 @@
             "enterroleName": "Төрлөө бичнэ үү."
         }
     },
+    "admin": {
+        "success": {
+            "title": "Амжилттай",
+            "description": "Амжилттай хадгаллаа"
+        },
+        "delete": {
+            "title": "Устгах",
+            "description": "Энэ хэрэглэгчийг устгахдаа итгэлтэй байна уу?",
+            "success": "Хэрэглэгч амжилттай устгагдлаа"
+        },
+        "edit": {
+            "title": "Хэрэглэгчийн мэдээлэл засах",
+            "success": "Хэрэглэгчийн мэдээлэл амжилттай шинэчлэгдлээ",
+            "cancel": "Цуцлах",
+            "save": "Хадгалах",
+            "profileInfo": "Хувийн мэдээлэл",
+            "contactInfo": "Холбоо барих мэдээлэл",
+            "firstName": "Нэр",
+            "firstNameRequired": "Нэрийг оруулна уу",
+            "firstNameMin": "Нэр хамгийн багадаа 2 тэмдэгт байх ёстой",
+            "firstNamePlaceholder": "Нэрээ оруулна уу",
+            "lastName": "Овог",
+            "lastNameRequired": "Овгийг оруулна уу",
+            "lastNameMin": "Овог хамгийн багадаа 2 тэмдэгт байх ёстой",
+            "lastNamePlaceholder": "Овгоо оруулна уу",
+            "surName": "Ургийн овог",
+            "surNamePlaceholder": "Ургийн овгоо оруулна уу",
+            "birthDate": "Төрсөн огноо",
+            "birthDateRequired": "Төрсөн огноог оруулна уу",
+            "birthDatePlaceholder": "Төрсөн огноогоо оруулна уу",
+            "phoneNumber": "Утасны дугаар",
+            "phoneNumberRequired": "Утасны дугаарыг оруулна уу",
+            "phoneNumberFormat": "Утасны дугаар 8 оронтой байх ёстой",
+            "phoneNumberPlaceholder": "Утасны дугаараа оруулна уу",
+            "email": "И-мэйл",
+            "emailRequired": "И-мэйл хаягийг оруулна уу",
+            "emailFormat": "И-мэйл хаяг буруу байна",
+            "emailPlaceholder": "И-мэйл хаягаа оруулна уу",
+            "registerNumber": "Регистрийн дугаар",
+            "registerNumberPlaceholder": "Регистрийн дугаараа оруулна уу"
+        },
+        "add": {
+            "customerList": {
+                "header": "Бүртгэсэн харилцагчдын жагсаалт"
+            },
+            "buttonTitle": "Харилцагч нэмэх"
+        }
+    },
+    "customer": {
+        "isDeceased": "Нас барав",
+        "isDeceasedLabel": "Нас барав",
+        "deceasedDate": "Нас барах огноо",
+        "deceasedDateRequired": "Нас барах огноог оруулна уу",
+        "deceasedDatePlaceholder": "Нас барах огноогоо оруулна уу"
+    },
     "dashboard": {
         "dashboard": "Нүүр хуудас",
         "requests": "Хүсэлтүүд",
@@ -186,7 +241,7 @@
             "customerTitle": "Шинээр харилцагч бүртгэх",
             "buttonTitle": "Шинээр бүртгэх",
             "enterSurName": "Ургийн овог оруулна уу!",
-            "lastName": "Овгоо сонгоно уу.",
+            "lastName": "Ургийн модны овгоо сонгоно уу.",
             "customerList": {
                 "header": "Бүртгэсэн админууд"
             }

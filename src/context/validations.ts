@@ -38,6 +38,11 @@ const rules = {
     { min: 2, message: t('register.min2Char') },
   ],
 
+  lastName: (t: any) => [
+    { required: true, message: t('register.enterLastName') },
+    { min: 2, message: t('register.min2Char') },
+  ],
+
   phoneNumber: (t: any) => [
     { required: true, message: t('register.enterPhone') },
     { pattern: regex.phoneNumber, message: t('register.enterPhoneRegex') },

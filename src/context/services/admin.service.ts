@@ -22,4 +22,16 @@ function updateAdmin(
   return apiClient.put(`/api/admin/${id}`, data);
 }
 
-export { createAdminCustomer, getAdminList, deleteAdmin, updateAdmin };
+function getAdminCustomerById(
+  id: number
+): Promise<CustomerModel.AdminCustomer> {
+  return apiClient.get(`/api/admin/customers/${id}`);
+}
+
+export {
+  createAdminCustomer,
+  getAdminList,
+  deleteAdmin,
+  updateAdmin,
+  getAdminCustomerById,
+};
