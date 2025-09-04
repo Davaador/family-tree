@@ -77,8 +77,6 @@ const EditNameModal = (props: EditNameModalProps) => {
     if (!authUser) return;
 
     try {
-      console.log(fileList, 'sss');
-
       // Хэрэв зураг байгаа бол upload хийх
       if (fileList && fileList.length > 0 && fileList[0].originFileObj) {
         const val: ImageField = await uploadFile(fileList[0].originFileObj);
