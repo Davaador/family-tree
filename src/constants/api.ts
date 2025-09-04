@@ -1,3 +1,5 @@
+export const API_URL = 'https://api.urag.mn';
+
 export const API_ENDPOINTS = {
   // Auth
   LOGIN: '/auth/login',
