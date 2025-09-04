@@ -45,6 +45,9 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
+    console.log(authUser, 'authUser');
+    console.log(roleUser, 'roleUser');
+
     if (
       !roleUser?.find((role) => role.name === RolesConstants.ROOT) &&
       authUser &&
@@ -58,7 +61,10 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <Layout className="dashboard-layout">
-        <WelcomeSection />
+        <WelcomeSection
+          isShowModal={isShowModal}
+          setModalVisible={setIshowModal}
+        />
 
         <Row gutter={[24, 24]} className="stats-section">
           <StatisticsSection

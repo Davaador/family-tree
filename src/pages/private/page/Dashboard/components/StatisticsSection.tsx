@@ -28,7 +28,7 @@ const StatisticsSection: React.FC<StatisticsSectionProps> = ({
 
   return (
     <>
-      <Col xs={24} sm={12} lg={6}>
+      <Col xs={24} sm={12} lg={6} style={{ flex: '1 1 0%' }}>
         <Card className="stat-card total-users">
           <Statistic
             title={t('dashboard.totalRegistered')}
@@ -43,7 +43,7 @@ const StatisticsSection: React.FC<StatisticsSectionProps> = ({
         </Card>
       </Col>
 
-      <Col xs={24} sm={12} lg={6}>
+      <Col xs={24} sm={12} lg={6} style={{ flex: '1 1 0%' }}>
         <Card className="stat-card active-users">
           <Statistic
             title={t('dashboard.activeCount')}
@@ -64,7 +64,7 @@ const StatisticsSection: React.FC<StatisticsSectionProps> = ({
         </Card>
       </Col>
 
-      <Col xs={24} sm={12} lg={6}>
+      <Col xs={24} sm={12} lg={6} style={{ flex: '1 1 0%' }}>
         <Card className="stat-card pending-requests">
           <Statistic
             title={t('dashboard.requestsSent')}
@@ -79,7 +79,7 @@ const StatisticsSection: React.FC<StatisticsSectionProps> = ({
         </Card>
       </Col>
 
-      <Col xs={24} sm={12} lg={6}>
+      <Col xs={24} sm={12} lg={6} style={{ flex: '1 1 0%' }}>
         <Card className="stat-card children-count">
           <Statistic
             title={t('dashboard.childrenCount')}

@@ -89,8 +89,8 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
     <div
       style={{
         padding: '8px 0',
-        height: '100%',
-        overflowY: 'auto',
+        height: 'calc(100% - 80px)', // Subtract the profile section height
+        overflow: 'visible',
       }}
     >
       <Menu

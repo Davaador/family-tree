@@ -18,24 +18,31 @@ import {
 } from '../private.service';
 
 const authGuard = async (store: StoreApi<AuthState & AuthAction>) => {
+  console.log('authGuard called');
   try {
     const state: AuthState & AuthAction = store.getState();
+    console.log('authGuard state:', {
+      authenticated: state.authenticated,
+      hasAuthUser: !!state.authUser,
+    });
     if (state.authenticated && !state.authUser) {
-      getUserDetail()
-        .then((res: CustomerDetail) => {
-          console.log(res, 'dsss');
-          state.setAuthUser(res);
-          if (res.user.roles) {
-            state.setRoles(res.user.roles);
-          }
-        })
-        .catch(() => {
-          return redirect('/auth/login');
-        });
+      try {
+        const res: CustomerDetail = await getUserDetail();
+        console.log(res, 'dsss');
+        state.setAuthUser(res);
+        if (res.user.roles) {
+          state.setRoles(res.user.roles);
+        }
+      } catch (error) {
+        console.log('authGuard error, redirecting to login');
+        return redirect('/auth/login');
+      }
     }
   } catch (error) {
+    console.log('authGuard catch error, redirecting to login');
     return redirect('/auth/login');
   }
+  console.log('authGuard returning empty object');
   return {};
 };
 
