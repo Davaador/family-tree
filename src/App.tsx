@@ -31,11 +31,9 @@ function App() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    console.log('App mounting, setting up language and hydration');
     i18n.changeLanguage(language);
     // Set ready after a short delay to ensure proper hydration
     const timer = setTimeout(() => {
-      console.log('App ready, hydration complete');
       setIsReady(true);
     }, 100);
     return () => clearTimeout(timer);

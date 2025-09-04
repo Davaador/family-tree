@@ -45,9 +45,6 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    console.log(authUser, 'authUser');
-    console.log(roleUser, 'roleUser');
-
     if (
       !roleUser?.find((role) => role.name === RolesConstants.ROOT) &&
       authUser &&
