@@ -45,7 +45,7 @@ const EditUserModal = (props: EditUserModalProps) => {
   );
 
   const onFinish = (values: AddParentForm) => {
-    // setLoading(true);
+    setLoading(true);
 
     // Ensure isParent is set when parentId is selected
 
