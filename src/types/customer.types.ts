@@ -18,6 +18,8 @@ export namespace CustomerModel {
     isDeceased?: boolean;
     deceasedDate?: Date | string;
     isParent: number;
+    spouseId?: number;
+    gender?: string;
   }
 
   export interface Customer extends AdminCustomer {

@@ -40,10 +40,9 @@ export namespace CustomerModel {
     lastName: string;
     gender: string;
     birthDate: Date | string;
-    // spouse?: ParentDto;
+    // For frontend display - populated from IDs
     wife?: ParentDto;
     husband?: ParentDto;
-
     children?: ParentDto[];
     profileImage?: ImageField;
   }

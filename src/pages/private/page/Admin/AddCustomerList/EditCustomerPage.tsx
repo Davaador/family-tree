@@ -5,6 +5,7 @@ import {
   updateAdmin,
 } from 'context/services/admin.service';
 import { parentService } from 'context/services/parent.service';
+import { getAvailableSpousesForCustomer } from 'context/services/customer.service';
 import dayjs from 'dayjs';
 import { useApi } from 'hooks';
 import { CardHeader } from 'pages/components';
@@ -13,7 +14,11 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CustomerModel } from 'types/customer.types';
 
-import { ProfileSection, ContactSection } from './components';
+import {
+  ProfileSection,
+  ContactSection,
+  FamilyMemberSection,
+} from './components';
 
 const { Text } = Typography;
 
@@ -25,6 +30,12 @@ const EditCustomerPage = React.memo(() => {
   const [isDeceased, setIsDeceased] = useState<boolean>(false);
   const [parents, setParents] = useState<CustomerModel.Customer[]>([]);
   const [selectedParentId, setSelectedParentId] = useState<
+    string | undefined
+  >();
+  const [availableSpouses, setAvailableSpouses] = useState<
+    CustomerModel.Customer[]
+  >([]);
+  const [selectedSpouseId, setSelectedSpouseId] = useState<
     string | undefined
   >();
   const [customer, setCustomer] = useState<CustomerModel.AdminCustomer | null>(
@@ -54,13 +65,32 @@ const EditCustomerPage = React.memo(() => {
   const { loading: parentsLoading, execute: fetchParents } = useApi<
     CustomerModel.Customer[]
   >({
-    onSuccess: data => setParents(data),
+    onSuccess: data => {
+      if (Array.isArray(data)) {
+        setParents(data);
+      } else {
+        setParents([]);
+      }
+    },
+  });
+
+  const { loading: spousesLoading, execute: fetchSpouses } = useApi<
+    CustomerModel.Customer[]
+  >({
+    onSuccess: data => {
+      if (Array.isArray(data)) {
+        setAvailableSpouses(data);
+      } else {
+        setAvailableSpouses([]);
+      }
+    },
   });
 
   const initializeForm = useCallback(
     (customerData: CustomerModel.AdminCustomer) => {
       setIsDeceased(customerData.isDeceased || false);
       setSelectedParentId(customerData.lastNameId?.toString());
+      setSelectedSpouseId(customerData.spouseId?.toString());
       form.setFieldsValue({
         firstName: customerData.firstName,
         lastName: customerData.lastName,
@@ -70,6 +100,8 @@ const EditCustomerPage = React.memo(() => {
         register: customerData.register,
         isParent: customerData.isParent,
         lastNameId: customerData.lastNameId,
+        spouseId: customerData.spouseId,
+        gender: customerData.gender,
         birthDate: customerData.birthDate
           ? dayjs(customerData.birthDate).format('YYYY-MM-DD')
           : undefined,
@@ -90,6 +122,14 @@ const EditCustomerPage = React.memo(() => {
     [form]
   );
 
+  const handleSpouseIdChange = useCallback(
+    (value: string) => {
+      setSelectedSpouseId(value);
+      form.setFieldValue('spouseId', value);
+    },
+    [form]
+  );
+
   const handleSave = useCallback(async () => {
     try {
       const values = await form.validateFields();
@@ -105,6 +145,8 @@ const EditCustomerPage = React.memo(() => {
         deceasedDate:
           isDeceased && values.deceasedDate ? values.deceasedDate : undefined,
         lastNameId: selectedParentId ? Number(selectedParentId) : undefined,
+        spouseId: selectedSpouseId ? Number(selectedSpouseId) : undefined,
+        gender: customer.gender, // Keep existing gender
       };
       await handleUpdate(() => updateAdmin(customer.id, updatedCustomer));
     } catch (error) {
@@ -113,7 +155,14 @@ const EditCustomerPage = React.memo(() => {
         console.error('Form validation failed:', error);
       }
     }
-  }, [form, customer, isDeceased, selectedParentId, handleUpdate]);
+  }, [
+    form,
+    customer,
+    isDeceased,
+    selectedParentId,
+    selectedSpouseId,
+    handleUpdate,
+  ]);
 
   useEffect(() => {
     if (id) {
@@ -121,6 +170,13 @@ const EditCustomerPage = React.memo(() => {
       fetchParents(() => parentService.getParents());
     }
   }, [id, fetchCustomer, fetchParents]);
+
+  // Fetch spouses after customer data is loaded
+  useEffect(() => {
+    if (customer?.id) {
+      fetchSpouses(() => getAvailableSpousesForCustomer(customer.id));
+    }
+  }, [customer?.id, fetchSpouses]);
 
   if (fetchLoading || !customer) {
     return (
@@ -151,6 +207,13 @@ const EditCustomerPage = React.memo(() => {
             setIsDeceased={setIsDeceased}
             handleParentIdChange={handleParentIdChange}
             t={t}
+          />
+          <FamilyMemberSection
+            availableSpouses={availableSpouses}
+            spousesLoading={spousesLoading}
+            selectedSpouseId={selectedSpouseId}
+            handleSpouseIdChange={handleSpouseIdChange}
+            customerGender={customer?.gender}
           />
           <ContactSection form={form} customer={customer} t={t} />
           <div className='flex justify-end gap-3 mt-6 pt-6 border-t border-gray-200'>
