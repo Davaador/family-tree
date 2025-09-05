@@ -17,6 +17,7 @@ import {
   createBiography,
   getBiographyHistory,
   restoreBiographyVersion,
+  getThreeGenerationsBiography,
 } from 'context/services/customer.service';
 import { CardHeader, CustomFormItem, SubmitButton } from 'pages/components';
 import { BiographyProps } from 'pages/private/private.model';
@@ -30,6 +31,7 @@ import {
   HistoryOutlined,
   DownloadOutlined,
   InfoCircleOutlined,
+  TeamOutlined,
 } from '@ant-design/icons';
 import './EditBiography.less';
 
@@ -107,6 +109,70 @@ const EditBiography = () => {
     }
   };
 
+  const handleExportThreeGenerations = async () => {
+    try {
+      const response = await getThreeGenerationsBiography();
+      const data = response.data || response;
+
+      let content = '';
+      const generations = data.generations || {};
+
+      // Add header
+      content += 'ГУРВАН ҮЕИЙН НАМТАР\n';
+      content += '='.repeat(50) + '\n\n';
+
+      // Add self biography
+      if (data.self && data.self.detailBiography) {
+        const selfName = generations.self?.name || 'Өөрийн намтар';
+        content += `1. ${selfName}\n`;
+        content += '-'.repeat(30) + '\n';
+        content += data.self.detailBiography + '\n\n';
+      }
+
+      // Add father biography
+      if (data.father && data.father.detailBiography) {
+        const fatherName = generations.father?.name || 'Аавын намтар';
+        content += `2. ${fatherName}\n`;
+        content += '-'.repeat(30) + '\n';
+        content += data.father.detailBiography + '\n\n';
+      }
+
+      // Add grandfather biography
+      if (data.grandfather && data.grandfather.detailBiography) {
+        const grandfatherName =
+          generations.grandfather?.name || 'Өвөөгийн намтар';
+        content += `3. ${grandfatherName}\n`;
+        content += '-'.repeat(30) + '\n';
+        content += data.grandfather.detailBiography + '\n\n';
+      }
+
+      // Add summary
+      content += '='.repeat(50) + '\n';
+      content += `Энэ намтар ${new Date().toLocaleDateString('mn-MN')} өдөр татагдсан.\n`;
+
+      // Download file
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `three_generations_biography_${new Date().toISOString().split('T')[0]}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      notification.success({
+        message: t('biography.success.title'),
+        description: t('biography.threeGenerations.success'),
+      });
+    } catch (error) {
+      notification.error({
+        message: t('biography.error.title'),
+        description: t('biography.threeGenerations.error'),
+      });
+    }
+  };
+
   const handleShowHistory = async () => {
     if (!historyVisible) {
       try {
@@ -169,7 +235,7 @@ const EditBiography = () => {
               )}
             </Space>
           </Col>
-          <Col xs={24} sm={24} md={12} lg={12}>
+          <Col xs={24} sm={24} md={24} lg={12}>
             <Space
               wrap
               className={`edit-biography-actions-space ${isMobile ? 'mobile' : 'desktop'}`}
@@ -199,6 +265,20 @@ const EditBiography = () => {
                     className={`edit-biography-button-text ${isMobile ? 'mobile' : 'desktop'}`}
                   >
                     {t('biography.export')}
+                  </span>
+                </Button>
+              </Tooltip>
+              <Tooltip title={t('biography.tooltips.exportThreeGenerations')}>
+                <Button
+                  icon={<TeamOutlined />}
+                  onClick={handleExportThreeGenerations}
+                  size='small'
+                  type='primary'
+                >
+                  <span
+                    className={`edit-biography-button-text ${isMobile ? 'mobile' : 'desktop'}`}
+                  >
+                    {t('biography.threeGenerations.export')}
                   </span>
                 </Button>
               </Tooltip>
@@ -250,7 +330,7 @@ const EditBiography = () => {
                 rules={[
                   { required: true, message: t('biography.biographyRequired') },
                   {
-                    max: 5000,
+                    max: 10000,
                     message: t('biography.biographyMax'),
                   },
                   {
@@ -268,7 +348,7 @@ const EditBiography = () => {
                   }}
                   onChange={handleTextChange}
                   showCount
-                  maxLength={5000}
+                  maxLength={10000}
                 />
               </CustomFormItem>
             )}

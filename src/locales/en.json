@@ -284,7 +284,14 @@
     "tooltips": {
       "preview": "Preview",
       "export": "Export as file",
+      "exportThreeGenerations": "Export three generations biography",
       "history": "Biography history"
+    },
+    "threeGenerations": {
+      "title": "Three Generations Biography",
+      "export": "Export Three Generations",
+      "success": "Three generations biography exported successfully",
+      "error": "Error exporting three generations biography"
     }
   }
 }

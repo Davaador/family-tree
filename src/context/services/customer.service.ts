@@ -24,6 +24,10 @@ async function restoreBiographyVersion(historyId: number) {
   return await apiClient.post(`/api/biography/restore/${historyId}`);
 }
 
+async function getThreeGenerationsBiography() {
+  return await apiClient.get('/api/biography/three-generations');
+}
+
 async function getDashboard() {
   return await apiClient.post('/api/customer/dashboard', {});
 }
@@ -52,6 +56,7 @@ export {
   getBiography,
   getBiographyHistory,
   restoreBiographyVersion,
+  getThreeGenerationsBiography,
   getDashboard,
   editCustomerInfo,
   findAllActiveCustomers,
