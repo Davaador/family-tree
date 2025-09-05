@@ -16,6 +16,14 @@ async function getBiography() {
   return await apiClient.get('/api/biography');
 }
 
+async function getBiographyHistory() {
+  return await apiClient.get('/api/biography/history');
+}
+
+async function restoreBiographyVersion(historyId: number) {
+  return await apiClient.post(`/api/biography/restore/${historyId}`);
+}
+
 async function getDashboard() {
   return await apiClient.post('/api/customer/dashboard', {});
 }
@@ -42,6 +50,8 @@ export {
   createBiography,
   createCouple,
   getBiography,
+  getBiographyHistory,
+  restoreBiographyVersion,
   getDashboard,
   editCustomerInfo,
   findAllActiveCustomers,

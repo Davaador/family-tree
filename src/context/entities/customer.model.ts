@@ -34,6 +34,15 @@ export namespace CustomerModel {
     detailBiography: string;
   }
 
+  export interface BiographyHistory {
+    id: number;
+    biographyContent: string;
+    versionNumber: number;
+    changeDescription: string;
+    createdAt: string;
+    biographyId: number;
+  }
+
   export interface ParentDto {
     id: number;
     firstName: string;

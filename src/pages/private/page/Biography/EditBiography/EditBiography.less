@@ -1,0 +1,162 @@
+// EditBiography Component Styles
+
+.edit-biography {
+  &-layout {
+    &.mobile {
+      padding: 8px;
+    }
+    
+    &.desktop {
+      padding: 24px;
+    }
+  }
+
+  &-stats-card {
+    margin-bottom: 16px;
+  }
+
+  &-stats-text {
+    font-size: 12px;
+  }
+
+  &-actions-space {
+    width: 100%;
+    
+    &.mobile {
+      justify-content: center;
+    }
+    
+    &.desktop {
+      justify-content: flex-end;
+    }
+  }
+
+  &-button-text {
+    &.mobile {
+      display: none;
+    }
+    
+    &.desktop {
+      display: inline;
+    }
+  }
+
+  &-textarea {
+    &.mobile {
+      font-size: 14px;
+    }
+    
+    &.desktop {
+      font-size: 16px;
+    }
+  }
+
+  &-preview-paragraph {
+    white-space: pre-wrap;
+    background-color: #fafafa;
+    border-radius: 6px;
+    
+    &.mobile {
+      min-height: 150px;
+      padding: 8px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    
+    &.desktop {
+      min-height: 200px;
+      padding: 12px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  }
+
+  &-history-container {
+    &.mobile {
+      max-height: 300px;
+    }
+    
+    &.desktop {
+      max-height: 400px;
+    }
+    
+    overflow-y: auto;
+  }
+
+  &-history-card {
+    margin-bottom: 8px;
+  }
+
+  &-form-row {
+    &.mobile {
+      // Gutter handled by Row component
+    }
+    
+    &.desktop {
+      // Gutter handled by Row component
+    }
+  }
+}
+
+// Responsive breakpoints
+@media (max-width: 768px) {
+  .edit-biography {
+    &-layout {
+      padding: 8px;
+    }
+    
+    &-actions-space {
+      justify-content: center;
+    }
+    
+    &-button-text {
+      display: none;
+    }
+    
+    &-textarea {
+      font-size: 14px;
+    }
+    
+    &-preview-paragraph {
+      min-height: 150px;
+      padding: 8px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    
+    &-history-container {
+      max-height: 300px;
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  .edit-biography {
+    &-layout {
+      padding: 24px;
+    }
+    
+    &-actions-space {
+      justify-content: flex-end;
+    }
+    
+    &-button-text {
+      display: inline;
+    }
+    
+    &-textarea {
+      font-size: 16px;
+    }
+    
+    &-preview-paragraph {
+      min-height: 200px;
+      padding: 12px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    &-history-container {
+      max-height: 400px;
+    }
+  }
+}
