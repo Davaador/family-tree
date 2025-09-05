@@ -1,3 +1,3 @@
-import EditUserModal from "./EditUserModal/EditUserModal";
-import EditNameModal from "./EditNameModal/EditNameModal";
+import EditNameModal from './EditNameModal/EditNameModal';
+import EditUserModal from './EditUserModal/EditUserModal';
 export { EditUserModal, EditNameModal };

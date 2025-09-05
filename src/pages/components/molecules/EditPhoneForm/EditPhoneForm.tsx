@@ -21,7 +21,7 @@ const EditPhoneForm = (props: EditFormProps) => {
       <Row gutter={[24, 12]}>
         <Col xs={24} sm={12}>
           <CustomFormItem
-            layout="vertical"
+            layout='vertical'
             label={t('profile.email')}
             name={'email'}
           >
@@ -30,7 +30,7 @@ const EditPhoneForm = (props: EditFormProps) => {
         </Col>
         <Col xs={24} sm={12}>
           <CustomFormItem
-            layout="vertical"
+            layout='vertical'
             label={t('register.phoneNumber')}
             name={'phoneNumber'}
           >
@@ -44,7 +44,7 @@ const EditPhoneForm = (props: EditFormProps) => {
           <FormBirthDate
             format={'YYYY-MM-DD'}
             label={t('profile.birthDate')}
-            layout="vertical"
+            layout='vertical'
             name={'birthDate'}
           />
         </Col>

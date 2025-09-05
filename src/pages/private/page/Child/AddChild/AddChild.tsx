@@ -19,7 +19,6 @@ const AddChild = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const onFinish = (values: ChildModel.CreateChild) => {
-    console.log(values, 'sdsssss values child');
     setLoading(true);
     childService
       .addChild(values)
@@ -36,12 +35,12 @@ const AddChild = () => {
   };
 
   return (
-    <Layout className="layout-transparent">
-      <CardHeader headerTitle="Хүүхэд бүртгэх" onBack={true} />
+    <Layout className='layout-transparent'>
+      <CardHeader headerTitle='Хүүхэд бүртгэх' onBack={true} />
       <Form
-        layout="vertical"
-        autoComplete="off"
-        size="small"
+        layout='vertical'
+        autoComplete='off'
+        size='small'
         form={form}
         requiredMark={false}
         onFinish={onFinish}
@@ -50,9 +49,9 @@ const AddChild = () => {
           <Row gutter={[8, 12]}>
             <Col xs={24} sm={12}>
               <CustomFormItem
-                layout="vertical"
+                layout='vertical'
                 label={t('child.surName')}
-                name="surName"
+                name='surName'
                 rules={[
                   {
                     required: true,
@@ -66,9 +65,9 @@ const AddChild = () => {
             </Col>
             <Col xs={24} sm={12}>
               <CustomFormItem
-                layout="vertical"
+                layout='vertical'
                 label={t('child.lastName')}
-                name="lastName"
+                name='lastName'
                 rules={[
                   {
                     required: true,
@@ -82,9 +81,9 @@ const AddChild = () => {
             </Col>
             <Col xs={24} sm={12}>
               <CustomFormItem
-                layout="vertical"
+                layout='vertical'
                 label={t('child.firstName')}
-                name="firstName"
+                name='firstName'
                 rules={[
                   {
                     required: true,
@@ -99,10 +98,10 @@ const AddChild = () => {
             <Col xs={24} sm={12}>
               <FormRegisterInput form={form} />
             </Col>
-            <Col xs={24} className="justify-center flex">
+            <Col xs={24} className='justify-center flex'>
               <SubmitButton
-                className="mt-6"
-                size="small"
+                className='mt-6'
+                size='small'
                 text={t('general.registerText')}
                 loading={loading}
               />

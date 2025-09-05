@@ -1,7 +1,7 @@
 import { StateStorage } from 'zustand/middleware';
 
 const zStorage: StateStorage = {
-  getItem: (name) => {
+  getItem: name => {
     const value = window.localStorage.getItem(name);
     return value ? value : null;
   },
@@ -9,7 +9,7 @@ const zStorage: StateStorage = {
     window.localStorage.setItem(name, value);
     return Promise.resolve();
   },
-  removeItem: (name) => {
+  removeItem: name => {
     window.localStorage.removeItem(name);
     return Promise.resolve();
   },

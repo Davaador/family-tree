@@ -1,11 +1,10 @@
 // components/GlobalLoading.tsx
-import React from 'react';
+import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 import { useLoadingStore } from 'context/auth/store';
-import { LoadingOutlined } from '@ant-design/icons';
 
 export const GlobalLoading: React.FC = () => {
-  const loading = useLoadingStore((state) => state.loading);
+  const loading = useLoadingStore(state => state.loading);
 
   if (!loading) return null;
   const antIcon = (

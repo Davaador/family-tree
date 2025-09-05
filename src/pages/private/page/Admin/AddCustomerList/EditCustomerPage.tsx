@@ -12,6 +12,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CustomerModel } from 'types/customer.types';
+
 import { ProfileSection, ContactSection } from './components';
 
 const { Text } = Typography;
@@ -32,7 +33,7 @@ const EditCustomerPage = React.memo(() => {
 
   const { loading: fetchLoading, execute: fetchCustomer } =
     useApi<CustomerModel.AdminCustomer>({
-      onSuccess: (data) => {
+      onSuccess: data => {
         setCustomer(data);
         initializeForm(data);
       },
@@ -53,7 +54,7 @@ const EditCustomerPage = React.memo(() => {
   const { loading: parentsLoading, execute: fetchParents } = useApi<
     CustomerModel.Customer[]
   >({
-    onSuccess: (data) => setParents(data),
+    onSuccess: data => setParents(data),
   });
 
   const initializeForm = useCallback(
@@ -107,7 +108,10 @@ const EditCustomerPage = React.memo(() => {
       };
       await handleUpdate(() => updateAdmin(customer.id, updatedCustomer));
     } catch (error) {
-      console.error('Form validation failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.error('Form validation failed:', error);
+      }
     }
   }, [form, customer, isDeceased, selectedParentId, handleUpdate]);
 
@@ -120,9 +124,9 @@ const EditCustomerPage = React.memo(() => {
 
   if (fetchLoading || !customer) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
+      <div className='flex justify-center items-center h-64'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4'></div>
           <Text>Уншиж байна...</Text>
         </div>
       </div>
@@ -130,14 +134,14 @@ const EditCustomerPage = React.memo(() => {
   }
 
   return (
-    <div className="layout-transparent">
+    <div className='layout-transparent'>
       <CardHeader
         headerTitle={t('admin.edit.title')}
         onBack={true}
         onPress={() => navigate('/add/customer/list')}
       />
-      <div className="py-4">
-        <Form form={form} layout="vertical" className="space-y-6">
+      <div className='py-4'>
+        <Form form={form} layout='vertical' className='space-y-6'>
           <ProfileSection
             form={form}
             parents={parents}
@@ -149,22 +153,22 @@ const EditCustomerPage = React.memo(() => {
             t={t}
           />
           <ContactSection form={form} customer={customer} t={t} />
-          <div className="flex justify-end gap-3 mt-6 pt-6 border-t border-gray-200">
+          <div className='flex justify-end gap-3 mt-6 pt-6 border-t border-gray-200'>
             <Button
-              size="large"
+              size='large'
               icon={<CloseOutlined />}
               onClick={() => navigate('/add/customer/list')}
-              className="px-6 py-2 h-auto rounded-lg border-gray-300 text-gray-700 hover:border-gray-400 hover:text-gray-800"
+              className='px-6 py-2 h-auto rounded-lg border-gray-300 text-gray-700 hover:border-gray-400 hover:text-gray-800'
             >
               {t('admin.edit.cancel')}
             </Button>
             <Button
-              type="primary"
-              size="large"
+              type='primary'
+              size='large'
               icon={<SaveOutlined />}
               onClick={handleSave}
               loading={updateLoading}
-              className="px-6 py-2 h-auto rounded-lg bg-blue-500 border-blue-500 hover:bg-blue-600 hover:border-blue-600 focus:ring-blue-500"
+              className='px-6 py-2 h-auto rounded-lg bg-blue-500 border-blue-500 hover:bg-blue-600 hover:border-blue-600 focus:ring-blue-500'
             >
               {t('admin.edit.save')}
             </Button>

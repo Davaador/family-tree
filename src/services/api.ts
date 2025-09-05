@@ -1,10 +1,11 @@
+import { notification } from 'antd';
 import axios, {
   AxiosInstance,
   AxiosResponse,
   AxiosError,
   InternalAxiosRequestConfig,
 } from 'axios';
-import { notification } from 'antd';
+
 import {
   API_URL,
   REQUEST_SUCCESS_STATUS_CODES,

@@ -1,12 +1,12 @@
 // Get API URL from environment variables
 const getApiUrl = (): string => {
   // If REACT_APP_API_URL is explicitly set, use it
-  if (process.env.REACT_APP_API_URL) {
-    return process.env.REACT_APP_API_URL;
+  if (process.env['REACT_APP_API_URL']) {
+    return process.env['REACT_APP_API_URL'];
   }
 
   // Check if we're in development mode
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env['NODE_ENV'] === 'development') {
     return 'http://localhost:8080';
   }
 

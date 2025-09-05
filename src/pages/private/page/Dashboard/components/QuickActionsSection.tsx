@@ -1,4 +1,3 @@
-import { Row, Col, Card, Button } from 'antd';
 import {
   PlusOutlined,
   UsergroupAddOutlined,
@@ -7,6 +6,7 @@ import {
   UserOutlined,
   HeartOutlined,
 } from '@ant-design/icons';
+import { Row, Col, Card, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ interface QuickActionsSectionProps {
 }
 
 const QuickActionsSection: React.FC<QuickActionsSectionProps> = ({
-  className,
+  className: _className,
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -66,17 +66,17 @@ const QuickActionsSection: React.FC<QuickActionsSectionProps> = ({
   ];
 
   return (
-    <Card title={t('dashboard.quickActions')} className="quick-actions-card">
+    <Card title={t('dashboard.quickActions')} className='quick-actions-card'>
       <Row gutter={[16, 16]}>
-        {actions.map((action) => (
+        {actions.map(action => (
           <Col xs={24} sm={12} md={12} lg={8} key={action.key}>
             <Button
               type={action.type}
               icon={action.icon}
-              size="large"
+              size='large'
               block
               onClick={action.onClick}
-              className="action-button"
+              className='action-button'
             >
               {action.title}
             </Button>

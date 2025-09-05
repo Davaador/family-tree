@@ -1,5 +1,4 @@
 import { Col, Form } from 'antd';
-import React from 'react';
 
 interface FormFieldProps {
   name: string;

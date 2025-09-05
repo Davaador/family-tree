@@ -1,13 +1,14 @@
-import { RouteObject } from 'react-router-dom';
-import Login from './Login';
-import GuestLayout from 'layouts/GuestLayout';
-import { loginLoader, redirectIfLoggedIn } from './hooks/usePublicHook';
 import { authStore } from 'context/auth/store';
-import Register from './Register/Register';
 import ErrorResult from 'layouts/ErrorResult';
-import SendOtp from './ResetPassword/SendOtp/SendOtp';
+import GuestLayout from 'layouts/GuestLayout';
+import { RouteObject } from 'react-router-dom';
+
+import { loginLoader, redirectIfLoggedIn } from './hooks/usePublicHook';
+import Login from './Login';
+import Register from './Register/Register';
 import EnterOtp from './ResetPassword/EnterOtp/EnterOtp';
 import ForgotPassword from './ResetPassword/ForgotPassword/ForgotPassword';
+import SendOtp from './ResetPassword/SendOtp/SendOtp';
 
 const authRoutes: RouteObject = {
   path: 'auth',

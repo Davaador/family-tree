@@ -91,12 +91,12 @@ const FormRegisterInput = (props: RegisterInputProps) => {
       layout={layout}
       className={className}
     >
-      <div className="register-number-container">
-        <Row gutter={[8, 12]} className="w-full">
+      <div className='register-number-container'>
+        <Row gutter={[8, 12]} className='w-full'>
           {/* First Letter */}
           <Col xs={24} sm={11} md={11} lg={11}>
-            <div className="letter-input-container">
-              <Text className="letter-label text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2 block">
+            <div className='letter-input-container'>
+              <Text className='letter-label text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2 block'>
                 {t('register.firstLetter')}
               </Text>
               <Select
@@ -104,19 +104,19 @@ const FormRegisterInput = (props: RegisterInputProps) => {
                 allowClear
                 placeholder={t('register.selectLetterPlaceholder')}
                 value={firstLetter}
-                onChange={(value) => {
+                onChange={value => {
                   setFirstLetter(value);
                   const registerValue = [value, secondLetter, numbers].join('');
                   form.setFieldValue('register', registerValue);
                 }}
-                size="large"
-                className="letter-select w-full"
+                size='large'
+                className='letter-select w-full'
                 dropdownMatchSelectWidth={false}
-                getPopupContainer={(triggerNode) =>
+                getPopupContainer={triggerNode =>
                   triggerNode.parentNode || document.body
                 }
               >
-                {MONGOLIAN_ALPHABET.map((letter) => (
+                {MONGOLIAN_ALPHABET.map(letter => (
                   <Select.Option key={letter} value={letter}>
                     {letter}
                   </Select.Option>
@@ -127,27 +127,27 @@ const FormRegisterInput = (props: RegisterInputProps) => {
 
           {/* Second Letter */}
           <Col xs={24} sm={11} md={11} lg={11}>
-            <div className="letter-input-container">
-              <Text className="letter-label text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2 block">
+            <div className='letter-input-container'>
+              <Text className='letter-label text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2 block'>
                 {t('register.secondLetter')}
               </Text>
               <Select
                 allowClear
                 placeholder={t('register.selectLetterPlaceholder')}
                 value={secondLetter}
-                onChange={(value) => {
+                onChange={value => {
                   setSecondLetter(value);
                   const registerValue = [firstLetter, value, numbers].join('');
                   form.setFieldValue('register', registerValue);
                 }}
-                size="large"
-                className="letter-select w-full"
+                size='large'
+                className='letter-select w-full'
                 dropdownMatchSelectWidth={false}
-                getPopupContainer={(triggerNode) =>
+                getPopupContainer={triggerNode =>
                   triggerNode.parentNode || document.body
                 }
               >
-                {MONGOLIAN_ALPHABET.map((letter) => (
+                {MONGOLIAN_ALPHABET.map(letter => (
                   <Select.Option key={letter} value={letter}>
                     {letter}
                   </Select.Option>
@@ -158,8 +158,8 @@ const FormRegisterInput = (props: RegisterInputProps) => {
 
           {/* Numbers */}
           <Col xs={24}>
-            <div className="number-input-container">
-              <Text className="number-label text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2 block">
+            <div className='number-input-container'>
+              <Text className='number-label text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2 block'>
                 {t('register.digits')}
               </Text>
               <Form.Item
@@ -170,8 +170,8 @@ const FormRegisterInput = (props: RegisterInputProps) => {
                     required,
                     message: t('register.enterRegisterNumber'),
                   },
-                  ({ setFieldValue }) => ({
-                    validator(rule, value) {
+                  ({ setFieldValue: _setFieldValue }) => ({
+                    validator(_rule, _value) {
                       const fullValue = [
                         firstLetter,
                         secondLetter,
@@ -192,12 +192,12 @@ const FormRegisterInput = (props: RegisterInputProps) => {
                   }),
                 ]}
               >
-                <Input type="hidden" />
+                <Input type='hidden' />
               </Form.Item>
               <Input
                 value={numbers}
                 maxLength={8}
-                onChange={(e) => {
+                onChange={e => {
                   const newNumbers = e.target.value;
                   setNumbers(newNumbers);
                   const registerValue = [
@@ -207,9 +207,9 @@ const FormRegisterInput = (props: RegisterInputProps) => {
                   ].join('');
                   form.setFieldValue('register', registerValue);
                 }}
-                className="number-input w-full"
+                className='number-input w-full'
                 placeholder={placeholder || t('register.digitsPlaceholder')}
-                size="large"
+                size='large'
               />
             </div>
           </Col>

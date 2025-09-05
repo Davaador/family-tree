@@ -31,31 +31,31 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
     {
       key: '/',
       icon: <DashboardOutlined />,
-      label: <NavLink to="/">{t('dashboard.dashboard')}</NavLink>,
+      label: <NavLink to='/'>{t('dashboard.dashboard')}</NavLink>,
       allowedRoles: undefined,
     },
     {
       key: '/tree',
       icon: <ClusterOutlined />,
-      label: <NavLink to="/tree">{t('dashboard.familyTree')}</NavLink>,
+      label: <NavLink to='/tree'>{t('dashboard.familyTree')}</NavLink>,
       allowedRoles: undefined,
     },
     {
       key: '/biography',
       icon: <HistoryOutlined />,
-      label: <NavLink to="/biography">{t('dashboard.biography')}</NavLink>,
+      label: <NavLink to='/biography'>{t('dashboard.biography')}</NavLink>,
       allowedRoles: undefined,
     },
     {
       key: '/customers',
       icon: <UserOutlined />,
-      label: <NavLink to="/customers">{t('dashboard.customers')}</NavLink>,
+      label: <NavLink to='/customers'>{t('dashboard.customers')}</NavLink>,
       allowedRoles: undefined,
     },
     {
       key: '/childs',
       icon: <UsergroupAddOutlined />,
-      label: <NavLink to="/childs">{t('dashboard.childs')}</NavLink>,
+      label: <NavLink to='/childs'>{t('dashboard.childs')}</NavLink>,
       allowedRoles: undefined,
     },
     {
@@ -66,22 +66,25 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       key: '/add/customer/list',
       icon: <UserAddOutlined />,
       label: (
-        <NavLink to="/add/customer/list">{t('dashboard.addCustomer')}</NavLink>
+        <NavLink to='/add/customer/list'>{t('dashboard.addCustomer')}</NavLink>
       ),
       allowedRoles: ['ROOT', 'ADMIN'],
     },
     {
       key: '/requests',
       icon: <MailOutlined />,
-      label: <NavLink to="/requests">{t('dashboard.requests')}</NavLink>,
+      label: <NavLink to='/requests'>{t('dashboard.requests')}</NavLink>,
       allowedRoles: ['ROOT', 'ADMIN'],
     },
   ];
 
   // Filter menu items based on user role
   const items = allMenuItems
-    .filter((item) =>
-      canSee(roleUser ? roleUser[0].name : 'USER', item.allowedRoles)
+    .filter(item =>
+      canSee(
+        roleUser && roleUser[0] ? roleUser[0].name : 'USER',
+        item.allowedRoles
+      )
     )
     .map(({ allowedRoles, ...item }) => item); // Remove allowedRoles from final items
 
@@ -96,15 +99,15 @@ const AppMenu = ({ onPress }: AppMenuProps) => {
       <Menu
         onClick={onPress && onPress}
         selectedKeys={[location.pathname]}
-        theme="light"
-        mode="inline"
+        theme='light'
+        mode='inline'
         items={items}
         style={{
           border: 'none',
           background: 'transparent',
           fontSize: '14px',
         }}
-        className="custom-menu"
+        className='custom-menu'
       />
     </div>
   );

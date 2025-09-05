@@ -1,5 +1,4 @@
-import { Form, DatePicker, FormItemProps } from "antd";
-import React from "react";
+import { Form, DatePicker, FormItemProps } from 'antd';
 
 interface FormBirthDateProps extends FormItemProps {
   format: string;
@@ -9,7 +8,7 @@ const FormBirthDate = (props: FormBirthDateProps) => {
   return (
     <Form.Item
       required
-      rules={[{ required: true, message: "төрсөн өдрөө сонгон уу." }]}
+      rules={[{ required: true, message: 'төрсөн өдрөө сонгон уу.' }]}
       {...props}
     >
       <DatePicker format={props.format} />

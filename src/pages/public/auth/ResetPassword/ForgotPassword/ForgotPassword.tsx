@@ -6,6 +6,7 @@ import LanguageButton from 'pages/components/atomics/LanguageButton/LanguageButt
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import { ForgotPasswordForm } from '../../auth.model';
 import { resetPassword } from '../../auth.service';
 const { Title } = Typography;
@@ -33,12 +34,11 @@ export const ForgotPassword = () => {
       .finally(() => {
         setLoading(false);
       });
-    console.log(data);
   };
 
   return (
-    <Card hoverable size="default">
-      <Flex justify="space-between">
+    <Card hoverable size='default'>
+      <Flex justify='space-between'>
         <ArrowLeftOutlined
           onClick={() => {
             navigate(-1);
@@ -48,16 +48,16 @@ export const ForgotPassword = () => {
         <LanguageButton />
       </Flex>
       <Form
-        layout="vertical"
-        autoComplete="off"
-        size="large"
+        layout='vertical'
+        autoComplete='off'
+        size='large'
         requiredMark={false}
         form={form}
         onFinish={onFinish}
       >
         <CustomFormItem
           label={t('register.password')}
-          name="password"
+          name='password'
           hasFeedback
           rules={[
             { required: true, message: `${t('register.enterPassword')}` },
@@ -68,7 +68,7 @@ export const ForgotPassword = () => {
         </CustomFormItem>
         <CustomFormItem
           label={t('register.confirmPassword')}
-          name="confirmPassword"
+          name='confirmPassword'
           hasFeedback
           dependencies={['passwords']}
           rules={[
@@ -93,7 +93,7 @@ export const ForgotPassword = () => {
             allowClear
           />
         </CustomFormItem>
-        <Flex justify="center">
+        <Flex justify='center'>
           <SubmitButton loading={loading} />
         </Flex>
       </Form>

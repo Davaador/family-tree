@@ -1,4 +1,5 @@
 import { CustomerModel, Gender } from 'context/entities/customer.model';
+
 import Avatar from './Avatar';
 
 interface IPersonProps {
@@ -46,10 +47,10 @@ const Person = ({
   };
 
   return (
-    <div className="person-card group relative">
+    <div className='person-card group relative'>
       {member && (
-        <div className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50 transition-all duration-200 cursor-pointer">
-          <div className="relative">
+        <div className='flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50 transition-all duration-200 cursor-pointer'>
+          <div className='relative'>
             <Avatar
               color={member.gender === Gender.MALE ? 'bg-male' : 'bg-female'}
               title={`Avatar for ${getFullName()}`}
@@ -61,19 +62,19 @@ const Person = ({
             {/* Add children button */}
             <button
               onClick={addItem}
-              className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-blue-600"
-              title="Нэмэлт мэдээлэл нэмэх"
+              className='absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-blue-600'
+              title='Нэмэлт мэдээлэл нэмэх'
             >
               +
             </button>
           </div>
 
-          <div className="text-center">
-            <p className="font-medium text-gray-800 text-sm leading-tight">
+          <div className='text-center'>
+            <p className='font-medium text-gray-800 text-sm leading-tight'>
               {getFullName()}
             </p>
             {member.birthDate && (
-              <p className="text-xs text-gray-500 mt-1">{getAge()} настай</p>
+              <p className='text-xs text-gray-500 mt-1'>{getAge()} настай</p>
             )}
           </div>
         </div>

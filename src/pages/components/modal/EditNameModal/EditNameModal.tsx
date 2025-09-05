@@ -1,5 +1,11 @@
 import PlusOutlined from '@ant-design/icons/lib/icons/PlusOutlined';
-import { Flex, Form, Modal, notification, Upload, UploadProps } from 'antd';
+import { notification } from 'antd';
+import Flex from 'antd/es/flex';
+import Form from 'antd/es/form';
+import { useForm } from 'antd/es/form/Form';
+import Modal from 'antd/es/modal';
+import Upload from 'antd/es/upload';
+import type { UploadProps } from 'antd/es/upload';
 import { UploadFile } from 'antd/lib/upload/interface';
 import { authStore } from 'context/auth/store';
 import { editCustomerInfo } from 'context/services/customer.service';
@@ -15,7 +21,6 @@ import { CustomerDetail } from 'pages/public/auth/auth.model';
 import { UploadRequestOption } from 'rc-upload/lib/interface';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useForm } from 'antd/es/form/Form';
 
 interface EditNameModalProps {
   isShow: boolean;
@@ -31,9 +36,7 @@ const EditNameModal = (props: EditNameModalProps) => {
 
   const { t } = useTranslation();
 
-  useEffect(() => {
-    console.log('EditNameModal authUser?.register:', authUser?.register);
-  }, [authUser]);
+  useEffect(() => {}, [authUser]);
 
   useEffect(() => {
     const signal = new AbortController();
@@ -78,8 +81,8 @@ const EditNameModal = (props: EditNameModalProps) => {
 
     try {
       // Хэрэв зураг байгаа бол upload хийх
-      if (fileList && fileList.length > 0 && fileList[0].originFileObj) {
-        const val: ImageField = await uploadFile(fileList[0].originFileObj);
+      if (fileList && fileList.length > 0 && fileList[0]?.originFileObj) {
+        const val: ImageField = await uploadFile(fileList[0].originFileObj!);
         values.profileImage = val;
       } else if (fileList.length === 0) {
         // Хоосон байвал зураггүй гэсэн утга өгч болох юм
@@ -117,43 +120,43 @@ const EditNameModal = (props: EditNameModalProps) => {
     >
       <Form
         form={form}
-        layout="vertical"
-        autoComplete="off"
+        layout='vertical'
+        autoComplete='off'
         initialValues={{ ...authUser }}
         onFinish={onFinish}
       >
         <CustomFormItem name={'profileImage'} label={'Өөрийн зураг'}>
           <Upload
             maxCount={1}
-            listType="picture-card"
-            accept="image/png, image/jpeg"
+            listType='picture-card'
+            accept='image/png, image/jpeg'
             fileList={fileList}
             customRequest={handleUpload}
             onChange={handleChange}
           >
             {fileList?.length >= 1 ? null : (
-              <button type="button">
+              <button type='button'>
                 <PlusOutlined /> <div style={{ marginTop: 8 }}>Upload</div>
               </button>
             )}
           </Upload>
         </CustomFormItem>
         <CustomFormItem
-          name="surName"
+          name='surName'
           label={t('register.surName')}
           rules={[{ required: true }]}
         >
           <CustomInput placeholder={t('register.surName')} />
         </CustomFormItem>
         <CustomFormItem
-          name="lastName"
+          name='lastName'
           label={t('register.lastName')}
           rules={[{ required: true }]}
         >
           <CustomInput placeholder={t('register.lastName')} />
         </CustomFormItem>
         <CustomFormItem
-          name="firstName"
+          name='firstName'
           label={t('profile.firstName')}
           rules={[{ required: true }]}
         >
@@ -161,18 +164,18 @@ const EditNameModal = (props: EditNameModalProps) => {
         </CustomFormItem>
         <FormRegisterInput
           form={form}
-          name="register"
+          name='register'
           defaultValue={authUser?.register}
           label={t('register.registerNumber')}
           required={true}
-          layout="vertical"
+          layout='vertical'
           showIcon={true}
           placeholder={t('register.registerNumberPlaceholder')}
-          className="w-full"
+          className='w-full'
         />
         <Flex
-          justify="center"
-          children={<SubmitButton text={t('general.save')} size="small" />}
+          justify='center'
+          children={<SubmitButton text={t('general.save')} size='small' />}
         />
       </Form>
     </Modal>

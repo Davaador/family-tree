@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { CustomerModel } from 'context/entities/customer.model';
 import { CustomImage } from 'pages/components';
-import React from 'react';
 
 interface AvatarProps {
   color?: string;
@@ -20,9 +19,9 @@ const Avatar = ({
   member,
 }: AvatarProps) => {
   return (
-    <div className="relative group">
+    <div className='relative group'>
       <span
-        role="img"
+        role='img'
         aria-label={title ?? 'Avatar'}
         title={title ?? 'Avatar'}
         onClick={onClick}
@@ -41,20 +40,20 @@ const Avatar = ({
             width={'100%'}
             preview={false}
             onClick={onClick}
-            className="object-cover"
+            className='object-cover'
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+          <div className='w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200'>
             <svg
-              className="w-6 h-6 text-gray-600"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
+              className='w-6 h-6 text-gray-600'
+              fill='currentColor'
+              viewBox='0 0 20 20'
+              xmlns='http://www.w3.org/2000/svg'
             >
               <path
-                fillRule="evenodd"
-                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                clipRule="evenodd"
+                fillRule='evenodd'
+                d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
+                clipRule='evenodd'
               ></path>
             </svg>
           </div>
@@ -62,9 +61,9 @@ const Avatar = ({
       </span>
 
       {/* Hover tooltip */}
-      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
+      <div className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10'>
         {title}
-        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+        <div className='absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800'></div>
       </div>
     </div>
   );

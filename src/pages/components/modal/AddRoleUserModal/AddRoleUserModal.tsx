@@ -7,7 +7,6 @@ import {
   SubmitButton,
 } from 'pages/components/atomics';
 import { addRoleUser } from 'pages/private/private.service';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface AddRoleUserModalProps {
@@ -48,27 +47,27 @@ const AddRoleUserModal = (props: AddRoleUserModalProps) => {
     >
       <Form
         form={form}
-        layout="vertical"
-        autoComplete="off"
+        layout='vertical'
+        autoComplete='off'
         onFinish={onFinish}
       >
         <CustomFormItem
           rules={[{ required: true }]}
-          name="phoneNumber"
+          name='phoneNumber'
           label={t('modal.add.userPhone')}
         >
           <CustomInput placeholder={t('modal.add.enterPhoneNumber')} />
         </CustomFormItem>
         <CustomFormItem
           rules={[{ required: true }]}
-          name="roleName"
+          name='roleName'
           label={t('modal.add.roleName')}
         >
           <CustomInput placeholder={t('modal.add.enterroleName')} />
         </CustomFormItem>
         <Flex
-          justify="center"
-          children={<SubmitButton text={t('general.save')} size="small" />}
+          justify='center'
+          children={<SubmitButton text={t('general.save')} size='small' />}
         />
       </Form>
     </Modal>

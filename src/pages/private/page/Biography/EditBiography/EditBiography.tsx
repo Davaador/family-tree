@@ -15,10 +15,9 @@ const EditBiography = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const onSubmit = (values: CustomerModel.BiographyCustomer) => {
-    console.log(values);
     setLoading(true);
     createBiography(values)
-      .then((res) => {
+      .then(res => {
         if (res) {
           notification.success({
             message: 'Амжилттай.',
@@ -33,11 +32,11 @@ const EditBiography = () => {
   };
 
   return (
-    <Layout className="layout-transparent">
-      <CardHeader headerTitle="Өөрийн намтар бүртгэх" />
+    <Layout className='layout-transparent'>
+      <CardHeader headerTitle='Өөрийн намтар бүртгэх' />
       <Form
         form={form}
-        layout="vertical"
+        layout='vertical'
         onFinish={onSubmit}
         initialValues={{
           detailBiography: biographyData ? biographyData.detailBiography : '',
@@ -47,13 +46,13 @@ const EditBiography = () => {
           <Col span={24}>
             <CustomFormItem
               name={'detailBiography'}
-              label="Намтар"
+              label='Намтар'
               rules={[
                 { required: true, message: 'Намтараа заавал оруулна уу.' },
               ]}
             >
               <TextArea
-                placeholder="Намтараа заавал оруулна уу."
+                placeholder='Намтараа заавал оруулна уу.'
                 autoSize={{ minRows: 4, maxRows: 12 }}
               />
             </CustomFormItem>

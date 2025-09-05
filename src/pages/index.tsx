@@ -1,7 +1,8 @@
-import { RouteObject } from "react-router-dom";
-import publicRoutes from "./public";
-import privateRoute from "./private";
+import { RouteObject } from 'react-router-dom';
 
-const routes: RouteObject[] = [privateRoute,...publicRoutes];
+import privateRoute from './private';
+import publicRoutes from './public';
+
+const routes: RouteObject[] = [privateRoute, ...publicRoutes];
 
 export default routes;

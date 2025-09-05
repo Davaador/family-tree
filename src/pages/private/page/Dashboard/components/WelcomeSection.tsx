@@ -1,8 +1,8 @@
-import { Avatar, Typography, Button, Tooltip } from 'antd';
 import { UserOutlined, EditOutlined } from '@ant-design/icons';
-import { useTranslation } from 'react-i18next';
+import { Avatar, Typography, Button, Tooltip } from 'antd';
 import { authStore } from 'context/auth/store';
 import { RolesConstants } from 'context/constants/auth.constants';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 
@@ -14,7 +14,7 @@ interface WelcomeSectionProps {
 
 const WelcomeSection: React.FC<WelcomeSectionProps> = ({
   className,
-  isShowModal,
+  isShowModal: _isShowModal,
   setModalVisible,
 }) => {
   const { t } = useTranslation();
@@ -22,30 +22,30 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({
 
   // Check if user is admin (ROOT or ADMIN role)
   const isAdmin = roleUser?.some(
-    (role) =>
+    role =>
       role.name === RolesConstants.ROOT || role.name === RolesConstants.ADMIN
   );
 
   return (
     <div className={`welcome-section ${className || ''}`}>
-      <div className="welcome-content" style={{ position: 'relative' }}>
-        <Avatar size={64} icon={<UserOutlined />} className="welcome-avatar" />
-        <div className="welcome-text">
-          <Title level={2} className="welcome-title">
+      <div className='welcome-content' style={{ position: 'relative' }}>
+        <Avatar size={64} icon={<UserOutlined />} className='welcome-avatar' />
+        <div className='welcome-text'>
+          <Title level={2} className='welcome-title'>
             {t('dashboard.welcome')} {authUser?.firstName}!
           </Title>
-          <Text className="welcome-subtitle">
+          <Text className='welcome-subtitle'>
             {t('dashboard.welcomeSubtitle')}
           </Text>
         </div>
         {isAdmin && (
-          <Tooltip title="Хэрэглэгчийн мэдээлэл засах">
+          <Tooltip title='Хэрэглэгчийн мэдээлэл засах'>
             <Button
-              type="text"
+              type='text'
               icon={<EditOutlined />}
-              size="large"
+              size='large'
               onClick={() => setModalVisible?.(true)}
-              className="admin-edit-button"
+              className='admin-edit-button'
               style={{
                 position: 'absolute',
                 top: '16px',

@@ -1,7 +1,11 @@
+import Spin from 'antd/es/spin';
 import { authStore } from 'context/auth/store';
+import { lazy, Suspense } from 'react';
 import { RouteObject } from 'react-router-dom';
+
 import AuthLayout from '../../layouts/AuthLayout';
 import ErrorResult from '../../layouts/ErrorResult';
+
 import {
   authGuard,
   authLogout,
@@ -13,18 +17,44 @@ import {
   requestLoader,
   treeLoader,
 } from './hooks/usePrivateHook';
-import EditBiography from './page/Biography/EditBiography/EditBiography';
-import CustomerList from './page/Customer/CustomerList/CustomerList';
-import Dashboard from './page/Dashboard';
-import FamileTree from './page/FamilyTree/FamileTree';
-import AddFamily from './page/Profile/AddFamily/AddFamily';
-import Profile from './page/Profile/Profile';
-import RequestList from './page/Requests/RequestList/RequestList';
-import ChildList from './page/Child/ChildList/ChildList';
-import AddChild from './page/Child/AddChild/AddChild';
-import AddCustomerList from './page/Admin/AddCustomerList/AddCustomerList';
-import AddCustomer from './page/Admin/AddCustomer/AddCustomer';
-import EditCustomerPage from './page/Admin/AddCustomerList/EditCustomerPage';
+
+// Lazy load components for code splitting
+const EditBiography = lazy(
+  () => import('./page/Biography/EditBiography/EditBiography')
+);
+const CustomerList = lazy(
+  () => import('./page/Customer/CustomerList/CustomerList')
+);
+const Dashboard = lazy(() => import('./page/Dashboard'));
+const FamileTree = lazy(() => import('./page/FamilyTree/FamileTree'));
+const AddFamily = lazy(() => import('./page/Profile/AddFamily/AddFamily'));
+const Profile = lazy(() => import('./page/Profile/Profile'));
+const RequestList = lazy(
+  () => import('./page/Requests/RequestList/RequestList')
+);
+const ChildList = lazy(() => import('./page/Child/ChildList/ChildList'));
+const AddChild = lazy(() => import('./page/Child/AddChild/AddChild'));
+const AddCustomerList = lazy(
+  () => import('./page/Admin/AddCustomerList/AddCustomerList')
+);
+const AddCustomer = lazy(() => import('./page/Admin/AddCustomer/AddCustomer'));
+const EditCustomerPage = lazy(
+  () => import('./page/Admin/AddCustomerList/EditCustomerPage')
+);
+
+// Loading component
+const LoadingSpinner = () => (
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '200px',
+    }}
+  >
+    <Spin size='large' />
+  </div>
+);
 
 const privateRoute: RouteObject = {
   path: '/',
@@ -35,57 +65,105 @@ const privateRoute: RouteObject = {
     {
       path: '/',
       loader: dashboardLoader,
-      element: <Dashboard />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <Dashboard />
+        </Suspense>
+      ),
     },
     {
       path: '/profile',
-      element: <Profile />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <Profile />
+        </Suspense>
+      ),
     },
     {
       path: '/requests',
       loader: requestLoader,
-      element: <RequestList />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <RequestList />
+        </Suspense>
+      ),
     },
     {
       path: '/add/family',
       loader: coupleLoader,
-      element: <AddFamily />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <AddFamily />
+        </Suspense>
+      ),
     },
     {
       path: '/tree',
       loader: treeLoader,
-      element: <FamileTree />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <FamileTree />
+        </Suspense>
+      ),
     },
     {
       path: '/biography',
       loader: biographyLoader,
-      element: <EditBiography />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <EditBiography />
+        </Suspense>
+      ),
     },
     {
       path: '/customers',
       loader: customerListLoader,
-      element: <CustomerList />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <CustomerList />
+        </Suspense>
+      ),
     },
     {
       path: '/childs',
       loader: childListLoader,
-      element: <ChildList />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <ChildList />
+        </Suspense>
+      ),
     },
     {
       path: '/add/child',
-      element: <AddChild />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <AddChild />
+        </Suspense>
+      ),
     },
     {
       path: '/add/customer/list',
-      element: <AddCustomerList />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <AddCustomerList />
+        </Suspense>
+      ),
     },
     {
       path: '/admin/add/customer',
-      element: <AddCustomer />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <AddCustomer />
+        </Suspense>
+      ),
     },
     {
       path: '/admin/edit/customer/:id',
-      element: <EditCustomerPage />,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <EditCustomerPage />
+        </Suspense>
+      ),
     },
     {
       path: '/logout',

@@ -1,18 +1,21 @@
+import { App as MyApp, Spin } from 'antd';
+import { useEffect, useState } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import { authStore, languageStore } from 'context/auth/store';
 import { apiClient } from 'context/http';
 import { axiosInstance } from 'context/interceptors';
-import routes from 'pages';
-import { useEffect, useState } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './App.less';
-import i18n from './i18n';
-import { App as MyApp } from 'antd';
 import { GlobalLoading } from 'layouts/GlobalLoading';
-import { Spin } from 'antd';
+import routes from 'pages';
+
 import ErrorBoundary from './components/ErrorBoundary';
+import i18n from './i18n';
+import './App.less';
 
 // Suppress React Router v7 warning
+// eslint-disable-next-line no-console
 const originalWarn = console.warn;
+// eslint-disable-next-line no-console
 console.warn = (...args) => {
   if (
     args[0] &&
@@ -21,6 +24,7 @@ console.warn = (...args) => {
   ) {
     return;
   }
+  // eslint-disable-next-line no-console
   originalWarn.apply(console, args);
 };
 
@@ -49,7 +53,7 @@ function App() {
           height: '100vh',
         }}
       >
-        <Spin size="large" />
+        <Spin size='large' />
       </div>
     );
   }
@@ -65,7 +69,3 @@ function App() {
 }
 
 export default App;
-
-//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
-//docker-compose up -d --build springboot-app
-//docker exec -it spring-app sh

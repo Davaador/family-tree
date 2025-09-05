@@ -27,7 +27,9 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Flag from 'react-world-flags';
+
 import { useResponsive } from '../hooks';
+
 import AppMenu from './AppMenu';
 
 const { Text, Title } = Typography;
@@ -131,7 +133,7 @@ const AuthLayout = () => {
         <Drawer
           open={openMenu}
           onClose={() => setOpenMenu(false)}
-          placement="left"
+          placement='left'
           closable={true}
           width={280}
           styles={{
@@ -145,7 +147,7 @@ const AuthLayout = () => {
             },
           }}
           title={
-            <Flex align="center" gap={12}>
+            <Flex align='center' gap={12}>
               <Avatar
                 size={40}
                 style={{
@@ -189,8 +191,8 @@ const AuthLayout = () => {
             }}
           >
             <Flex
-              align="center"
-              justify="space-between"
+              align='center'
+              justify='space-between'
               style={{
                 height: '100%',
                 padding: isMobile ? '0 16px' : '0 24px',
@@ -198,10 +200,10 @@ const AuthLayout = () => {
               }}
             >
               {/* Left Section - Menu Button & Logo */}
-              <Flex align="center" gap={16}>
+              <Flex align='center' gap={16}>
                 {isMobile && (
                   <Button
-                    type="text"
+                    type='text'
                     icon={<MenuOutlined />}
                     onClick={() => setOpenMenu(true)}
                     style={{
@@ -215,8 +217,8 @@ const AuthLayout = () => {
                     }}
                   />
                 )}
-                <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-                  <Flex align="center" gap={8}>
+                <Link to='/' style={{ textDecoration: 'none', color: 'white' }}>
+                  <Flex align='center' gap={8}>
                     <HomeOutlined style={{ fontSize: '24px' }} />
                     <Title
                       level={4}
@@ -236,7 +238,7 @@ const AuthLayout = () => {
               {!isMobile && (
                 <Flex
                   vertical
-                  align="center"
+                  align='center'
                   style={{ flex: 1, textAlign: 'center' }}
                 >
                   <Text strong style={{ color: 'white', fontSize: '16px' }}>
@@ -254,10 +256,10 @@ const AuthLayout = () => {
               )}
 
               {/* Right Section - Notifications & Profile */}
-              <Flex align="center" gap={8}>
+              <Flex align='center' gap={8}>
                 {/* Language Switcher */}
                 <Button
-                  type="text"
+                  type='text'
                   onClick={() => changeLanguage(language)}
                   style={{
                     color: 'white',
@@ -274,9 +276,9 @@ const AuthLayout = () => {
                 </Button>
 
                 {/* Notifications */}
-                <Badge count={3} size="small">
+                <Badge count={3} size='small'>
                   <Button
-                    type="text"
+                    type='text'
                     icon={<BellOutlined />}
                     style={{
                       color: 'white',
@@ -293,10 +295,10 @@ const AuthLayout = () => {
                 {/* Profile Dropdown */}
                 <div
                   style={{ position: 'relative' }}
-                  className="profile-dropdown"
+                  className='profile-dropdown'
                 >
                   <Button
-                    type="text"
+                    type='text'
                     onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                     style={{
                       color: 'white',
@@ -347,7 +349,7 @@ const AuthLayout = () => {
                           border: 'none',
                           background: 'transparent',
                         }}
-                        mode="vertical"
+                        mode='vertical'
                       />
                     </div>
                   )}
@@ -363,7 +365,7 @@ const AuthLayout = () => {
                 collapsible
                 collapsed={isCollapsed}
                 onCollapse={setIsCollapsed}
-                theme="light"
+                theme='light'
                 style={{
                   background: '#ffffff',
                   borderRight: '1px solid #f0f0f0',
@@ -382,7 +384,7 @@ const AuthLayout = () => {
                       'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
                   }}
                 >
-                  <Flex align="center" gap={12}>
+                  <Flex align='center' gap={12}>
                     <Avatar
                       size={40}
                       style={{
@@ -440,8 +442,8 @@ const AuthLayout = () => {
           >
             <Flex
               vertical={isMobile}
-              align="center"
-              justify="space-between"
+              align='center'
+              justify='space-between'
               gap={isMobile ? 8 : 0}
             >
               <div>
@@ -452,16 +454,16 @@ const AuthLayout = () => {
               </div>
               <Flex gap={16} style={{ fontSize: '12px' }}>
                 <Link
-                  to="/privacy"
+                  to='/privacy'
                   style={{ color: 'rgba(255, 255, 255, 0.8)' }}
                 >
                   Privacy Policy
                 </Link>
-                <Link to="/terms" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+                <Link to='/terms' style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
                   Terms of Service
                 </Link>
                 <Link
-                  to="/contact"
+                  to='/contact'
                   style={{ color: 'rgba(255, 255, 255, 0.8)' }}
                 >
                   Contact Us
@@ -473,7 +475,7 @@ const AuthLayout = () => {
 
         {/* Floating Action Button */}
         <FloatButton.Group
-          shape="circle"
+          shape='circle'
           style={{
             right: 24,
             bottom: 24,
@@ -487,7 +489,7 @@ const AuthLayout = () => {
                 style={{ width: 20, height: 20 }}
               />
             }
-            tooltip="Change Language"
+            tooltip='Change Language'
           />
         </FloatButton.Group>
       </ConfigProvider>

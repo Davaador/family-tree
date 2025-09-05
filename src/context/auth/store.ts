@@ -7,17 +7,18 @@ import {
 import { zStorage } from 'context/reducers/reducers';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+
 import i18n from '../../i18n';
 
 const authStore = create<AuthState & AuthAction>()(
   persist(
-    (set) => ({
+    set => ({
       authenticated: false,
       auth: undefined,
       phone: undefined,
       authUser: undefined,
       roleUser: undefined,
-      setAuth: (token) => set({ auth: token }),
+      setAuth: token => set({ auth: token }),
       setAuthentication(authBoolean) {
         set({ authenticated: authBoolean });
       },
@@ -48,7 +49,7 @@ const authStore = create<AuthState & AuthAction>()(
 
 const languageStore = create<LanguageState>()(
   persist(
-    (set) => ({
+    set => ({
       language: 'mn',
       changeLanguage(language) {
         i18n.changeLanguage(language === 'mn' ? 'en' : 'mn').then(() => {
@@ -60,7 +61,7 @@ const languageStore = create<LanguageState>()(
   )
 );
 
-const useLoadingStore = create<LoadingState>((set) => ({
+const useLoadingStore = create<LoadingState>(set => ({
   loading: false,
   setLoading: (value: boolean) => set({ loading: value }),
 }));

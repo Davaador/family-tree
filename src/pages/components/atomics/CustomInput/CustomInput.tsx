@@ -1,5 +1,4 @@
 import { Input, InputProps } from 'antd';
-import React from 'react';
 
 interface CustomInputProps extends InputProps {}
 

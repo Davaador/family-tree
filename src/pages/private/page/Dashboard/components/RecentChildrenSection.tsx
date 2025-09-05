@@ -10,19 +10,19 @@ interface RecentChildrenSectionProps {
 
 const RecentChildrenSection: React.FC<RecentChildrenSectionProps> = ({
   childrenData,
-  className,
+  className: _className,
 }) => {
   const { t } = useTranslation();
 
   return (
     <Card
       title={t('dashboard.recentChildren')}
-      className="recent-children-card"
+      className='recent-children-card'
     >
       <List
         dataSource={childrenData.slice(0, 5)}
-        renderItem={(child) => (
-          <List.Item className="child-item">
+        renderItem={child => (
+          <List.Item className='child-item'>
             <List.Item.Meta
               avatar={
                 <Avatar

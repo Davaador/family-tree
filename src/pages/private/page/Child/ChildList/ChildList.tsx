@@ -40,14 +40,14 @@ const ChildList = () => {
       dataIndex: 'gender',
       key: 'gender',
       width: '15%',
-      render: (value) => (value === '0' ? 'Эрэгтэй' : 'Эмэгтэй'),
+      render: value => (value === '0' ? 'Эрэгтэй' : 'Эмэгтэй'),
     },
     {
       title: t('register.birthday'),
       dataIndex: 'birthDate',
       key: 'birthDate',
       width: '25%',
-      render: (date) => (date ? dayjs(date).format('YYYY-MM-DD') : ''),
+      render: date => (date ? dayjs(date).format('YYYY-MM-DD') : ''),
       sorter: (a, b) => {
         const dateA = a.birthDate ? dayjs(a.birthDate).valueOf() : 0;
         const dateB = b.birthDate ? dayjs(b.birthDate).valueOf() : 0;
@@ -57,9 +57,9 @@ const ChildList = () => {
   ];
 
   return (
-    <Layout className="layout-transparent">
+    <Layout className='layout-transparent'>
       <CardHeader
-        headerTitle="Өөрийн хүүхдүүд"
+        headerTitle='Өөрийн хүүхдүүд'
         onAddClick={() => {
           navigate('/add/child');
         }}
@@ -69,7 +69,7 @@ const ChildList = () => {
         bordered
         scroll={{ x: '100%' }}
         columns={columns}
-        rowKey={(key) => key.id}
+        rowKey={key => key.id}
       />
     </Layout>
   );

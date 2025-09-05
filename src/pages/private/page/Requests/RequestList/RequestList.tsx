@@ -31,8 +31,6 @@ const RequestList = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(requests);
-
     setRequestLists(requests.content);
   }, [requests]);
 
@@ -93,7 +91,7 @@ const RequestList = () => {
       key: 'approve',
       width: '15%',
       render: (_, record) => (
-        <Space size="small">
+        <Space size='small'>
           <Popconfirm
             title={t('request.approveTitle')}
             description={t('request.approveDesc')}
@@ -102,8 +100,8 @@ const RequestList = () => {
             onConfirm={() => approveUser(record.id)}
           >
             <Button
-              shape="circle"
-              type="text"
+              shape='circle'
+              type='text'
               icon={<EditTwoTone twoToneColor={'#65eaae'} />}
             />
           </Popconfirm>
@@ -116,8 +114,8 @@ const RequestList = () => {
             icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
           >
             <Button
-              shape="circle"
-              type="text"
+              shape='circle'
+              type='text'
               icon={<DeleteTwoTone twoToneColor={'#65eaae'} />}
             />
           </Popconfirm>
@@ -131,7 +129,7 @@ const RequestList = () => {
       <Table
         columns={columns}
         dataSource={requestLists}
-        rowKey={(key) => key.id}
+        rowKey={key => key.id}
         bordered
         scroll={{ x: '100%' }}
         pagination={{

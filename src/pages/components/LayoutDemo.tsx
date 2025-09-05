@@ -1,12 +1,11 @@
-import React from 'react';
-import { Card, Row, Col, Typography, Space, Tag, Button } from 'antd';
-import { 
-  MobileOutlined, 
-  TabletOutlined, 
+import {
+  MobileOutlined,
+  TabletOutlined,
   DesktopOutlined,
   CheckCircleOutlined,
-  StarOutlined
+  StarOutlined,
 } from '@ant-design/icons';
+import { Card, Row, Col, Typography, Space, Tag, Button } from 'antd';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -17,10 +16,10 @@ const LayoutDemo: React.FC = () => {
         <Title level={2} style={{ textAlign: 'center', marginBottom: '32px' }}>
           🎉 New Modern Layout Features
         </Title>
-        
+
         <Row gutter={[24, 24]}>
           <Col xs={24} md={8}>
-            <Card 
+            <Card
               title={
                 <Space>
                   <MobileOutlined style={{ color: '#1890ff' }} />
@@ -38,14 +37,14 @@ const LayoutDemo: React.FC = () => {
                 <li>Responsive typography</li>
                 <li>Mobile-first design approach</li>
               </ul>
-              <Tag color="green" icon={<CheckCircleOutlined />}>
+              <Tag color='green' icon={<CheckCircleOutlined />}>
                 Fully Responsive
               </Tag>
             </Card>
           </Col>
 
           <Col xs={24} md={8}>
-            <Card 
+            <Card
               title={
                 <Space>
                   <TabletOutlined style={{ color: '#52c41a' }} />
@@ -63,14 +62,14 @@ const LayoutDemo: React.FC = () => {
                 <li>Touch-friendly navigation</li>
                 <li>Optimized spacing</li>
               </ul>
-              <Tag color="blue" icon={<StarOutlined />}>
+              <Tag color='blue' icon={<StarOutlined />}>
                 Adaptive Design
               </Tag>
             </Card>
           </Col>
 
           <Col xs={24} md={8}>
-            <Card 
+            <Card
               title={
                 <Space>
                   <DesktopOutlined style={{ color: '#722ed1' }} />
@@ -88,7 +87,7 @@ const LayoutDemo: React.FC = () => {
                 <li>Floating action buttons</li>
                 <li>Professional footer</li>
               </ul>
-              <Tag color="purple" icon={<StarOutlined />}>
+              <Tag color='purple' icon={<StarOutlined />}>
                 Professional UI
               </Tag>
             </Card>
@@ -97,7 +96,7 @@ const LayoutDemo: React.FC = () => {
 
         <Row gutter={[24, 24]} style={{ marginTop: '32px' }}>
           <Col xs={24} lg={12}>
-            <Card title="🎨 Design Improvements">
+            <Card title='🎨 Design Improvements'>
               <Paragraph>
                 <Text strong>Modern Design Elements:</Text>
               </Paragraph>
@@ -113,7 +112,7 @@ const LayoutDemo: React.FC = () => {
           </Col>
 
           <Col xs={24} lg={12}>
-            <Card title="⚡ Performance & UX">
+            <Card title='⚡ Performance & UX'>
               <Paragraph>
                 <Text strong>User Experience Enhancements:</Text>
               </Paragraph>
@@ -131,19 +130,18 @@ const LayoutDemo: React.FC = () => {
 
         <Row style={{ marginTop: '32px', textAlign: 'center' }}>
           <Col span={24}>
-            <Space direction="vertical" size="large">
+            <Space direction='vertical' size='large'>
               <Title level={3}>🚀 Ready to Use!</Title>
               <Paragraph>
-                The new layout is fully responsive and optimized for all devices. 
-                Try resizing your browser window to see the responsive behavior in action.
+                The new layout is fully responsive and optimized for all
+                devices. Try resizing your browser window to see the responsive
+                behavior in action.
               </Paragraph>
               <Space>
-                <Button type="primary" size="large">
+                <Button type='primary' size='large'>
                   Explore Features
                 </Button>
-                <Button size="large">
-                  View Documentation
-                </Button>
+                <Button size='large'>View Documentation</Button>
               </Space>
             </Space>
           </Col>
