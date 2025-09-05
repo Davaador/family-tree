@@ -26,6 +26,9 @@ export interface LoginRequest {
 
 export interface Auth {
   token: string;
+  refreshToken: string;
+  tokenType: string;
+  expiresIn: number;
 }
 
 export interface CustomerDetail {

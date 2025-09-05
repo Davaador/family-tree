@@ -15,6 +15,9 @@ export type LanguageState = {
 
 export interface AuthStateToken {
   token: string;
+  refreshToken: string;
+  tokenType: string;
+  expiresIn: number;
 }
 
 export interface AddRoleRequest {
