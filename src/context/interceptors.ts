@@ -6,6 +6,7 @@ import {
   InternalAxiosRequestConfig,
 } from 'axios';
 import { authLogout } from 'pages/private/hooks/usePrivateHook';
+import { refreshToken } from 'pages/public/auth/auth.service';
 import { StoreApi } from 'zustand';
 
 import { AuthAction } from './actions/auth.action';
@@ -16,6 +17,7 @@ const requestSuccessStatusCodes: number[] = [200, 201, 202, 204];
 const failedRequestCodes: number[] = [400, 404, 405];
 const excludeUrls: string[] = [
   '/auth/token',
+  '/auth/refresh',
   '/auth/user/register',
   '/auth/sent/otp',
   '/auth/check/otp',
@@ -84,14 +86,41 @@ export const axiosInstance = (
 
       return Promise.resolve(response);
     },
-    (error: AxiosError<ErrorResponse>) => {
+    async (error: AxiosError<ErrorResponse>) => {
       setLoading(false);
+
+      if (
+        error.response?.status === 401 &&
+        error.config &&
+        !excludeUrls.includes(error.config.url!)
+      ) {
+        const auth = store.getState().auth;
+
+        if (auth?.refreshToken) {
+          try {
+            const newAuth = await refreshToken(auth.refreshToken);
+            store.getState().setAuth(newAuth);
+
+            // Retry the original request with new token
+            if (error.config) {
+              error.config.headers.Authorization = `Bearer ${newAuth.token}`;
+              return apiClient.request(error.config);
+            }
+          } catch (refreshError) {
+            authLogout(store);
+            return Promise.reject(refreshError);
+          }
+        } else {
+          authLogout(store);
+        }
+      }
+
       if (error) {
         notification.error({
           message: 'Алдаа',
           description: error.response?.data.message,
         });
-        if (error.response?.status === 401 || error.response?.status === 403) {
+        if (error.response?.status === 403) {
           authLogout(store);
         }
         return Promise.reject(error.response?.data);

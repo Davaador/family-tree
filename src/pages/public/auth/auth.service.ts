@@ -32,6 +32,10 @@ function resetPassword(values: ForgotPasswordForm) {
   return apiClient.post('/auth/reset/password', values);
 }
 
+function refreshToken(refreshToken: string): Promise<Auth> {
+  return apiClient.post('/auth/refresh', { refreshToken });
+}
+
 export {
   userRegister,
   redirectIfLoggedIn,
@@ -39,4 +43,5 @@ export {
   sendOtp,
   checkOtp,
   resetPassword,
+  refreshToken,
 };
