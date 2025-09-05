@@ -250,5 +250,41 @@
       "spouseAdded": "Spouse added successfully",
       "spouseRemoved": "Spouse removed successfully"
     }
+  },
+  "biography": {
+    "title": "Write Your Biography",
+    "biography": "Biography",
+    "biographyRequired": "Please enter your biography.",
+    "biographyMin": "Biography must be at least 50 characters.",
+    "biographyMax": "Biography must be less than 5000 characters.",
+    "biographyPlaceholder": "Please write your biography in detail. At least 50 characters, maximum 5000 characters.",
+    "characterCount": "Characters: {{count}}/5000",
+    "lastSaved": "Last saved: {{date}}",
+    "preview": "Preview",
+    "edit": "Edit",
+    "export": "Export",
+    "history": "History",
+    "previewTitle": "Biography Preview",
+    "previewEmpty": "No biography entered.",
+    "historyTitle": "Biography History",
+    "historyEmpty": "No history found.",
+    "version": "Version {{number}}",
+    "restore": "Restore",
+    "success": {
+      "title": "Success",
+      "message": "Your biography has been saved successfully!",
+      "restore": "Biography version restored successfully."
+    },
+    "error": {
+      "title": "Error occurred",
+      "save": "Error saving biography. Please try again.",
+      "history": "Error loading history.",
+      "restore": "Error restoring version."
+    },
+    "tooltips": {
+      "preview": "Preview",
+      "export": "Export as file",
+      "history": "Biography history"
+    }
   }
 }
