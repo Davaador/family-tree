@@ -6,7 +6,6 @@ import {
 } from '@ant-design/icons';
 import { Card, Col, Typography, theme } from 'antd';
 import { BaseType } from 'antd/es/typography/Base';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface DashboardCardProps {
@@ -49,9 +48,9 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
   const displayIcon = icon || getDefaultIcon();
 
   return (
-    <Col className="gutter-row" xs={24} sm={12} md={12} lg={6} xl={6}>
+    <Col className='gutter-row' xs={24} sm={12} md={12} lg={6} xl={6}>
       <Card
-        className="enhanced-dashboard-card"
+        className='enhanced-dashboard-card'
         style={{
           boxShadow: token.boxShadow,
           borderLeft: `4px solid ${color}`,
@@ -60,9 +59,9 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
           backdropFilter: 'blur(10px)',
         }}
       >
-        <div className="card-content">
-          <div className="card-header">
-            <div className="icon-container" style={{ color }}>
+        <div className='card-content'>
+          <div className='card-header'>
+            <div className='icon-container' style={{ color }}>
               {displayIcon}
             </div>
             {trend && (
@@ -77,15 +76,15 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
             )}
           </div>
 
-          <div className="card-body">
+          <div className='card-body'>
             <Typography.Text
-              className="dashboard-label-text"
+              className='dashboard-label-text'
               type={type ?? 'secondary'}
             >
               {title ?? t('dashboard.totalRegistered')}
             </Typography.Text>
 
-            <Typography.Text className="dashboard-count-text" style={{ color }}>
+            <Typography.Text className='dashboard-count-text' style={{ color }}>
               {value}
             </Typography.Text>
           </div>

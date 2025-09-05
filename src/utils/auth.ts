@@ -14,7 +14,7 @@ export const getAuthToken = (): string | undefined => {
 };
 
 export const getUserRole = (): string[] => {
-  return authStore.getState().roleUser?.map((role) => role.name) || [];
+  return authStore.getState().roleUser?.map(role => role.name) || [];
 };
 
 export const hasRole = (requiredRole: string): boolean => {

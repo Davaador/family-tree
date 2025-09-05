@@ -1,12 +1,13 @@
 import { Layout, Row, Col } from 'antd';
 import { authStore } from 'context/auth/store';
 import { RolesConstants } from 'context/constants/auth.constants';
+import { CustomerModel } from 'context/entities/customer.model';
 import { EditUserModal } from 'pages/components';
 import { DashboardProps } from 'pages/private/private.model';
 import { getChildList } from 'pages/private/private.service';
 import { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { CustomerModel } from 'context/entities/customer.model';
+
 import {
   WelcomeSection,
   StatisticsSection,
@@ -37,7 +38,10 @@ const Dashboard = () => {
         const children = await getChildList();
         setChildrenData(children);
       } catch (error) {
-        console.error('Failed to load children data:', error);
+        if (process.env.NODE_ENV === 'development') {
+          // eslint-disable-next-line no-console
+          console.error('Failed to load children data:', error);
+        }
       }
     };
 
@@ -46,7 +50,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (
-      !roleUser?.find((role) => role.name === RolesConstants.ROOT) &&
+      !roleUser?.find(role => role.name === RolesConstants.ROOT) &&
       authUser &&
       !authUser?.editCustomer &&
       !authUser.parent
@@ -56,21 +60,21 @@ const Dashboard = () => {
   }, [authUser, roleUser]);
 
   return (
-    <div className="dashboard-container">
-      <Layout className="dashboard-layout">
+    <div className='dashboard-container'>
+      <Layout className='dashboard-layout'>
         <WelcomeSection
           isShowModal={isShowModal}
           setModalVisible={setIshowModal}
         />
 
-        <Row gutter={[24, 24]} className="stats-section">
+        <Row gutter={[24, 24]} className='stats-section'>
           <StatisticsSection
             dashboardData={dashboardData}
             childrenCount={childrenData.length}
           />
         </Row>
 
-        <Row gutter={[24, 24]} className="actions-section">
+        <Row gutter={[24, 24]} className='actions-section'>
           <Col xs={24} lg={16}>
             <QuickActionsSection />
           </Col>

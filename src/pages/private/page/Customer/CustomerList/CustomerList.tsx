@@ -1,4 +1,11 @@
 import {
+  SearchOutlined,
+  EyeOutlined,
+  UserOutlined,
+  PhoneOutlined,
+  CalendarOutlined,
+} from '@ant-design/icons';
+import {
   Button,
   Card,
   Col,
@@ -14,27 +21,22 @@ import {
   Avatar,
   Tooltip,
 } from 'antd';
+import { useForm } from 'antd/es/form/Form';
+import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+
+import { CustomFormItem } from 'pages/components';
 import {
   CustomerListData,
   CustomerListProps,
 } from 'pages/private/private.model';
 import { getActiveCustomerList } from 'pages/private/private.service';
 import { CustomerDetail } from 'pages/public/auth/auth.model';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useLoaderData, useNavigate } from 'react-router-dom';
-import './CustomerList.css';
-import { useForm } from 'antd/es/form/Form';
-import { CustomFormItem } from 'pages/components';
-import dayjs from 'dayjs';
-import {
-  SearchOutlined,
-  EyeOutlined,
-  UserOutlined,
-  PhoneOutlined,
-  CalendarOutlined,
-} from '@ant-design/icons';
+
 import CustomerDetailModal from './CustomerDetailModal';
+import './CustomerList.css';
 
 const CustomerList = () => {
   const { t } = useTranslation();
@@ -87,15 +89,15 @@ const CustomerList = () => {
       key: 'lastName',
       width: '15%',
       render: (text: string, record: CustomerDetail) => (
-        <div className="flex items-center gap-2">
+        <div className='flex items-center gap-2'>
           <Avatar
             size={32}
             style={{ backgroundColor: '#65eaae' }}
             icon={<UserOutlined />}
           />
           <div>
-            <div className="font-medium">{text}</div>
-            <div className="text-xs text-gray-500">{record.firstName}</div>
+            <div className='font-medium'>{text}</div>
+            <div className='text-xs text-gray-500'>{record.firstName}</div>
           </div>
         </div>
       ),
@@ -106,7 +108,7 @@ const CustomerList = () => {
       key: 'phoneNumber',
       width: '15%',
       render: (text: string) => (
-        <div className="flex items-center gap-2">
+        <div className='flex items-center gap-2'>
           <PhoneOutlined style={{ color: '#65eaae' }} />
           <span>{text}</span>
         </div>
@@ -118,7 +120,7 @@ const CustomerList = () => {
       key: 'register',
       width: '20%',
       render: (text: string) => (
-        <Tag color="#65eaae" style={{ border: 'none' }}>
+        <Tag color='#65eaae' style={{ border: 'none' }}>
           {text}
         </Tag>
       ),
@@ -139,8 +141,8 @@ const CustomerList = () => {
       dataIndex: 'birthDate',
       key: 'birthDate',
       width: '15%',
-      render: (date) => (
-        <div className="flex items-center gap-2">
+      render: date => (
+        <div className='flex items-center gap-2'>
           <CalendarOutlined style={{ color: '#65eaae' }} />
           <span>{date ? dayjs(date).format('YYYY-MM-DD') : '-'}</span>
         </div>
@@ -156,12 +158,12 @@ const CustomerList = () => {
       key: 'action',
       width: '10%',
       render: (_: any, record: CustomerDetail) => (
-        <Space size="small">
-          <Tooltip title="Дэлгэрэнгүй харах">
+        <Space size='small'>
+          <Tooltip title='Дэлгэрэнгүй харах'>
             <Button
-              type="text"
+              type='text'
               icon={<EyeOutlined />}
-              size="small"
+              size='small'
               style={{ color: '#65eaae' }}
               onClick={() => handleViewDetails(record)}
             />
@@ -171,7 +173,7 @@ const CustomerList = () => {
     },
   ];
 
-  const handleTableChange = (pagination: any, filters: any, sorter: any) => {
+  const handleTableChange = (pagination: any, _filters: any, sorter: any) => {
     fetchData(
       pagination.pageSize,
       pagination.current - 1,
@@ -198,35 +200,34 @@ const CustomerList = () => {
   };
 
   const onSearch = (values: { label: string; value: string }) => {
-    console.log(values, 'ss');
     fetchData(10, 0, 1, values.label, values.value);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="max-w-7xl mx-auto">
+    <div className='min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4'>
+      <div className='max-w-7xl mx-auto'>
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+        <div className='text-center mb-8'>
+          <h1 className='text-3xl font-bold text-gray-800 mb-2'>
             Харилцагчдын жагсаалт
           </h1>
-          <p className="text-gray-600">
+          <p className='text-gray-600'>
             Бүртгэлтэй харилцагчдын мэдээллийг харах, удирдах
           </p>
         </div>
 
         {/* Main Content */}
-        <Card className="shadow-xl border-0 rounded-2xl">
+        <Card className='shadow-xl border-0 rounded-2xl'>
           {/* Search Section */}
-          <Row gutter={[12, 12]} className="mb-6">
+          <Row gutter={[12, 12]} className='mb-6'>
             <Col xs={24} sm={12}>
               <Form
                 form={form}
-                className="flex justify-between h-10"
+                className='flex justify-between h-10'
                 onFinish={onSearch}
                 initialValues={{ label: 'phoneNumber' }}
               >
-                <CustomFormItem name={'label'} className="w-1/3">
+                <CustomFormItem name={'label'} className='w-1/3'>
                   <Select
                     options={[
                       { value: 'phoneNumber', label: 'Утасны дугаар' },
@@ -235,14 +236,14 @@ const CustomerList = () => {
                     ]}
                   />
                 </CustomFormItem>
-                <CustomFormItem name={'value'} className="w-1/3">
-                  <Input placeholder="Хайх утга" />
+                <CustomFormItem name={'value'} className='w-1/3'>
+                  <Input placeholder='Хайх утга' />
                 </CustomFormItem>
                 <Button
-                  size="middle"
-                  type="primary"
-                  className="h-10"
-                  htmlType="submit"
+                  size='middle'
+                  type='primary'
+                  className='h-10'
+                  htmlType='submit'
                   icon={<SearchOutlined />}
                   style={{ backgroundColor: '#65eaae', borderColor: '#65eaae' }}
                 >
@@ -270,7 +271,7 @@ const CustomerList = () => {
             rowKey={'id'}
             onChange={handleTableChange}
             loading={loading}
-            className="customer-table"
+            className='customer-table'
           />
         </Card>
 

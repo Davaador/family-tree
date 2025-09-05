@@ -1,5 +1,4 @@
 import { Button, ButtonProps, Typography } from 'antd';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 const { Text } = Typography;
 
@@ -19,13 +18,13 @@ const SubmitButton = (props: Readonly<SubmitButtonProps>) => {
       onClick={onPress && onPress}
       disabled={disabled}
       loading={loading}
-      type="primary"
-      htmlType="submit"
+      type='primary'
+      htmlType='submit'
       block={block}
-      size="large"
+      size='large'
       {...props}
     >
-      <Text strong color="dark">
+      <Text strong color='dark'>
         {text ?? t('general.save')}
       </Text>
     </Button>

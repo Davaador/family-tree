@@ -1,14 +1,16 @@
-import { notification, Layout, Table, Button, Space, Popconfirm } from 'antd';
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
-import { CustomerModel } from 'types/customer.types';
-import { getAdminList, deleteAdmin } from 'context/services/admin.service';
-import { CardHeader } from 'pages/components';
-import { useApi, useTable } from 'hooks';
-import { formatDate } from 'utils';
 import { TABLE_PAGE_SIZES } from 'constants/app';
+
+import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
+import { notification, Layout, Table, Button, Space, Popconfirm } from 'antd';
+import { getAdminList, deleteAdmin } from 'context/services/admin.service';
+import { useApi, useTable } from 'hooks';
+import { CardHeader } from 'pages/components';
 import React, { useEffect, useMemo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { CustomerModel } from 'types/customer.types';
+import { formatDate } from 'utils';
+
 import AdminDetailModal from './AdminDetailModal';
 
 const AddCustomerList = React.memo(() => {
@@ -23,7 +25,7 @@ const AddCustomerList = React.memo(() => {
   const { loading, execute: fetchAdminList } = useApi<
     CustomerModel.AdminCustomer[]
   >({
-    onSuccess: (data) => {
+    onSuccess: data => {
       setAdminList(data);
     },
   });
@@ -145,35 +147,35 @@ const AddCustomerList = React.memo(() => {
         width: 120,
         fixed: 'right' as const,
         render: (_: any, record: CustomerModel.AdminCustomer) => (
-          <Space size="small">
+          <Space size='small'>
             <Button
-              type="text"
+              type='text'
               icon={<EyeOutlined />}
-              size="small"
+              size='small'
               onClick={() => handleViewAdmin(record)}
-              title="Дэлгэрэнгүй харах"
+              title='Дэлгэрэнгүй харах'
             />
             <Button
-              type="text"
+              type='text'
               icon={<EditOutlined />}
-              size="small"
+              size='small'
               onClick={() => handleEditAdmin(record)}
-              title="Засах"
+              title='Засах'
             />
             <Popconfirm
               title={t('admin.delete.title')}
               description={t('admin.delete.description')}
               onConfirm={() => handleDeleteAdmin(record.id)}
-              okText="Тийм"
-              cancelText="Үгүй"
+              okText='Тийм'
+              cancelText='Үгүй'
             >
               <Button
-                type="text"
+                type='text'
                 danger
                 icon={<DeleteOutlined />}
-                size="small"
+                size='small'
                 loading={deleteLoading}
-                title="Устгах"
+                title='Устгах'
               />
             </Popconfirm>
           </Space>
@@ -197,7 +199,7 @@ const AddCustomerList = React.memo(() => {
   );
 
   return (
-    <Layout className="layout-transparent">
+    <Layout className='layout-transparent'>
       <CardHeader
         headerTitle={t('admin.add.customerList.header')}
         onAddClick={handleAddClick}
@@ -209,7 +211,7 @@ const AddCustomerList = React.memo(() => {
         columns={columns}
         dataSource={adminList}
         loading={loading}
-        rowKey="id"
+        rowKey='id'
         onChange={handleTableChange}
         pagination={paginationConfig}
       />

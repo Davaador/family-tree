@@ -30,7 +30,7 @@ const AddFamily = () => {
   const onSubmit = (values: CustomerModel.CoupleCustomer) => {
     setLoading(true);
     createCouple(values)
-      .then((res) => {
+      .then(res => {
         if (res) {
           if (res.gender.includes('0')) {
             setCouple(res.wife);
@@ -63,7 +63,7 @@ const AddFamily = () => {
       </Layout>
     );
   return (
-    <Layout className="layout-transparent">
+    <Layout className='layout-transparent'>
       <CardHeader headerTitle={t('family.header')} onBack={true} />
       {couple && (
         <Row>
@@ -75,23 +75,23 @@ const AddFamily = () => {
           </Col>
         </Row>
       )}
-      <Form form={form} layout="vertical" onFinish={onSubmit}>
+      <Form form={form} layout='vertical' onFinish={onSubmit}>
         <Row
           gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
           style={{
             alignItems: 'center',
           }}
         >
-          <Col className="gutter-row" xs={24} sm={24} md={12}>
+          <Col className='gutter-row' xs={24} sm={24} md={12}>
             <Form.Item
-              label="Гэр бүлийн гишүүнээ сонгоно уу?"
+              label='Гэр бүлийн гишүүнээ сонгоно уу?'
               name={'coupleId'}
             >
               <Select
-                placeholder="Гэр бүлийн гишүүнээ сонгоно уу"
+                placeholder='Гэр бүлийн гишүүнээ сонгоно уу'
                 showSearch
                 allowClear
-                options={selectData.map((item) => ({
+                options={selectData.map(item => ({
                   value: item.id,
                   label: item.lastName
                     .charAt(0)
@@ -101,8 +101,8 @@ const AddFamily = () => {
               ></Select>
             </Form.Item>
           </Col>
-          <Col className="gutter-row" xs={24} sm={24} md={12}>
-            <Button type="primary" htmlType="submit" size="small">
+          <Col className='gutter-row' xs={24} sm={24} md={12}>
+            <Button type='primary' htmlType='submit' size='small'>
               <Typography.Text>Хадгалах</Typography.Text>
             </Button>
           </Col>

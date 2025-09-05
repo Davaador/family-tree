@@ -1,5 +1,5 @@
-import { CustomerModel } from 'types/customer.types';
 import { apiClient } from 'context/http';
+import { CustomerModel } from 'types/customer.types';
 
 function createAdminCustomer(
   data: CustomerModel.AdminCustomer

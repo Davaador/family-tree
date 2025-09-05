@@ -5,8 +5,6 @@ import { createAdminCustomer } from 'context/services/admin.service';
 import { parentService } from 'context/services/parent.service';
 import validations from 'context/validations';
 import dayjs from 'dayjs';
-import { CustomerModel } from 'types/customer.types';
-
 import {
   CardHeader,
   CustomFormItem,
@@ -17,6 +15,7 @@ import {
 import { renderLastName } from 'pages/private/hooks/useCustomerHook';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { CustomerModel } from 'types/customer.types';
 
 const AddCustomer = () => {
   const [parents, setParents] = useState<CustomerModel.Customer[]>([]);
@@ -33,7 +32,7 @@ const AddCustomer = () => {
       .then((res: CustomerModel.Customer[]) => {
         setParents(res);
       })
-      .catch((err) => {
+      .catch(err => {
         notification.error({
           message: t('admin.error.title'),
           description: err?.message || t('admin.error.message'),
@@ -64,7 +63,7 @@ const AddCustomer = () => {
           form.resetFields(['password', 'confirmPassword']);
         }
       })
-      .catch((err) => {
+      .catch(err => {
         notification.error({
           message: t('admin.error.title'),
           description: err?.message || t('admin.error.message'),
@@ -80,78 +79,78 @@ const AddCustomer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className='min-h-screen bg-gray-50'>
       <CardHeader headerTitle={t('admin.add.customerTitle')} onBack={true} />
 
-      <div className="px-6 py-4">
-        <Card className="shadow-sm border-0 bg-white">
+      <div className='px-6 py-4'>
+        <Card className='shadow-sm border-0 bg-white'>
           <Form
-            layout="vertical"
-            autoComplete="off"
-            size="middle"
+            layout='vertical'
+            autoComplete='off'
+            size='middle'
             form={form}
             requiredMark={true}
             onFinish={onFinish}
-            className="max-w-4xl mx-auto"
+            className='max-w-4xl mx-auto'
           >
             <Row gutter={[32, 24]}>
               <Col xs={24} lg={12}>
                 <CustomFormItem
-                  layout="vertical"
+                  layout='vertical'
                   label={
-                    <span className="text-gray-700 font-medium">
+                    <span className='text-gray-700 font-medium'>
                       {t('register.surName')}
                     </span>
                   }
-                  name="surName"
+                  name='surName'
                   rules={validations.rules.surName(t)}
-                  className="mb-0"
+                  className='mb-0'
                 >
                   <CustomInput
                     placeholder={t('register.surName')}
-                    size="large"
-                    className="rounded-lg"
+                    size='large'
+                    className='rounded-lg'
                   />
                 </CustomFormItem>
               </Col>
               <Col xs={24} lg={12}>
                 <CustomFormItem
-                  layout="vertical"
+                  layout='vertical'
                   label={
-                    <span className="text-gray-700 font-medium">
+                    <span className='text-gray-700 font-medium'>
                       {t('register.lastName')}
                     </span>
                   }
-                  name="lastName"
+                  name='lastName'
                   rules={validations.rules.lastName(t)}
-                  className="mb-0"
+                  className='mb-0'
                 >
                   <CustomInput
                     placeholder={t('register.lastName')}
-                    size="large"
-                    className="rounded-lg"
+                    size='large'
+                    className='rounded-lg'
                   />
                 </CustomFormItem>
               </Col>
               <Col xs={24} lg={12}>
                 <CustomFormItem
-                  layout="vertical"
+                  layout='vertical'
                   label={
-                    <span className="text-gray-700 font-medium">
+                    <span className='text-gray-700 font-medium'>
                       {t('admin.add.lastName')}
                     </span>
                   }
-                  name="lastNameId"
-                  className="mb-0"
+                  name='lastNameId'
+                  className='mb-0'
                 >
                   <Select
                     placeholder={t('admin.add.lastName')}
                     showSearch
                     allowClear
-                    size="large"
-                    className="rounded-lg"
+                    size='large'
+                    className='rounded-lg'
                     dropdownMatchSelectWidth={false}
-                    getPopupContainer={(triggerNode) =>
+                    getPopupContainer={triggerNode =>
                       triggerNode.parentNode || document.body
                     }
                     options={[
@@ -159,7 +158,7 @@ const AddCustomer = () => {
                         value: '',
                         label: 'Сонгохгүй',
                       },
-                      ...(parents || []).map((p) => ({
+                      ...(parents || []).map(p => ({
                         value: p.id,
                         label: renderLastName(p.lastName, p.firstName),
                       })),
@@ -174,20 +173,20 @@ const AddCustomer = () => {
               </Col>
               <Col xs={24} lg={12}>
                 <CustomFormItem
-                  layout="vertical"
+                  layout='vertical'
                   label={
-                    <span className="text-gray-700 font-medium">
+                    <span className='text-gray-700 font-medium'>
                       {t('register.firstName')}
                     </span>
                   }
-                  name="firstName"
+                  name='firstName'
                   rules={validations.rules.name(t)}
-                  className="mb-0"
+                  className='mb-0'
                 >
                   <CustomInput
                     placeholder={t('register.firstName')}
-                    size="large"
-                    className="rounded-lg"
+                    size='large'
+                    className='rounded-lg'
                   />
                 </CustomFormItem>
               </Col>
@@ -201,8 +200,8 @@ const AddCustomer = () => {
               >
                 <Col xs={24}>
                   <CustomFormItem
-                    name="isParent"
-                    label="Хүүхдийн төрөл"
+                    name='isParent'
+                    label='Хүүхдийн төрөл'
                     rules={[
                       {
                         required:
@@ -223,29 +222,29 @@ const AddCustomer = () => {
               <Col xs={24} lg={12}>
                 <FormRegisterInput
                   form={form}
-                  label=""
+                  label=''
                   required={true}
-                  layout="vertical"
+                  layout='vertical'
                   showIcon={false}
                 />
               </Col>
 
               <Col xs={24} lg={12}>
                 <CustomFormItem
-                  layout="vertical"
+                  layout='vertical'
                   label={
-                    <span className="text-gray-700 font-medium">
+                    <span className='text-gray-700 font-medium'>
                       {t('profile.email')}
                     </span>
                   }
                   name={'email'}
                   rules={validations.rules.email(t)}
-                  className="mb-0"
+                  className='mb-0'
                 >
                   <CustomInput
                     placeholder={t('profile.email')}
-                    size="large"
-                    className="rounded-lg"
+                    size='large'
+                    className='rounded-lg'
                   />
                 </CustomFormItem>
               </Col>
@@ -253,20 +252,20 @@ const AddCustomer = () => {
               <Col xs={24} lg={12}>
                 {/* Phone Number */}
                 <CustomFormItem
-                  layout="vertical"
+                  layout='vertical'
                   label={
-                    <span className="text-gray-700 font-medium">
+                    <span className='text-gray-700 font-medium'>
                       {t('register.phoneNumber')}
                     </span>
                   }
                   name={'phoneNumber'}
                   rules={validations.rules.phoneNumber(t)}
-                  className="mb-0"
+                  className='mb-0'
                 >
                   <CustomInput
                     placeholder={t('register.phoneNumber')}
-                    size="large"
-                    className="rounded-lg"
+                    size='large'
+                    className='rounded-lg'
                   />
                 </CustomFormItem>
               </Col>
@@ -275,22 +274,22 @@ const AddCustomer = () => {
                 {/* Password */}
                 <CustomFormItem
                   label={
-                    <span className="text-gray-700 font-medium">
+                    <span className='text-gray-700 font-medium'>
                       {t('register.password')}
                     </span>
                   }
-                  name="password"
+                  name='password'
                   hasFeedback
-                  layout="vertical"
+                  layout='vertical'
                   rules={validations.rules.password(t)}
-                  className="mb-0"
+                  className='mb-0'
                 >
                   <CustomInput
-                    type="password"
+                    type='password'
                     allowClear
                     placeholder={t('register.password')}
-                    size="large"
-                    className="rounded-lg"
+                    size='large'
+                    className='rounded-lg'
                   />
                 </CustomFormItem>
               </Col>
@@ -299,45 +298,45 @@ const AddCustomer = () => {
                 {/* Confirm Password */}
                 <CustomFormItem
                   label={
-                    <span className="text-gray-700 font-medium">
+                    <span className='text-gray-700 font-medium'>
                       {t('register.confirmPassword')}
                     </span>
                   }
-                  name="confirmPassword"
+                  name='confirmPassword'
                   hasFeedback
-                  layout="vertical"
+                  layout='vertical'
                   dependencies={['password']}
                   rules={validations.rules.confirmPassword(t)}
-                  className="mb-0"
+                  className='mb-0'
                 >
                   <CustomInput
-                    type="password"
+                    type='password'
                     allowClear
                     placeholder={t('register.confirmPassword')}
-                    size="large"
-                    className="rounded-lg"
+                    size='large'
+                    className='rounded-lg'
                   />
                 </CustomFormItem>
               </Col>
               <Col xs={24} lg={12}>
                 {/* Birth Date */}
                 <CustomFormItem
-                  layout="vertical"
+                  layout='vertical'
                   label={
-                    <span className="text-gray-700 font-medium">
+                    <span className='text-gray-700 font-medium'>
                       {t('profile.birthDate')}
                     </span>
                   }
                   name={'birthDate'}
                   rules={validations.rules.birthDate(t)}
-                  className="mb-0"
+                  className='mb-0'
                 >
                   <Input
-                    type="date"
+                    type='date'
                     style={{ width: '100%' }}
-                    placeholder="Төрсөн өдөр сонгоно уу"
-                    size="large"
-                    onChange={(e) => {
+                    placeholder='Төрсөн өдөр сонгоно уу'
+                    size='large'
+                    onChange={e => {
                       form.setFieldValue('birthDate', e.target.value);
                     }}
                   />
@@ -347,19 +346,19 @@ const AddCustomer = () => {
               <Col xs={24} lg={12}>
                 {/* Deceased Checkbox */}
                 <CustomFormItem
-                  layout="vertical"
+                  layout='vertical'
                   label={
-                    <span className="text-gray-700 font-medium">
+                    <span className='text-gray-700 font-medium'>
                       {t('customer.isDeceased')}
                     </span>
                   }
-                  name="isDeceased"
-                  className="mb-0"
+                  name='isDeceased'
+                  className='mb-0'
                 >
                   <Checkbox
                     checked={isDeceased}
-                    onChange={(e) => setIsDeceased(e.target.checked)}
-                    className="text-gray-700 text-base"
+                    onChange={e => setIsDeceased(e.target.checked)}
+                    className='text-gray-700 text-base'
                   >
                     {t('customer.isDeceasedLabel')}
                   </Checkbox>
@@ -370,26 +369,26 @@ const AddCustomer = () => {
               {isDeceased && (
                 <Col xs={24} lg={12}>
                   <CustomFormItem
-                    layout="vertical"
+                    layout='vertical'
                     label={
-                      <span className="text-gray-700 font-medium">
+                      <span className='text-gray-700 font-medium'>
                         {t('customer.deceasedDate')}
                       </span>
                     }
-                    name="deceasedDate"
+                    name='deceasedDate'
                     rules={[
                       {
                         required: true,
                         message: t('customer.deceasedDateRequired'),
                       },
                     ]}
-                    className="mb-0"
+                    className='mb-0'
                   >
                     <Input
-                      type="date"
+                      type='date'
                       style={{ width: '100%' }}
-                      size="large"
-                      onChange={(e) => {
+                      size='large'
+                      onChange={e => {
                         form.setFieldValue('deceasedDate', e.target.value);
                       }}
                     />
@@ -398,10 +397,10 @@ const AddCustomer = () => {
               )}
 
               {/* Submit Button */}
-              <Col xs={24} className="flex justify-end">
+              <Col xs={24} className='flex justify-end'>
                 <SubmitButton
-                  className="mt-8 px-8 h-12 text-base font-medium"
-                  size="large"
+                  className='mt-8 px-8 h-12 text-base font-medium'
+                  size='large'
                   text={t('general.registerText')}
                 />
               </Col>

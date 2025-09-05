@@ -3,6 +3,7 @@ import { AddRoleRequest } from 'context/entities/auth.model';
 import { CustomerModel } from 'context/entities/customer.model';
 import { apiClient } from 'context/http';
 import { AddParentForm, CustomerDetail } from 'pages/public/auth/auth.model';
+
 import { CustomerListData, ImageField } from './private.model';
 function getUserDetail(): Promise<CustomerDetail> {
   return apiClient.get('/auth/introspect', {});

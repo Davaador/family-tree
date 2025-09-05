@@ -1,8 +1,8 @@
 import { MailOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Card, Col, Input, Row } from 'antd';
-import React from 'react';
-import { CustomerModel } from 'types/customer.types';
 import { FormRegisterInput } from 'pages/components';
+import { CustomerModel } from 'types/customer.types';
+
 import FormField from './FormField';
 
 interface ContactSectionProps {
@@ -18,20 +18,20 @@ const ContactSection: React.FC<ContactSectionProps> = ({
 }) => (
   <Card
     title={
-      <span className="flex items-center gap-2 text-blue-600">
+      <span className='flex items-center gap-2 text-blue-600'>
         <PhoneOutlined />
         {t('admin.edit.contactInfo')}
       </span>
     }
-    className="mb-6 rounded-xl shadow-sm border-0 bg-gray-50/50"
+    className='mb-6 rounded-xl shadow-sm border-0 bg-gray-50/50'
     styles={{ body: { padding: '24px' } }}
   >
     <Row gutter={[24, 16]}>
       <FormField
-        name="phoneNumber"
+        name='phoneNumber'
         label={
-          <span className="flex items-center gap-2 font-medium">
-            <PhoneOutlined className="text-green-500" />
+          <span className='flex items-center gap-2 font-medium'>
+            <PhoneOutlined className='text-green-500' />
             {t('admin.edit.phoneNumber')}
           </span>
         }
@@ -41,18 +41,18 @@ const ContactSection: React.FC<ContactSectionProps> = ({
         ]}
       >
         <Input
-          size="large"
+          size='large'
           placeholder={t('admin.edit.phoneNumberPlaceholder')}
-          className="rounded-lg border-gray-300 hover:border-green-400 focus:border-green-500 focus:ring-green-500"
-          prefix={<PhoneOutlined className="text-gray-400" />}
+          className='rounded-lg border-gray-300 hover:border-green-400 focus:border-green-500 focus:ring-green-500'
+          prefix={<PhoneOutlined className='text-gray-400' />}
         />
       </FormField>
 
       <FormField
-        name="email"
+        name='email'
         label={
-          <span className="flex items-center gap-2 font-medium">
-            <MailOutlined className="text-orange-500" />
+          <span className='flex items-center gap-2 font-medium'>
+            <MailOutlined className='text-orange-500' />
             {t('admin.edit.email')}
           </span>
         }
@@ -62,10 +62,10 @@ const ContactSection: React.FC<ContactSectionProps> = ({
         ]}
       >
         <Input
-          size="large"
+          size='large'
           placeholder={t('admin.edit.emailPlaceholder')}
-          className="rounded-lg border-gray-300 hover:border-orange-400 focus:border-orange-500 focus:ring-orange-500"
-          prefix={<MailOutlined className="text-gray-400" />}
+          className='rounded-lg border-gray-300 hover:border-orange-400 focus:border-orange-500 focus:ring-orange-500'
+          prefix={<MailOutlined className='text-gray-400' />}
         />
       </FormField>
 
@@ -75,7 +75,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
           defaultValue={customer.register}
           label={t('admin.edit.registerNumber')}
           required={true}
-          layout="vertical"
+          layout='vertical'
           showIcon={true}
           placeholder={t('admin.edit.registerNumberPlaceholder')}
         />

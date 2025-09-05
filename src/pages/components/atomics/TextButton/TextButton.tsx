@@ -1,7 +1,7 @@
-import React from "react";
-import { SubmitButtonProps } from "../SubmitButton/SubmitButton";
-import { useTranslation } from "react-i18next";
-import { Button } from "antd";
+import { Button } from 'antd';
+import { useTranslation } from 'react-i18next';
+
+import { SubmitButtonProps } from '../SubmitButton/SubmitButton';
 
 const TextButton = (props: Readonly<SubmitButtonProps>) => {
   const { text, disabled, loading, onPress, block } = props;
@@ -11,10 +11,10 @@ const TextButton = (props: Readonly<SubmitButtonProps>) => {
       onClick={onPress && onPress}
       disabled={disabled}
       loading={loading}
-      type="text"
+      type='text'
       block={block}
     >
-      {text ?? t("general.text")}
+      {text ?? t('general.text')}
     </Button>
   );
 };

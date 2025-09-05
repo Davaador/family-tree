@@ -34,7 +34,17 @@
     "build": "cp env.production .env && react-app-rewired build",
     "build:dev": "cp env.development .env && react-app-rewired build",
     "build:prod": "cp env.production .env && react-app-rewired build",
-    "test": "react-app-rewired test"
+    "test": "react-app-rewired test",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint src --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "type-check": "tsc --noEmit",
+    "quality": "npm run type-check && npm run lint && npm run format:check",
+    "test:coverage": "npm test -- --coverage --watchAll=false",
+    "test:ci": "npm test -- --coverage --watchAll=false --passWithNoTests",
+    "test:watch": "npm test -- --watch",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -59,11 +69,30 @@
     "@types/react-world-flags": "^1.4.5",
     "autoprefixer": "^10.4.20",
     "babel-preset-react-app": "^10.0.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "husky": "^9.1.7",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
+    "lint-staged": "^16.1.6",
     "postcss": "^8.4.49",
+    "prettier": "^3.6.2",
     "react-i18next": "^14.0.1",
     "tailwindcss": "^3.4.14",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "webpack-bundle-analyzer": "^4.10.2",
+    "workbox-webpack-plugin": "^7.3.0"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.{json,css,md}": [
+      "prettier --write"
+    ]
   }
 }

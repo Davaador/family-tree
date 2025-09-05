@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
+
 import { PaginationParams } from '../types/common.types';
 
 interface UseTableOptions {
@@ -24,8 +25,8 @@ export function useTable(options: UseTableOptions = {}) {
   const [search, setSearch] = useState('');
 
   const handleTableChange = useCallback(
-    (pagination: any, filters: any, sorter: any) => {
-      setPagination((prev) => ({
+    (pagination: any, _filters: any, sorter: any) => {
+      setPagination(prev => ({
         ...prev,
         page: pagination.current || 1,
         limit: pagination.pageSize || defaultPageSize,
@@ -38,7 +39,7 @@ export function useTable(options: UseTableOptions = {}) {
 
   const handleSearch = useCallback((value: string) => {
     setSearch(value);
-    setPagination((prev) => ({ ...prev, page: 1 }));
+    setPagination(prev => ({ ...prev, page: 1 }));
   }, []);
 
   const resetTable = useCallback(() => {

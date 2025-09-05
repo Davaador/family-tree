@@ -5,24 +5,23 @@ interface TreeConnectorProps {
   className?: string;
 }
 
-const TreeConnector: React.FC<TreeConnectorProps> = ({
-  type,
-  className = '',
-}) => {
-  const getConnectorStyle = () => {
+const TreeConnector: React.FC<TreeConnectorProps> = ({ type, className }) => {
+  const getConnectorStyles = () => {
+    const baseStyles = 'absolute border-gray-300';
+
     switch (type) {
       case 'vertical':
-        return 'w-0.5 h-8 bg-gradient-to-b from-gray-300 to-transparent';
+        return `${baseStyles} w-0 border-l-2`;
       case 'horizontal':
-        return 'h-0.5 w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent';
+        return `${baseStyles} h-0 border-t-2`;
       case 'corner':
-        return 'w-4 h-0.5 bg-gray-300';
+        return `${baseStyles} border-l-2 border-t-2`;
       default:
-        return '';
+        return baseStyles;
     }
   };
 
-  return <div className={`${getConnectorStyle()} ${className}`} />;
+  return <div className={`${getConnectorStyles()} ${className || ''}`} />;
 };
 
 export default TreeConnector;

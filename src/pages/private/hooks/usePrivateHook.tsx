@@ -6,6 +6,7 @@ import { getBiography, getDashboard } from 'context/services/customer.service';
 import { CustomerDetail } from 'pages/public/auth/auth.model';
 import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 import { StoreApi } from 'zustand';
+
 import { CustomerListData } from '../private.model';
 import {
   getActiveCustomerList,

@@ -40,7 +40,7 @@ const EditUserModal = (props: EditUserModalProps) => {
 
   // Check if user is admin (ROOT or ADMIN role)
   const isAdmin = roleUser?.some(
-    (role) =>
+    role =>
       role.name === RolesConstants.ROOT || role.name === RolesConstants.ADMIN
   );
 
@@ -76,7 +76,7 @@ const EditUserModal = (props: EditUserModalProps) => {
       });
   };
 
-  const onChangeDate = (date: dayjs.Dayjs, dateString: string | string[]) => {
+  const onChangeDate = (date: dayjs.Dayjs, _dateString: string | string[]) => {
     if (date) {
       form.setFieldValue('age', dayjs().diff(date, 'year'));
     } else {
@@ -96,7 +96,7 @@ const EditUserModal = (props: EditUserModalProps) => {
     setLoading(true);
 
     if (isShow) {
-      parentService.getParents().then((res) => {
+      parentService.getParents().then(res => {
         setParents(res);
         setLoading(false);
       });
@@ -163,7 +163,7 @@ const EditUserModal = (props: EditUserModalProps) => {
   return (
     <Modal
       loading={loading}
-      title="test"
+      title='test'
       open={isShow}
       footer
       maskClosable={isAdmin}
@@ -171,9 +171,9 @@ const EditUserModal = (props: EditUserModalProps) => {
       closeIcon={<LogoutOutlined style={{ fontSize: '16px', color: 'red' }} />}
     >
       <Form
-        layout="vertical"
+        layout='vertical'
         form={form}
-        autoComplete="off"
+        autoComplete='off'
         onFinish={onFinish}
         initialValues={{
           register: authUser?.register,
@@ -194,7 +194,7 @@ const EditUserModal = (props: EditUserModalProps) => {
         }}
       >
         <CustomFormItem
-          name="parentId"
+          name='parentId'
           label={`Өөрийн овог${!isAdmin ? ' *' : ''}`}
           rules={[
             {
@@ -211,23 +211,23 @@ const EditUserModal = (props: EditUserModalProps) => {
                 ? 'Өөрийн овгийг сонгоно уу (сонгох боломжтой)'
                 : 'Өөрийн овгийг сонгоно уу'
             }
-            size="large"
-            className="letter-select"
+            size='large'
+            className='letter-select'
             onChange={handleParentIdChange}
             filterOption={(input, option) => {
               if (!option?.children) return false;
               const displayName = option.children.toString().toLowerCase();
               return displayName.includes(input.toLowerCase());
             }}
-            getPopupContainer={(triggerNode) =>
+            getPopupContainer={triggerNode =>
               triggerNode.parentNode || document.body
             }
           >
-            <Select.Option value="">
+            <Select.Option value=''>
               {isAdmin ? 'Сонгохгүй' : t('register.allLetters')}
             </Select.Option>
             {parents
-              ? parents.map((letter) => (
+              ? parents.map(letter => (
                   <Select.Option key={letter.id} value={letter.id}>
                     {renderLastName(letter.lastName, letter.firstName)}
                   </Select.Option>
@@ -245,8 +245,8 @@ const EditUserModal = (props: EditUserModalProps) => {
           }}
         >
           <CustomFormItem
-            name="isParent"
-            label="Хүүхдийн төрөл"
+            name='isParent'
+            label='Хүүхдийн төрөл'
             rules={[
               {
                 required:
@@ -276,19 +276,19 @@ const EditUserModal = (props: EditUserModalProps) => {
           </div>
         </div>
         <CustomFormItem
-          name="surName"
-          label="Ургийн овог"
+          name='surName'
+          label='Ургийн овог'
           rules={[{ required: true }]}
         >
-          <CustomInput placeholder="Ургийн овог" />
+          <CustomInput placeholder='Ургийн овог' />
         </CustomFormItem>
         <CustomFormItem
-          name="email"
-          label="И-Мэйл"
+          name='email'
+          label='И-Мэйл'
           rules={[
             { required: true, message: 'email oruulna uu' },
             () => ({
-              validator(rule, value) {
+              validator(_rule, value) {
                 if (validations.regex.email.test(value)) {
                   return Promise.resolve();
                 } else {
@@ -298,29 +298,29 @@ const EditUserModal = (props: EditUserModalProps) => {
             }),
           ]}
         >
-          <CustomInput placeholder="И-Мэйл" />
+          <CustomInput placeholder='И-Мэйл' />
         </CustomFormItem>
         <CustomFormItem
           label={t('profile.birthDate')}
           required
           rules={[{ required: true, message: 'төрсөн өдрөө сонгон уу.' }]}
-          name="birthDate"
+          name='birthDate'
         >
           <Input
-            type="date"
+            type='date'
             style={{ width: '100%' }}
-            placeholder="Төрсөн өдөр сонгоно уу"
-            size="large"
-            onChange={(e) => {
+            placeholder='Төрсөн өдөр сонгоно уу'
+            size='large'
+            onChange={e => {
               const date = dayjs(e.target.value);
               onChangeDate(date, e.target.value);
             }}
           />
         </CustomFormItem>
-        <CustomFormItem label="Нас" required name="age">
-          <Input placeholder="Нас" disabled />
+        <CustomFormItem label='Нас' required name='age'>
+          <Input placeholder='Нас' disabled />
         </CustomFormItem>
-        <Flex justify="center">
+        <Flex justify='center'>
           <SubmitButton
             style={{ alignItems: 'center', justifyContent: 'center' }}
             loading={loading}

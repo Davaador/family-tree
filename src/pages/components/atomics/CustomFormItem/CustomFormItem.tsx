@@ -1,5 +1,4 @@
 import { Form, FormItemProps } from 'antd';
-import React from 'react';
 
 interface CustomFormItemProps extends FormItemProps {}
 

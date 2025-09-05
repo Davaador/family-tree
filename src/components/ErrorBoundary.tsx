@@ -23,21 +23,25 @@ class ErrorBoundary extends React.Component<
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Error caught by boundary:', error, errorInfo);
+  override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    // Log error for debugging in development
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line no-console
+      console.error('Error caught by boundary:', error, errorInfo);
+    }
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       return (
         <Result
-          status="error"
-          title="Something went wrong"
-          subTitle="Please try refreshing the page"
+          status='error'
+          title='Something went wrong'
+          subTitle='Please try refreshing the page'
           extra={[
             <Button
-              type="primary"
-              key="refresh"
+              type='primary'
+              key='refresh'
               onClick={() => window.location.reload()}
             >
               Refresh Page

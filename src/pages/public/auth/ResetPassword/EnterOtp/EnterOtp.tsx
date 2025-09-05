@@ -5,6 +5,7 @@ import { CustomFormItem, LanguageButton, SubmitButton } from 'pages/components';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import { CheckOtpForm } from '../../auth.model';
 import { checkOtp } from '../../auth.service';
 const { Title } = Typography;
@@ -41,8 +42,8 @@ const EnterOtp = () => {
   };
 
   return (
-    <Card hoverable size="default">
-      <Flex justify="space-between">
+    <Card hoverable size='default'>
+      <Flex justify='space-between'>
         <ArrowLeftOutlined
           onClick={() => {
             navigate(-1);
@@ -52,22 +53,22 @@ const EnterOtp = () => {
         <LanguageButton />
       </Flex>
       <Form
-        layout="vertical"
-        autoComplete="off"
-        size="large"
+        layout='vertical'
+        autoComplete='off'
+        size='large'
         form={form}
         onFinish={onFinish}
       >
         <CustomFormItem
           label={t('reset.enterOtp')}
-          name="otp"
+          name='otp'
           rules={[
             { required: true, message: `${t('reset.enterOtpRequired')}` },
           ]}
         >
-          <Input.OTP length={6} type="number" />
+          <Input.OTP length={6} type='number' />
         </CustomFormItem>
-        <Flex justify="center">
+        <Flex justify='center'>
           <SubmitButton loading={loading} text={t('general.continue')} />
         </Flex>
       </Form>

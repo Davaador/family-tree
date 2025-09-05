@@ -23,6 +23,7 @@ import FormRegisterInput from 'pages/components/atomics/FormRegisterInput/FormRe
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
 import { UserRegisterForm } from '../auth.model';
 import { userRegister } from '../auth.service';
 import './Register.css';
@@ -52,51 +53,51 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
+    <div className='register-container'>
       {/* Background Animation */}
-      <div className="register-background">
-        <div className="floating-shapes">
-          <div className="shape shape-1"></div>
-          <div className="shape shape-2"></div>
-          <div className="shape shape-3"></div>
-          <div className="shape shape-4"></div>
+      <div className='register-background'>
+        <div className='floating-shapes'>
+          <div className='shape shape-1'></div>
+          <div className='shape shape-2'></div>
+          <div className='shape shape-3'></div>
+          <div className='shape shape-4'></div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="register-content">
+      <div className='register-content'>
         {/* Left Side - Welcome Section */}
-        <div className="register-welcome">
-          <div className="welcome-content">
-            <div className="welcome-icon">
+        <div className='register-welcome'>
+          <div className='welcome-content'>
+            <div className='welcome-icon'>
               <TeamOutlined />
             </div>
-            <Title level={1} className="welcome-title">
+            <Title level={1} className='welcome-title'>
               {t('register.welcomeTitle')}
             </Title>
-            <Title level={3} className="welcome-subtitle">
+            <Title level={3} className='welcome-subtitle'>
               {t('register.welcomeSubtitle')}
             </Title>
-            <Text className="welcome-description">
+            <Text className='welcome-description'>
               {t('register.welcomeDescription')}
             </Text>
 
             {/* Features */}
-            <div className="features-list">
-              <div className="feature-item">
-                <div className="feature-icon">🌳</div>
+            <div className='features-list'>
+              <div className='feature-item'>
+                <div className='feature-icon'>🌳</div>
                 <Text>{t('register.featureCreateTree')}</Text>
               </div>
-              <div className="feature-item">
-                <div className="feature-icon">📖</div>
+              <div className='feature-item'>
+                <div className='feature-icon'>📖</div>
                 <Text>{t('register.featureWriteHistory')}</Text>
               </div>
-              <div className="feature-item">
-                <div className="feature-icon">📸</div>
+              <div className='feature-item'>
+                <div className='feature-icon'>📸</div>
                 <Text>{t('register.featureSaveMedia')}</Text>
               </div>
-              <div className="feature-item">
-                <div className="feature-icon">👥</div>
+              <div className='feature-item'>
+                <div className='feature-icon'>👥</div>
                 <Text>{t('register.featureManageMembers')}</Text>
               </div>
             </div>
@@ -104,39 +105,39 @@ const Register = () => {
         </div>
 
         {/* Right Side - Register Form */}
-        <div className="register-form-section">
-          <Card className="register-card" variant="borderless">
+        <div className='register-form-section'>
+          <Card className='register-card' variant='borderless'>
             {/* Header */}
-            <div className="register-header">
-              <div className="register-avatar">
+            <div className='register-header'>
+              <div className='register-avatar'>
                 <UserAddOutlined />
               </div>
-              <Title level={2} className="register-title">
+              <Title level={2} className='register-title'>
                 {t('register.registerTitle')}
               </Title>
-              <Text className="register-subtitle">
+              <Text className='register-subtitle'>
                 {t('register.registerSubtitle')}
               </Text>
             </div>
 
             {/* Language Button */}
-            <div className="language-section">
+            <div className='language-section'>
               <LanguageButton />
             </div>
 
             {/* Register Form */}
             <Form
-              layout="vertical"
-              autoComplete="off"
-              size="large"
+              layout='vertical'
+              autoComplete='off'
+              size='large'
               requiredMark={false}
               onFinish={onFinish}
               form={form}
-              className="register-form"
+              className='register-form'
             >
               <Form.Item
                 label={t('register.phoneNumber')}
-                name="phoneNumber"
+                name='phoneNumber'
                 rules={[
                   { required: true, message: `${t('register.enterPhone')}` },
                   {
@@ -147,14 +148,14 @@ const Register = () => {
               >
                 <Input
                   placeholder={t('register.phoneNumber')}
-                  prefix={<PhoneOutlined className="input-icon" />}
-                  className="register-input"
+                  prefix={<PhoneOutlined className='input-icon' />}
+                  className='register-input'
                 />
               </Form.Item>
 
               <Form.Item
                 label={t('register.lastName')}
-                name="lastName"
+                name='lastName'
                 rules={[
                   {
                     required: true,
@@ -165,14 +166,14 @@ const Register = () => {
               >
                 <Input
                   placeholder={t('register.lastName')}
-                  prefix={<UserOutlined className="input-icon" />}
-                  className="register-input"
+                  prefix={<UserOutlined className='input-icon' />}
+                  className='register-input'
                 />
               </Form.Item>
 
               <Form.Item
                 label={t('register.firstName')}
-                name="firstName"
+                name='firstName'
                 rules={[
                   {
                     required: true,
@@ -183,14 +184,14 @@ const Register = () => {
               >
                 <Input
                   placeholder={t('register.firstName')}
-                  prefix={<UserOutlined className="input-icon" />}
-                  className="register-input"
+                  prefix={<UserOutlined className='input-icon' />}
+                  className='register-input'
                 />
               </Form.Item>
 
               <Form.Item
                 label={t('register.password')}
-                name="password"
+                name='password'
                 rules={[
                   { required: true, message: `${t('register.enterPassword')}` },
                   { min: 8, message: `${t('register.enterNewPasswordRegex')}` },
@@ -200,17 +201,17 @@ const Register = () => {
                 <Input.Password
                   placeholder={t('register.password')}
                   allowClear
-                  prefix={<LockOutlined className="input-icon" />}
-                  iconRender={(visible) =>
+                  prefix={<LockOutlined className='input-icon' />}
+                  iconRender={visible =>
                     visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                   }
-                  className="register-input"
+                  className='register-input'
                 />
               </Form.Item>
 
               <Form.Item
                 label={t('register.confirmPassword')}
-                name="confirmPassword"
+                name='confirmPassword'
                 rules={[
                   {
                     required: true,
@@ -233,28 +234,28 @@ const Register = () => {
                 <Input.Password
                   placeholder={t('register.confirmPassword')}
                   allowClear
-                  prefix={<LockOutlined className="input-icon" />}
-                  iconRender={(visible) =>
+                  prefix={<LockOutlined className='input-icon' />}
+                  iconRender={visible =>
                     visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                   }
-                  className="register-input"
+                  className='register-input'
                 />
               </Form.Item>
 
               {/* Register Number */}
               <FormRegisterInput
                 form={form}
-                name="register"
+                name='register'
                 required={true}
                 showIcon={true}
-                placeholder="8 орон"
+                placeholder='8 орон'
               />
 
               <Button
-                type="primary"
-                htmlType="submit"
+                type='primary'
+                htmlType='submit'
                 loading={loading}
-                className="register-button"
+                className='register-button'
                 icon={<UserAddOutlined />}
                 block
               >
@@ -263,18 +264,18 @@ const Register = () => {
             </Form>
 
             {/* Divider */}
-            <Divider className="register-divider">
-              <Text className="divider-text">{t('register.orText')}</Text>
+            <Divider className='register-divider'>
+              <Text className='divider-text'>{t('register.orText')}</Text>
             </Divider>
 
             {/* Login Link */}
-            <div className="login-section">
-              <Text className="login-text">
+            <div className='login-section'>
+              <Text className='login-text'>
                 {t('register.hasAccountText')}{' '}
                 <Button
-                  type="link"
+                  type='link'
                   onClick={() => navigate('/auth/login')}
-                  className="login-link"
+                  className='login-link'
                 >
                   {t('general.loginText')}
                 </Button>

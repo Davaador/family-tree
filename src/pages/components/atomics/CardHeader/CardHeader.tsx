@@ -68,7 +68,7 @@ const CardHeader = React.memo(
         >
           {onAddClick && (
             <Button
-              size="small"
+              size='small'
               onClick={onAddClick}
               style={{ fontSize: '12px', padding: '16px 6px' }}
             >

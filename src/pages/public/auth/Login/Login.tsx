@@ -1,19 +1,24 @@
-import {
-  EyeInvisibleOutlined,
-  EyeTwoTone,
-  LockOutlined,
-  LoginOutlined,
-  PhoneOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
-import { Button, Card, Checkbox, Divider, Form, Input, Typography } from 'antd';
+import EyeInvisibleOutlined from '@ant-design/icons/lib/icons/EyeInvisibleOutlined';
+import EyeTwoTone from '@ant-design/icons/lib/icons/EyeTwoTone';
+import LockOutlined from '@ant-design/icons/lib/icons/LockOutlined';
+import LoginOutlined from '@ant-design/icons/lib/icons/LoginOutlined';
+import PhoneOutlined from '@ant-design/icons/lib/icons/PhoneOutlined';
+import TeamOutlined from '@ant-design/icons/lib/icons/TeamOutlined';
+import UserOutlined from '@ant-design/icons/lib/icons/UserOutlined';
+import Button from 'antd/es/button';
+import Card from 'antd/es/card';
+import Checkbox from 'antd/es/checkbox';
+import Divider from 'antd/es/divider';
+import Form from 'antd/es/form';
 import { useForm } from 'antd/es/form/Form';
+import Input from 'antd/es/input';
+import Typography from 'antd/es/typography';
 import { authStore } from 'context/auth/store';
 import { LanguageButton } from 'pages/components';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
+
 import { Auth, LoginForm } from '../auth.model';
 import { login } from '../auth.service';
 import './Login.css';
@@ -49,11 +54,11 @@ const Login = () => {
   );
 
   // Destructure authStore functions to avoid potential circular references
-  const setAuthentication = authStore((state) => state.setAuthentication);
-  const setAuth = authStore((state) => state.setAuth);
-  const phone = authStore((state) => state.phone);
-  const setPhoneRemember = authStore((state) => state.setPhoneRemember);
-  const clearRemember = authStore((state) => state.clearRemember);
+  const setAuthentication = authStore(state => state.setAuthentication);
+  const setAuth = authStore(state => state.setAuth);
+  const phone = authStore(state => state.phone);
+  const setPhoneRemember = authStore(state => state.setPhoneRemember);
+  const clearRemember = authStore(state => state.clearRemember);
   const [loading, setLoading] = useState(false);
   const [form] = useForm();
 
@@ -81,7 +86,6 @@ const Login = () => {
     setLoading(true);
     login(values)
       .then((res: Auth) => {
-        console.log(values, 'test');
         if (values.rememberMe) {
           setPhoneRemember(values.phoneNumber);
         } else {
@@ -108,51 +112,51 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className='login-container'>
       {/* Background Animation */}
-      <div className="login-background">
-        <div className="floating-shapes">
-          <div className="shape shape-1"></div>
-          <div className="shape shape-2"></div>
-          <div className="shape shape-3"></div>
-          <div className="shape shape-4"></div>
+      <div className='login-background'>
+        <div className='floating-shapes'>
+          <div className='shape shape-1'></div>
+          <div className='shape shape-2'></div>
+          <div className='shape shape-3'></div>
+          <div className='shape shape-4'></div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="login-content">
+      <div className='login-content'>
         {/* Left Side - Welcome Section */}
-        <div className="login-welcome">
-          <div className="welcome-content">
-            <div className="welcome-icon">
+        <div className='login-welcome'>
+          <div className='welcome-content'>
+            <div className='welcome-icon'>
               <TeamOutlined />
             </div>
-            <Title level={1} className="welcome-title">
+            <Title level={1} className='welcome-title'>
               {getTranslation.welcomeTitle}
             </Title>
-            <Title level={3} className="welcome-subtitle">
+            <Title level={3} className='welcome-subtitle'>
               {getTranslation.welcomeSubtitle}
             </Title>
-            <Text className="welcome-description">
+            <Text className='welcome-description'>
               {getTranslation.welcomeDescription}
             </Text>
 
             {/* Features */}
-            <div className="features-list">
-              <div className="feature-item">
-                <div className="feature-icon">🌳</div>
+            <div className='features-list'>
+              <div className='feature-item'>
+                <div className='feature-icon'>🌳</div>
                 <Text>{getTranslation.featureCreateTree}</Text>
               </div>
-              <div className="feature-item">
-                <div className="feature-icon">📖</div>
+              <div className='feature-item'>
+                <div className='feature-icon'>📖</div>
                 <Text>{getTranslation.featureWriteHistory}</Text>
               </div>
-              <div className="feature-item">
-                <div className="feature-icon">📸</div>
+              <div className='feature-item'>
+                <div className='feature-icon'>📸</div>
                 <Text>{getTranslation.featureSaveMedia}</Text>
               </div>
-              <div className="feature-item">
-                <div className="feature-icon">👥</div>
+              <div className='feature-item'>
+                <div className='feature-icon'>👥</div>
                 <Text>{getTranslation.featureManageMembers}</Text>
               </div>
             </div>
@@ -160,36 +164,36 @@ const Login = () => {
         </div>
 
         {/* Right Side - Login Form */}
-        <div className="login-form-section">
-          <Card className="login-card" variant="borderless">
+        <div className='login-form-section'>
+          <Card className='login-card' variant='borderless'>
             {/* Header */}
-            <div className="login-header">
-              <div className="login-avatar">
+            <div className='login-header'>
+              <div className='login-avatar'>
                 <UserOutlined />
               </div>
-              <Title level={2} className="login-title">
+              <Title level={2} className='login-title'>
                 {getTranslation.loginTitle}
               </Title>
-              <Text className="login-subtitle">
+              <Text className='login-subtitle'>
                 {getTranslation.loginSubtitle}
               </Text>
             </div>
 
             {/* Language Button */}
-            <div className="language-section">
+            <div className='language-section'>
               <LanguageButton />
             </div>
 
             {/* Login Form */}
             <Form
-              key="login-form"
+              key='login-form'
               form={form}
               layout={'vertical'}
-              autoComplete="off"
+              autoComplete='off'
               requiredMark={false}
               size={'large'}
               onFinish={onFinish}
-              className="login-form"
+              className='login-form'
             >
               <Form.Item
                 label={getTranslation.phoneNumber}
@@ -200,8 +204,8 @@ const Login = () => {
               >
                 <Input
                   placeholder={getTranslation.phoneNumber}
-                  prefix={<PhoneOutlined className="input-icon" />}
-                  className="login-input"
+                  prefix={<PhoneOutlined className='input-icon' />}
+                  className='login-input'
                 />
               </Form.Item>
 
@@ -213,40 +217,40 @@ const Login = () => {
                 rules={passwordValidationRules}
               >
                 <Input.Password
-                  autoComplete="off"
+                  autoComplete='off'
                   placeholder={getTranslation.password}
-                  prefix={<LockOutlined className="input-icon" />}
-                  iconRender={(visible) =>
+                  prefix={<LockOutlined className='input-icon' />}
+                  iconRender={visible =>
                     visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                   }
-                  className="login-input"
+                  className='login-input'
                 />
               </Form.Item>
 
-              <div className="login-options">
+              <div className='login-options'>
                 <Form.Item
-                  name="rememberMe"
-                  valuePropName="checked"
-                  className="remember-me"
+                  name='rememberMe'
+                  valuePropName='checked'
+                  className='remember-me'
                 >
-                  <Checkbox className="custom-checkbox">
+                  <Checkbox className='custom-checkbox'>
                     {getTranslation.remember}
                   </Checkbox>
                 </Form.Item>
                 <Button
-                  type="link"
+                  type='link'
                   onClick={onClickReset}
-                  className="reset-link"
+                  className='reset-link'
                 >
                   {getTranslation.resetPassword}
                 </Button>
               </div>
 
               <Button
-                type="primary"
-                htmlType="submit"
+                type='primary'
+                htmlType='submit'
                 loading={loading}
-                className="login-button"
+                className='login-button'
                 icon={<LoginOutlined />}
                 block
               >
@@ -255,15 +259,15 @@ const Login = () => {
             </Form>
 
             {/* Divider */}
-            <Divider className="login-divider">
-              <Text className="divider-text">{t('login.orText')}</Text>
+            <Divider className='login-divider'>
+              <Text className='divider-text'>{t('login.orText')}</Text>
             </Divider>
 
             {/* Register Link */}
-            <div className="register-section">
-              <Text className="register-text">
+            <div className='register-section'>
+              <Text className='register-text'>
                 {t('login.noAccountText')}{' '}
-                <Link to={'/auth/register'} className="register-link">
+                <Link to={'/auth/register'} className='register-link'>
                   {t('login.register')}
                 </Link>
               </Text>
