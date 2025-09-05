@@ -28,6 +28,16 @@ function findAllActiveCustomers(): Promise<CustomerDetail[]> {
   return apiClient.get('/api/customer/all');
 }
 
+function getAvailableSpouses(): Promise<CustomerModel.Customer[]> {
+  return apiClient.get('/api/customer/couple/all');
+}
+
+function getAvailableSpousesForCustomer(
+  customerId: number
+): Promise<CustomerModel.Customer[]> {
+  return apiClient.get(`/api/admin/customers/${customerId}/available-spouses`);
+}
+
 export {
   createBiography,
   createCouple,
@@ -35,4 +45,6 @@ export {
   getDashboard,
   editCustomerInfo,
   findAllActiveCustomers,
+  getAvailableSpouses,
+  getAvailableSpousesForCustomer,
 };

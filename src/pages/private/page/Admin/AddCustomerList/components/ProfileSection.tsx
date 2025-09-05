@@ -114,10 +114,12 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
           }
           options={[
             { value: '', label: 'Сонгохгүй' },
-            ...(parents || []).map((p: CustomerModel.Customer) => ({
-              value: p.id,
-              label: renderLastName(p.lastName, p.firstName),
-            })),
+            ...(Array.isArray(parents) ? parents : []).map(
+              (p: CustomerModel.Customer) => ({
+                value: p.id,
+                label: renderLastName(p.lastName, p.firstName),
+              })
+            ),
           ]}
           filterOption={(input, option) =>
             typeof option?.label === 'string' &&
