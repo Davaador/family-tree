@@ -343,5 +343,83 @@
       "success": "Гурван үеийн намтар амжилттай татагдлаа",
       "error": "Гурван үеийн намтар татахад алдаа гарлаа"
     }
+  },
+  "customerList": {
+    "title": "Харилцагчдын жагсаалт",
+    "subtitle": "Бүртгэлтэй харилцагчдын мэдээллийг харах, удирдах",
+    "search": {
+      "field": "Хайх талбар",
+      "value": "Хайх утга",
+      "valuePlaceholder": "Хайх утга оруулна уу",
+      "searchButton": "Хайх",
+      "advancedFilters": "Дэлгэрэнгүй шүүлт",
+      "advancedFiltersShort": "Шүүлт",
+      "clearFilters": "Цэвэрлэх",
+      "close": "Хаах",
+      "advancedSearch": "Дэлгэрэнгүй хайх",
+      "advancedSearchShort": "Хайх"
+    },
+    "filters": {
+      "phoneNumber": "Утасны дугаар",
+      "lastName": "Овог",
+      "firstName": "Нэр",
+      "email": "И-мэйл",
+      "register": "Регистр",
+      "gender": "Хүйс",
+      "genderPlaceholder": "Хүйс сонгох",
+      "genderOptions": {
+        "all": "Бүгд",
+        "male": "Эрэгтэй",
+        "female": "Эмэгтэй"
+      },
+      "childType": "Хүүхдийн төрөл",
+      "childTypePlaceholder": "Хүүхдийн төрөл",
+      "childTypeOptions": {
+        "all": "Бүгд",
+        "born": "Төрсөн хүүхэд",
+        "sonInLaw": "Хүргэн",
+        "daughterInLaw": "Бэр"
+      },
+      "minAge": "Хамгийн бага нас",
+      "maxAge": "Хамгийн их нас",
+      "agePlaceholder": "Нас",
+      "birthDateFrom": "Төрсөн огноо (эхлэх)",
+      "birthDateTo": "Төрсөн огноо (дуусах)",
+      "birthDateFromPlaceholder": "Эхлэх огноо",
+      "birthDateToPlaceholder": "Дуусах огноо",
+      "isDeceased": "Нас барсан эсэх",
+      "isDeceasedPlaceholder": "Нас барсан эсэх",
+      "isDeceasedOptions": {
+        "all": "Бүгд",
+        "yes": "Тийм",
+        "no": "Үгүй"
+      }
+    },
+    "table": {
+      "columns": {
+        "avatar": "Зураг",
+        "name": "Нэр",
+        "phone": "Утас",
+        "age": "Нас",
+        "birthDate": "Төрсөн огноо",
+        "gender": "Хүйс",
+        "actions": "Үйлдлүүд"
+      },
+      "gender": {
+        "male": "Эрэгтэй",
+        "female": "Эмэгтэй"
+      },
+      "actions": {
+        "view": "Харах",
+        "edit": "Засах",
+        "delete": "Устгах"
+      },
+      "noData": "Мэдээлэл олдсонгүй",
+      "loading": "Ачааллаж байна..."
+    },
+    "pagination": {
+      "total": "Нийт {{total}} бичлэг",
+      "showing": "{{start}}-{{end}} / {{total}} харуулж байна"
+    }
   }
 }

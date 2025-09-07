@@ -150,6 +150,64 @@
     width: 24px;
     height: 24px;
   }
+
+  /* Mobile search form adjustments */
+  .ant-form-item-label {
+    padding-bottom: 4px;
+  }
+
+  .ant-form-item-label > label {
+    font-size: 12px;
+  }
+
+  /* Mobile button adjustments */
+  .ant-btn {
+    font-size: 12px;
+    height: 36px;
+  }
+
+  /* Mobile input adjustments */
+  .ant-input,
+  .ant-select-selector {
+    height: 36px;
+    font-size: 14px;
+  }
+
+  /* Mobile table adjustments */
+  .ant-table-pagination {
+    text-align: center;
+  }
+
+  .ant-pagination-item,
+  .ant-pagination-prev,
+  .ant-pagination-next {
+    min-width: 28px;
+    height: 28px;
+    line-height: 26px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .customer-table .ant-table {
+    font-size: 11px;
+  }
+
+  .customer-table .ant-table-thead > tr > th,
+  .customer-table .ant-table-tbody > tr > td {
+    padding: 6px 8px;
+  }
+
+  /* Very small screens - hide some columns */
+  .customer-table .ant-table-thead > tr > th:nth-child(3),
+  .customer-table .ant-table-tbody > tr > td:nth-child(3) {
+    display: none;
+  }
+
+  .customer-table .ant-table-thead > tr > th:nth-child(4),
+  .customer-table .ant-table-tbody > tr > td:nth-child(4) {
+    display: none;
+  }
 }
 
 /* Loading State */
@@ -170,4 +228,51 @@
 
 .customer-table .ant-tooltip-arrow::before {
   background-color: #333;
+}
+
+/* Select Dropdown Styling */
+.ant-select-dropdown {
+  z-index: 9999 !important;
+}
+
+.ant-select-dropdown.ant-select-dropdown-placement-bottomLeft {
+  z-index: 9999 !important;
+}
+
+.ant-select-dropdown.ant-select-dropdown-placement-topLeft {
+  z-index: 9999 !important;
+}
+
+/* DatePicker Dropdown Styling */
+.ant-picker-dropdown {
+  z-index: 9999 !important;
+}
+
+.ant-picker-dropdown.ant-picker-dropdown-placement-bottomLeft {
+  z-index: 9999 !important;
+}
+
+.ant-picker-dropdown.ant-picker-dropdown-placement-topLeft {
+  z-index: 9999 !important;
+}
+
+/* Modal z-index fix */
+.ant-modal {
+  z-index: 10000 !important;
+}
+
+.ant-modal-mask {
+  z-index: 9999 !important;
+}
+
+/* Card z-index fix for advanced filters */
+.ant-card {
+  position: relative;
+  z-index: 1;
+}
+
+/* Form z-index fix */
+.ant-form {
+  position: relative;
+  z-index: 1;
 }
