@@ -1,27 +1,32 @@
 import {
-  SearchOutlined,
-  EyeOutlined,
-  UserOutlined,
-  PhoneOutlined,
   CalendarOutlined,
+  ClearOutlined,
+  EyeOutlined,
+  FilterOutlined,
+  PhoneOutlined,
+  SearchOutlined,
+  SortAscendingOutlined,
+  SortDescendingOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
 import {
+  Avatar,
   Button,
   Card,
   Col,
+  DatePicker,
+  Divider,
   Form,
   Input,
+  InputNumber,
   Row,
   Select,
+  Space,
   Table,
   TableProps,
-  Typography,
-  Space,
   Tag,
-  Avatar,
   Tooltip,
 } from 'antd';
-import { useForm } from 'antd/es/form/Form';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -44,10 +49,16 @@ const CustomerList = () => {
   const { customers } = useLoaderData() as CustomerListProps;
   const [totalSize, setTotalSize] = useState<CustomerListData>(customers);
   const navigate = useNavigate();
-  const [form] = useForm();
+  const [form] = Form.useForm();
+  const [advancedForm] = Form.useForm();
   const [selectedCustomer, setSelectedCustomer] =
     useState<CustomerDetail | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [currentSortField, setCurrentSortField] = useState('birthDate');
+  const [currentSortOrder, setCurrentSortOrder] = useState<
+    'ascend' | 'descend'
+  >('ascend');
 
   useEffect(() => {
     setTotalSize(customers);
@@ -72,7 +83,9 @@ const CustomerList = () => {
   };
 
   const getGenderText = (gender: string) => {
-    return gender === '0' ? 'Эрэгтэй' : 'Эмэгтэй';
+    return gender === '0'
+      ? t('customerList.table.gender.male')
+      : t('customerList.table.gender.female');
   };
 
   const columns: TableProps<CustomerDetail>['columns'] = [
@@ -84,7 +97,24 @@ const CustomerList = () => {
         customers.currentPage * customers.perPage + index + 1,
     },
     {
-      title: t('register.lastName'),
+      title: (
+        <div
+          className='flex items-center gap-2 cursor-pointer'
+          onClick={() => onSortChange('lastName')}
+          onKeyDown={e => e.key === 'Enter' && onSortChange('lastName')}
+          role='button'
+          tabIndex={0}
+        >
+          <UserOutlined style={{ color: '#65eaae' }} />
+          <span>{t('customerList.table.columns.name')}</span>
+          {currentSortField === 'lastName' &&
+            (currentSortOrder === 'ascend' ? (
+              <SortAscendingOutlined />
+            ) : (
+              <SortDescendingOutlined />
+            ))}
+        </div>
+      ),
       dataIndex: 'lastName',
       key: 'lastName',
       width: '15%',
@@ -103,7 +133,7 @@ const CustomerList = () => {
       ),
     },
     {
-      title: t('register.phoneNumber'),
+      title: t('customerList.table.columns.phone'),
       dataIndex: 'phoneNumber',
       key: 'phoneNumber',
       width: '15%',
@@ -115,7 +145,7 @@ const CustomerList = () => {
       ),
     },
     {
-      title: t('register.registerNumber'),
+      title: t('customerList.filters.register'),
       dataIndex: 'register',
       key: 'register',
       width: '20%',
@@ -126,7 +156,7 @@ const CustomerList = () => {
       ),
     },
     {
-      title: 'Хүйс',
+      title: t('customerList.table.columns.gender'),
       dataIndex: 'gender',
       key: 'gender',
       width: '10%',
@@ -137,29 +167,67 @@ const CustomerList = () => {
       ),
     },
     {
-      title: t('register.birthday'),
+      title: (
+        <div
+          className='flex items-center gap-2 cursor-pointer'
+          onClick={() => onSortChange('age')}
+          onKeyDown={e => e.key === 'Enter' && onSortChange('age')}
+          role='button'
+          tabIndex={0}
+        >
+          <span>{t('customerList.table.columns.age')}</span>
+          {currentSortField === 'age' &&
+            (currentSortOrder === 'ascend' ? (
+              <SortAscendingOutlined />
+            ) : (
+              <SortDescendingOutlined />
+            ))}
+        </div>
+      ),
+      dataIndex: 'age',
+      key: 'age',
+      width: '8%',
+      render: (age: number) => (
+        <Tag color='blue' style={{ border: 'none' }}>
+          {age || '-'}
+        </Tag>
+      ),
+    },
+    {
+      title: (
+        <div
+          className='flex items-center gap-2 cursor-pointer'
+          onClick={() => onSortChange('birthDate')}
+          onKeyDown={e => e.key === 'Enter' && onSortChange('birthDate')}
+          role='button'
+          tabIndex={0}
+        >
+          <CalendarOutlined style={{ color: '#65eaae' }} />
+          <span>{t('customerList.table.columns.birthDate')}</span>
+          {currentSortField === 'birthDate' &&
+            (currentSortOrder === 'ascend' ? (
+              <SortAscendingOutlined />
+            ) : (
+              <SortDescendingOutlined />
+            ))}
+        </div>
+      ),
       dataIndex: 'birthDate',
       key: 'birthDate',
       width: '15%',
       render: date => (
         <div className='flex items-center gap-2'>
-          <CalendarOutlined style={{ color: '#65eaae' }} />
           <span>{date ? dayjs(date).format('YYYY-MM-DD') : '-'}</span>
         </div>
       ),
-      sorter: (a, b) => {
-        const dateA = a.birthDate ? dayjs(a.birthDate).valueOf() : 0;
-        const dateB = b.birthDate ? dayjs(b.birthDate).valueOf() : 0;
-        return dateA - dateB;
-      },
     },
     {
-      title: 'Үйлдэл',
+      title: t('customerList.table.columns.actions'),
       key: 'action',
       width: '10%',
       render: (_: any, record: CustomerDetail) => (
         <Space size='small'>
-          <Tooltip title='Дэлгэрэнгүй харах'>
+          <Tooltip title={t('customerList.table.actions.view')}>
             <Button
               type='text'
               icon={<EyeOutlined />}
@@ -173,11 +241,20 @@ const CustomerList = () => {
     },
   ];
 
-  const handleTableChange = (pagination: any, _filters: any, sorter: any) => {
+  const handleTableChange = (pagination: any, _filters: any, _sorter: any) => {
+    const basicValues = form.getFieldsValue();
+    const advancedValues = advancedForm.getFieldsValue();
+    const filters = {
+      ...advancedValues,
+      sortField: currentSortField,
+    };
     fetchData(
       pagination.pageSize,
       pagination.current - 1,
-      sorter.order === 'ascend' ? 1 : 0
+      currentSortOrder === 'ascend' ? 1 : 0,
+      basicValues.label,
+      basicValues.value,
+      filters
     );
   };
 
@@ -186,10 +263,29 @@ const CustomerList = () => {
     page: number,
     isSortAscending: number,
     searchLabel?: string,
-    searchValue?: string
+    searchValue?: string,
+    filters?: {
+      email?: string;
+      register?: string;
+      gender?: string;
+      minAge?: number;
+      maxAge?: number;
+      birthDateFrom?: string;
+      birthDateTo?: string;
+      isDeceased?: boolean;
+      isParent?: number;
+      sortField?: string;
+    }
   ) => {
     setLoading(true);
-    getActiveCustomerList(size, page, isSortAscending, searchLabel, searchValue)
+    getActiveCustomerList(
+      size,
+      page,
+      isSortAscending,
+      searchLabel,
+      searchValue,
+      filters
+    )
       .then((res: CustomerListData) => {
         setTotalSize(res);
         setLoading(false);
@@ -200,7 +296,95 @@ const CustomerList = () => {
   };
 
   const onSearch = (values: { label: string; value: string }) => {
-    fetchData(10, 0, 1, values.label, values.value);
+    // Don't search if value is empty
+    if (!values.value || values.value.trim() === '') {
+      return;
+    }
+
+    const advancedValues = advancedForm.getFieldsValue();
+    const filters = {
+      ...advancedValues,
+      sortField: currentSortField,
+    };
+    fetchData(
+      10,
+      0,
+      currentSortOrder === 'ascend' ? 1 : 0,
+      values.label,
+      values.value,
+      filters
+    );
+  };
+
+  const onAdvancedSearch = (values: any) => {
+    const basicValues = form.getFieldsValue();
+
+    // Check if any search criteria is provided
+    const hasSearchCriteria =
+      (basicValues.value && basicValues.value.trim() !== '') ||
+      (values.email && values.email.trim() !== '') ||
+      (values.register && values.register.trim() !== '') ||
+      (values.gender !== undefined &&
+        values.gender !== null &&
+        values.gender !== '') ||
+      (values.minAge !== undefined && values.minAge !== null) ||
+      (values.maxAge !== undefined && values.maxAge !== null) ||
+      values.birthDateFrom ||
+      values.birthDateTo ||
+      (values.isDeceased !== undefined && values.isDeceased !== null) ||
+      (values.isParent !== undefined &&
+        values.isParent !== null &&
+        values.isParent !== '');
+
+    // Don't search if no criteria is provided
+    if (!hasSearchCriteria) {
+      return;
+    }
+
+    const filters = {
+      ...values,
+      sortField: currentSortField,
+    };
+    fetchData(
+      10,
+      0,
+      currentSortOrder === 'ascend' ? 1 : 0,
+      basicValues.label,
+      basicValues.value,
+      filters
+    );
+  };
+
+  const onClearFilters = () => {
+    form.resetFields();
+    advancedForm.resetFields();
+    setCurrentSortField('birthDate');
+    setCurrentSortOrder('ascend');
+    fetchData(10, 0, 1);
+  };
+
+  const onSortChange = (field: string) => {
+    const newOrder =
+      currentSortField === field && currentSortOrder === 'ascend'
+        ? 'descend'
+        : 'ascend';
+    setCurrentSortField(field);
+    setCurrentSortOrder(newOrder);
+
+    const basicValues = form.getFieldsValue();
+    const advancedValues = advancedForm.getFieldsValue();
+    const filters = {
+      ...advancedValues,
+      sortField: field,
+    };
+    fetchData(
+      10,
+      0,
+      newOrder === 'ascend' ? 1 : 0,
+      basicValues.label,
+      basicValues.value,
+      filters
+    );
   };
 
   return (
@@ -209,49 +393,354 @@ const CustomerList = () => {
         {/* Header */}
         <div className='text-center mb-8'>
           <h1 className='text-3xl font-bold text-gray-800 mb-2'>
-            Харилцагчдын жагсаалт
+            {t('customerList.title')}
           </h1>
-          <p className='text-gray-600'>
-            Бүртгэлтэй харилцагчдын мэдээллийг харах, удирдах
-          </p>
+          <p className='text-gray-600'>{t('customerList.subtitle')}</p>
         </div>
 
         {/* Main Content */}
         <Card className='shadow-xl border-0 rounded-2xl'>
           {/* Search Section */}
           <Row gutter={[12, 12]} className='mb-6'>
-            <Col xs={24} sm={12}>
+            {/* Search Form */}
+            <Col xs={24} lg={16}>
               <Form
                 form={form}
-                className='flex justify-between h-10'
+                layout='vertical'
                 onFinish={onSearch}
                 initialValues={{ label: 'phoneNumber' }}
               >
-                <CustomFormItem name={'label'} className='w-1/3'>
-                  <Select
-                    options={[
-                      { value: 'phoneNumber', label: 'Утасны дугаар' },
-                      { value: 'lastName', label: 'Овог' },
-                      { value: 'firstName', label: 'Нэр' },
-                    ]}
-                  />
-                </CustomFormItem>
-                <CustomFormItem name={'value'} className='w-1/3'>
-                  <Input placeholder='Хайх утга' />
-                </CustomFormItem>
-                <Button
-                  size='middle'
-                  type='primary'
-                  className='h-10'
-                  htmlType='submit'
-                  icon={<SearchOutlined />}
-                  style={{ backgroundColor: '#65eaae', borderColor: '#65eaae' }}
-                >
-                  <Typography.Text>Хайх</Typography.Text>
-                </Button>
+                <Row gutter={[8, 8]} align='bottom'>
+                  <Col xs={24} sm={8} md={6}>
+                    <CustomFormItem
+                      name={'label'}
+                      label={t('customerList.search.field')}
+                    >
+                      <Select
+                        getPopupContainer={trigger => trigger.parentElement}
+                        options={[
+                          {
+                            value: 'phoneNumber',
+                            label: t('customerList.filters.phoneNumber'),
+                          },
+                          {
+                            value: 'lastName',
+                            label: t('customerList.filters.lastName'),
+                          },
+                          {
+                            value: 'firstName',
+                            label: t('customerList.filters.firstName'),
+                          },
+                          {
+                            value: 'email',
+                            label: t('customerList.filters.email'),
+                          },
+                          {
+                            value: 'register',
+                            label: t('customerList.filters.register'),
+                          },
+                        ]}
+                      />
+                    </CustomFormItem>
+                  </Col>
+                  <Col xs={24} sm={12} md={10}>
+                    <CustomFormItem
+                      name={'value'}
+                      label={t('customerList.search.value')}
+                    >
+                      <Input
+                        placeholder={t('customerList.search.valuePlaceholder')}
+                      />
+                    </CustomFormItem>
+                  </Col>
+                  <Col xs={24} sm={4} md={4}>
+                    <Button
+                      size='middle'
+                      type='primary'
+                      htmlType='submit'
+                      icon={<SearchOutlined />}
+                      style={{
+                        backgroundColor: '#65eaae',
+                        borderColor: '#65eaae',
+                      }}
+                      block
+                    >
+                      <span className='hidden sm:inline'>
+                        {t('customerList.search.searchButton')}
+                      </span>
+                    </Button>
+                  </Col>
+                </Row>
               </Form>
             </Col>
+
+            {/* Action Buttons */}
+            <Col xs={24} lg={8}>
+              <div className='flex flex-col sm:flex-row gap-2 sm:justify-end'>
+                <Button
+                  icon={<FilterOutlined />}
+                  onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+                  type={showAdvancedFilters ? 'primary' : 'default'}
+                  block
+                  className='sm:w-auto'
+                >
+                  <span className='hidden sm:inline'>
+                    {t('customerList.search.advancedFilters')}
+                  </span>
+                  <span className='sm:hidden'>
+                    {t('customerList.search.advancedFiltersShort')}
+                  </span>
+                </Button>
+                <Button
+                  icon={<ClearOutlined />}
+                  onClick={onClearFilters}
+                  type='default'
+                  block
+                  className='sm:w-auto'
+                >
+                  <span className='hidden sm:inline'>
+                    {t('customerList.search.clearFilters')}
+                  </span>
+                  <span className='sm:hidden'>
+                    {t('customerList.search.clearFilters')}
+                  </span>
+                </Button>
+              </div>
+            </Col>
           </Row>
+
+          {/* Advanced Filters */}
+          {showAdvancedFilters && (
+            <Card className='mb-6' style={{ backgroundColor: '#f8f9fa' }}>
+              <Form
+                form={advancedForm}
+                layout='vertical'
+                onFinish={onAdvancedSearch}
+                initialValues={{
+                  gender: undefined,
+                  isDeceased: undefined,
+                  isParent: undefined,
+                }}
+              >
+                <Row gutter={[12, 12]}>
+                  <Col xs={24} sm={12} md={8} lg={6}>
+                    <CustomFormItem
+                      name='email'
+                      label={t('customerList.filters.email')}
+                    >
+                      <Input placeholder={t('customerList.filters.email')} />
+                    </CustomFormItem>
+                  </Col>
+                  <Col xs={24} sm={12} md={8} lg={6}>
+                    <CustomFormItem
+                      name='register'
+                      label={t('customerList.filters.register')}
+                    >
+                      <Input placeholder={t('customerList.filters.register')} />
+                    </CustomFormItem>
+                  </Col>
+                  <Col xs={24} sm={12} md={8} lg={6}>
+                    <CustomFormItem
+                      name='gender'
+                      label={t('customerList.filters.gender')}
+                    >
+                      <Select
+                        getPopupContainer={trigger =>
+                          trigger.parentElement || document.body
+                        }
+                        placeholder={t(
+                          'customerList.filters.genderPlaceholder'
+                        )}
+                        options={[
+                          {
+                            value: '',
+                            label: t('customerList.filters.genderOptions.all'),
+                          },
+                          {
+                            value: '0',
+                            label: t('customerList.filters.genderOptions.male'),
+                          },
+                          {
+                            value: '1',
+                            label: t(
+                              'customerList.filters.genderOptions.female'
+                            ),
+                          },
+                        ]}
+                      />
+                    </CustomFormItem>
+                  </Col>
+                  <Col xs={24} sm={12} md={8} lg={6}>
+                    <CustomFormItem
+                      name='isParent'
+                      label={t('customerList.filters.childType')}
+                    >
+                      <Select
+                        getPopupContainer={trigger =>
+                          trigger.parentElement || document.body
+                        }
+                        placeholder={t(
+                          'customerList.filters.childTypePlaceholder'
+                        )}
+                        options={[
+                          {
+                            value: '',
+                            label: t(
+                              'customerList.filters.childTypeOptions.all'
+                            ),
+                          },
+                          {
+                            value: 0,
+                            label: t(
+                              'customerList.filters.childTypeOptions.born'
+                            ),
+                          },
+                          {
+                            value: 1,
+                            label: t(
+                              'customerList.filters.childTypeOptions.sonInLaw'
+                            ),
+                          },
+                          {
+                            value: 2,
+                            label: t(
+                              'customerList.filters.childTypeOptions.daughterInLaw'
+                            ),
+                          },
+                        ]}
+                      />
+                    </CustomFormItem>
+                  </Col>
+                  <Col xs={24} sm={12} md={8} lg={6}>
+                    <CustomFormItem
+                      name='minAge'
+                      label={t('customerList.filters.minAge')}
+                    >
+                      <InputNumber
+                        placeholder={t('customerList.filters.agePlaceholder')}
+                        min={0}
+                        max={150}
+                        style={{ width: '100%' }}
+                      />
+                    </CustomFormItem>
+                  </Col>
+                  <Col xs={24} sm={12} md={8} lg={6}>
+                    <CustomFormItem
+                      name='maxAge'
+                      label={t('customerList.filters.maxAge')}
+                    >
+                      <InputNumber
+                        placeholder={t('customerList.filters.agePlaceholder')}
+                        min={0}
+                        max={150}
+                        style={{ width: '100%' }}
+                      />
+                    </CustomFormItem>
+                  </Col>
+                  <Col xs={24} sm={12} md={8} lg={6}>
+                    <CustomFormItem
+                      name='birthDateFrom'
+                      label={t('customerList.filters.birthDateFrom')}
+                    >
+                      <DatePicker
+                        getPopupContainer={trigger =>
+                          trigger.parentElement || document.body
+                        }
+                        style={{ width: '100%' }}
+                        placeholder={t(
+                          'customerList.filters.birthDateFromPlaceholder'
+                        )}
+                      />
+                    </CustomFormItem>
+                  </Col>
+                  <Col xs={24} sm={12} md={8} lg={6}>
+                    <CustomFormItem
+                      name='birthDateTo'
+                      label={t('customerList.filters.birthDateTo')}
+                    >
+                      <DatePicker
+                        getPopupContainer={trigger =>
+                          trigger.parentElement || document.body
+                        }
+                        style={{ width: '100%' }}
+                        placeholder={t(
+                          'customerList.filters.birthDateToPlaceholder'
+                        )}
+                      />
+                    </CustomFormItem>
+                  </Col>
+                  <Col xs={24} sm={12} md={8} lg={6}>
+                    <CustomFormItem
+                      name='isDeceased'
+                      label={t('customerList.filters.isDeceased')}
+                      valuePropName='checked'
+                    >
+                      <Select
+                        getPopupContainer={trigger =>
+                          trigger.parentElement || document.body
+                        }
+                        placeholder={t(
+                          'customerList.filters.isDeceasedPlaceholder'
+                        )}
+                        options={[
+                          {
+                            value: '',
+                            label: t(
+                              'customerList.filters.isDeceasedOptions.all'
+                            ),
+                          },
+                          {
+                            value: true,
+                            label: t(
+                              'customerList.filters.isDeceasedOptions.yes'
+                            ),
+                          },
+                          {
+                            value: false,
+                            label: t(
+                              'customerList.filters.isDeceasedOptions.no'
+                            ),
+                          },
+                        ]}
+                      />
+                    </CustomFormItem>
+                  </Col>
+                </Row>
+                <Divider />
+                <Row justify='center'>
+                  <Col xs={24} sm={12} md={8} lg={6}>
+                    <div className='flex flex-col sm:flex-row gap-2'>
+                      <Button
+                        onClick={() => setShowAdvancedFilters(false)}
+                        block
+                        className='sm:w-auto'
+                      >
+                        {t('customerList.search.close')}
+                      </Button>
+                      <Button
+                        type='primary'
+                        htmlType='submit'
+                        icon={<SearchOutlined />}
+                        style={{
+                          backgroundColor: '#65eaae',
+                          borderColor: '#65eaae',
+                        }}
+                        block
+                        className='sm:w-auto'
+                      >
+                        <span className='hidden sm:inline'>
+                          {t('customerList.search.advancedSearch')}
+                        </span>
+                        <span className='sm:hidden'>
+                          {t('customerList.search.advancedSearchShort')}
+                        </span>
+                      </Button>
+                    </div>
+                  </Col>
+                </Row>
+              </Form>
+            </Card>
+          )}
 
           {/* Table */}
           <Table

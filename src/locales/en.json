@@ -293,5 +293,83 @@
       "success": "Three generations biography exported successfully",
       "error": "Error exporting three generations biography"
     }
+  },
+  "customerList": {
+    "title": "Customer List",
+    "subtitle": "View and manage registered customer information",
+    "search": {
+      "field": "Search Field",
+      "value": "Search Value",
+      "valuePlaceholder": "Enter search value",
+      "searchButton": "Search",
+      "advancedFilters": "Advanced Filters",
+      "advancedFiltersShort": "Filters",
+      "clearFilters": "Clear",
+      "close": "Close",
+      "advancedSearch": "Advanced Search",
+      "advancedSearchShort": "Search"
+    },
+    "filters": {
+      "phoneNumber": "Phone Number",
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "email": "Email",
+      "register": "Register",
+      "gender": "Gender",
+      "genderPlaceholder": "Select Gender",
+      "genderOptions": {
+        "all": "All",
+        "male": "Male",
+        "female": "Female"
+      },
+      "childType": "Child Type",
+      "childTypePlaceholder": "Child Type",
+      "childTypeOptions": {
+        "all": "All",
+        "born": "Born Child",
+        "sonInLaw": "Son-in-law",
+        "daughterInLaw": "Daughter-in-law"
+      },
+      "minAge": "Minimum Age",
+      "maxAge": "Maximum Age",
+      "agePlaceholder": "Age",
+      "birthDateFrom": "Birth Date (From)",
+      "birthDateTo": "Birth Date (To)",
+      "birthDateFromPlaceholder": "Start Date",
+      "birthDateToPlaceholder": "End Date",
+      "isDeceased": "Deceased Status",
+      "isDeceasedPlaceholder": "Deceased Status",
+      "isDeceasedOptions": {
+        "all": "All",
+        "yes": "Yes",
+        "no": "No"
+      }
+    },
+    "table": {
+      "columns": {
+        "avatar": "Avatar",
+        "name": "Name",
+        "phone": "Phone",
+        "age": "Age",
+        "birthDate": "Birth Date",
+        "gender": "Gender",
+        "actions": "Actions"
+      },
+      "gender": {
+        "male": "Male",
+        "female": "Female"
+      },
+      "actions": {
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "noData": "No data found",
+      "loading": "Loading..."
+    },
+    "pagination": {
+      "total": "Total {{total}} records",
+      "showing": "Showing {{start}}-{{end}} / {{total}}"
+    }
   }
 }

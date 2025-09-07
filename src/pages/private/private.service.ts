@@ -53,12 +53,32 @@ function getActiveCustomerList(
   page: number,
   isSortAscending: number,
   searchLabel?: string,
-  searchValue?: string
+  searchValue?: string,
+  filters?: {
+    email?: string;
+    register?: string;
+    gender?: string;
+    minAge?: number;
+    maxAge?: number;
+    birthDateFrom?: string;
+    birthDateTo?: string;
+    isDeceased?: boolean;
+    isParent?: number;
+    sortField?: string;
+  }
 ): Promise<CustomerListData> {
   let url = `/api/customer/active/all?size=${size}&page=${page}&isSortAscending=${isSortAscending}`;
 
   if (searchLabel && searchValue) {
     url += `&${searchLabel}=${encodeURIComponent(searchValue)}`;
+  }
+
+  if (filters) {
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        url += `&${key}=${encodeURIComponent(value.toString())}`;
+      }
+    });
   }
 
   return apiClient.get(url, {});
