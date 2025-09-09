@@ -1,7 +1,7 @@
 import { Layout, Row, Col } from 'antd';
 import { authStore } from 'context/auth/store';
 import { RolesConstants } from 'context/constants/auth.constants';
-import { CustomerModel } from 'context/entities/customer.model';
+import { CustomerModel } from 'types/customer.types';
 import { EditUserModal } from 'pages/components';
 import { DashboardProps } from 'pages/private/private.model';
 import { getChildList } from 'pages/private/private.service';
@@ -15,6 +15,7 @@ import {
   RecentChildrenSection,
   SystemStatusSection,
 } from './components';
+import BirthOrderCard from './components/BirthOrderCard';
 import './Dashboard.less';
 
 const Dashboard = () => {
@@ -72,6 +73,17 @@ const Dashboard = () => {
             dashboardData={dashboardData}
             childrenCount={childrenData.length}
           />
+        </Row>
+
+        <Row gutter={[24, 24]} className='birth-order-section'>
+          <Col xs={24} sm={12} md={8} lg={6}>
+            <BirthOrderCard
+              birthOrderData={{
+                birthOrder: dashboardData.birthOrder,
+                totalChildren: dashboardData.activeCount,
+              }}
+            />
+          </Col>
         </Row>
 
         <Row gutter={[24, 24]} className='actions-section'>

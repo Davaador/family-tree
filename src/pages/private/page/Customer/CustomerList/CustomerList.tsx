@@ -137,10 +137,10 @@ const CustomerList = () => {
       dataIndex: 'phoneNumber',
       key: 'phoneNumber',
       width: '15%',
-      render: (text: string) => (
+      render: (text: string, record: CustomerDetail) => (
         <div className='flex items-center gap-2'>
           <PhoneOutlined style={{ color: '#65eaae' }} />
-          <span>{text}</span>
+          <span>{record.isDeceased ? '***' : text}</span>
         </div>
       ),
     },
@@ -149,9 +149,9 @@ const CustomerList = () => {
       dataIndex: 'register',
       key: 'register',
       width: '20%',
-      render: (text: string) => (
+      render: (text: string, record: CustomerDetail) => (
         <Tag color='#65eaae' style={{ border: 'none' }}>
-          {text}
+          {record.isDeceased ? '***' : text}
         </Tag>
       ),
     },
@@ -187,9 +187,9 @@ const CustomerList = () => {
       dataIndex: 'age',
       key: 'age',
       width: '8%',
-      render: (age: number) => (
+      render: (age: number, record: CustomerDetail) => (
         <Tag color='blue' style={{ border: 'none' }}>
-          {age || '-'}
+          {record.isDeceased ? '***' : age || '-'}
         </Tag>
       ),
     },

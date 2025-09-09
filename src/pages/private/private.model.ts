@@ -27,6 +27,7 @@ export interface DashboardData {
   total: number;
   activeCount: number;
   pendingCount: number;
+  birthOrder: number; // Which child they are (1st, 2nd, 3rd, etc.)
 }
 
 export interface DashboardProps {

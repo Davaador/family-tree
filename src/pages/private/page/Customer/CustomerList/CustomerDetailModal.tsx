@@ -64,10 +64,12 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
             icon={<UserOutlined />}
           />
           <div>
-            <Title level={4} style={{ margin: 0, color: '#65eaae' }}>
+            <Title level={4} style={{ margin: 0, color: 'white' }}>
               Харилцагчийн дэлгэрэнгүй мэдээлэл
             </Title>
-            <Text type='secondary' style={{ fontSize: '14px' }}>
+            <Text
+              style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)' }}
+            >
               ID: {customer.id}
             </Text>
           </div>
@@ -94,6 +96,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
       width={800}
       centered
       className='customer-detail-modal'
+      zIndex={10001}
     >
       <div className='p-4'>
         {/* Header Section */}
@@ -128,7 +131,9 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                   </Tag>
                   {customer.birthDate && (
                     <Tag color='white' style={{ color: '#65eaae' }}>
-                      {getAge(customer.birthDate)} настай
+                      {customer.isDeceased
+                        ? '***'
+                        : `${getAge(customer.birthDate)} настай`}
                     </Tag>
                   )}
                 </Space>
@@ -146,7 +151,9 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                 <div>
                   <Text strong>Утасны дугаар</Text>
                   <br />
-                  <Text>{customer.phoneNumber}</Text>
+                  <Text>
+                    {customer.isDeceased ? '***' : customer.phoneNumber}
+                  </Text>
                 </div>
               </div>
             </Col>
@@ -158,7 +165,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                 <div>
                   <Text strong>Регистрийн дугаар</Text>
                   <br />
-                  <Text>{customer.register}</Text>
+                  <Text>{customer.isDeceased ? '***' : customer.register}</Text>
                 </div>
               </div>
             </Col>
@@ -184,9 +191,14 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                 {getGenderText(customer.gender)}
               </Tag>
             </Descriptions.Item>
-            <Descriptions.Item label='И-мэйл' span={2}>
+            <Descriptions.Item label='И-мэйл' span={1}>
               {customer.email || 'Тодорхойгүй'}
             </Descriptions.Item>
+            {customer.isDeceased && customer.deceasedDate && (
+              <Descriptions.Item label='Нас барсан огноо' span={1}>
+                {dayjs(customer.deceasedDate).format('YYYY-MM-DD')}
+              </Descriptions.Item>
+            )}
           </Descriptions>
         </Card>
 

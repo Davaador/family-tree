@@ -61,7 +61,7 @@ const AdminDetailModal: React.FC<AdminDetailModalProps> = ({
       footer={null}
       width={800}
       centered
-      destroyOnHidden
+      zIndex={10001}
       className='admin-detail-modal'
     >
       <div className='py-4'>
