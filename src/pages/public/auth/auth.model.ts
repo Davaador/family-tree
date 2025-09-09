@@ -50,6 +50,8 @@ export interface CustomerDetail {
   wife: CustomerModel.Customer;
   user: UserDetail;
   profileImage?: ImageField;
+  isDeceased?: boolean;
+  deceasedDate?: Date | string;
 }
 
 export interface UserDetail {

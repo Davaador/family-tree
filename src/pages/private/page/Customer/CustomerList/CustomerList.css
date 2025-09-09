@@ -105,23 +105,47 @@
 .customer-detail-modal .ant-modal-content {
   border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .customer-detail-modal .ant-modal-header {
   background: linear-gradient(135deg, #65eaae 0%, #4fd1c7 100%);
   border-bottom: none;
+  padding: 20px 24px;
 }
 
 .customer-detail-modal .ant-modal-title {
-  color: white;
+  color: white !important;
+  font-weight: 600;
 }
 
 .customer-detail-modal .ant-modal-close {
   color: white;
+  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .customer-detail-modal .ant-modal-close:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.customer-detail-modal .ant-modal-body {
+  padding: 24px;
+  background-color: #fafafa;
+}
+
+.customer-detail-modal .ant-modal-footer {
+  padding: 16px 24px;
+  background-color: #fafafa;
+  border-top: 1px solid #f0f0f0;
 }
 
 /* Card Styling */
@@ -256,13 +280,65 @@
   z-index: 9999 !important;
 }
 
-/* Modal z-index fix */
-.ant-modal {
-  z-index: 10000 !important;
+/* Modal z-index fix - only for customer detail modal */
+.customer-detail-modal {
+  z-index: 10001 !important;
 }
 
-.ant-modal-mask {
-  z-index: 9999 !important;
+.customer-detail-modal .ant-modal-mask {
+  z-index: 10000 !important;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Admin detail modal specific styling */
+.admin-detail-modal {
+  z-index: 10001 !important;
+}
+
+.admin-detail-modal .ant-modal-mask {
+  z-index: 10000 !important;
+  backdrop-filter: none;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.admin-detail-modal .ant-modal-content {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.admin-detail-modal .ant-modal-header {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border-bottom: none;
+  padding: 20px 24px;
+}
+
+.admin-detail-modal .ant-modal-title {
+  color: white !important;
+  font-weight: 600;
+}
+
+.admin-detail-modal .ant-modal-close {
+  color: white;
+  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.admin-detail-modal .ant-modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.admin-detail-modal .ant-modal-body {
+  padding: 24px;
+  background-color: #fafafa;
 }
 
 /* Card z-index fix for advanced filters */
