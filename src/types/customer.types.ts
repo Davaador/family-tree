@@ -20,6 +20,7 @@ export namespace CustomerModel {
     isParent: number;
     spouseId?: number;
     gender?: string;
+    biography?: BiographyCustomer;
   }
 
   export interface Customer extends AdminCustomer {
@@ -36,6 +37,21 @@ export namespace CustomerModel {
 
   export interface BiographyCustomer {
     detailBiography: string;
+    id?: number;
+    customerId?: number;
+    customerFirstName?: string;
+    customerLastName?: string;
+    createdAt?: string;
+    updatedAt?: string;
+  }
+
+  export interface BiographyHistory {
+    id: number;
+    biographyContent: string;
+    versionNumber: number;
+    changeDescription: string;
+    createdAt: string;
+    biographyId: number;
   }
 
   export interface ParentDto {

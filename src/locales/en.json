@@ -12,6 +12,13 @@
     "logout": "Logout",
     "continue": "Continue"
   },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View"
+  },
   "register": {
     "phoneNumber": "Phone number",
     "enterPhone": "Please enter your phone number!",
@@ -217,6 +224,9 @@
       "type": "Type",
       "admin": "Admin"
     },
+    "biography": {
+      "editTitle": "Edit Customer Biography"
+    },
     "edit": {
       "title": "Edit Admin Information",
       "profileInfo": "Personal Information",
@@ -266,9 +276,18 @@
     "biographyRequired": "Please enter your biography.",
     "biographyMin": "Biography must be at least 50 characters.",
     "biographyMax": "Biography must be less than 5000 characters.",
-    "biographyPlaceholder": "Please write your biography in detail. At least 50 characters, maximum 5000 characters.",
-    "characterCount": "Characters: {{count}}/5000",
-    "lastSaved": "Last saved: {{date}}",
+    "biographyPlaceholder": "Please write your biography in detail. At least 50 characters, maximum 10000 characters.",
+    "content": "Biography Content",
+    "characterCount": "Character Count",
+    "lastSaved": "Last Saved",
+    "notSaved": "Not Saved",
+    "status": "Status",
+    "exists": "Exists",
+    "new": "New",
+    "save": "Save",
+    "validation": {
+      "maxLength": "Biography must be less than 10000 characters"
+    },
     "preview": "Preview",
     "edit": "Edit",
     "export": "Export",
