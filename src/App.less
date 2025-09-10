@@ -6,6 +6,39 @@ body,
   height: 100%;
 }
 
+// Mobile responsive styles for biography modal
+.mobile-modal {
+  .ant-modal-content {
+    @media (max-width: 768px) {
+      margin: 8px;
+      max-height: calc(100vh - 16px);
+      overflow-y: auto;
+    }
+  }
+  
+  .ant-modal-body {
+    @media (max-width: 768px) {
+      padding: 16px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+  }
+}
+
+.mobile-history-panel {
+  .ant-card-body {
+    @media (max-width: 768px) {
+      padding: 12px;
+    }
+  }
+  
+  .ant-card-actions {
+    @media (max-width: 768px) {
+      padding: 8px;
+    }
+  }
+}
+
 // Fix footer overlap issue
 .ant-layout {
   min-height: 100vh;

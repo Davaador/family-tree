@@ -1,6 +1,11 @@
 import { TABLE_PAGE_SIZES } from 'constants/app';
 
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
+import {
+  DeleteOutlined,
+  EditOutlined,
+  EyeOutlined,
+  FileTextOutlined,
+} from '@ant-design/icons';
 import { notification, Layout, Table, Button, Space, Popconfirm } from 'antd';
 import { getAdminList, deleteAdmin } from 'context/services/admin.service';
 import { useApi, useTable } from 'hooks';
@@ -12,6 +17,7 @@ import { CustomerModel } from 'types/customer.types';
 import { formatDate } from 'utils';
 
 import AdminDetailModal from './AdminDetailModal';
+import BiographyEditModal from './BiographyEditModal';
 
 const AddCustomerList = React.memo(() => {
   const { t } = useTranslation();
@@ -21,6 +27,9 @@ const AddCustomerList = React.memo(() => {
   const [selectedAdmin, setSelectedAdmin] =
     useState<CustomerModel.AdminCustomer | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [biographyModalVisible, setBiographyModalVisible] = useState(false);
+  const [selectedCustomerForBiography, setSelectedCustomerForBiography] =
+    useState<CustomerModel.AdminCustomer | null>(null);
 
   const { loading, execute: fetchAdminList } = useApi<
     CustomerModel.AdminCustomer[]
@@ -77,6 +86,24 @@ const AddCustomerList = React.memo(() => {
   const handleAddClick = useCallback(() => {
     navigate('/admin/add/customer');
   }, [navigate]);
+
+  const handleEditBiography = useCallback(
+    (record: CustomerModel.AdminCustomer) => {
+      setSelectedCustomerForBiography(record);
+      setBiographyModalVisible(true);
+    },
+    []
+  );
+
+  const handleCloseBiographyModal = useCallback(() => {
+    setBiographyModalVisible(false);
+    setSelectedCustomerForBiography(null);
+  }, []);
+
+  const handleBiographySuccess = useCallback(() => {
+    // Optionally refresh the list or show success message
+    fetchAdminData();
+  }, [fetchAdminData]);
 
   // Memoize columns to prevent re-creation on every render
   const columns = useMemo(
@@ -144,7 +171,7 @@ const AddCustomerList = React.memo(() => {
       {
         title: 'Үйлдэл',
         key: 'action',
-        width: 120,
+        width: 160,
         fixed: 'right' as const,
         render: (_: any, record: CustomerModel.AdminCustomer) => (
           <Space size='small'>
@@ -161,6 +188,14 @@ const AddCustomerList = React.memo(() => {
               size='small'
               onClick={() => handleEditAdmin(record)}
               title='Засах'
+            />
+            <Button
+              type='text'
+              icon={<FileTextOutlined />}
+              size='small'
+              onClick={() => handleEditBiography(record)}
+              title='Намтар засах'
+              className='text-green-600 hover:text-green-700'
             />
             <Popconfirm
               title={t('admin.delete.title')}
@@ -182,7 +217,14 @@ const AddCustomerList = React.memo(() => {
         ),
       },
     ],
-    [t, handleViewAdmin, handleEditAdmin, handleDeleteAdmin, deleteLoading]
+    [
+      t,
+      handleViewAdmin,
+      handleEditAdmin,
+      handleEditBiography,
+      handleDeleteAdmin,
+      deleteLoading,
+    ]
   );
 
   // Memoize pagination config
@@ -221,6 +263,14 @@ const AddCustomerList = React.memo(() => {
         visible={modalVisible}
         onClose={handleCloseModal}
         admin={selectedAdmin}
+      />
+
+      {/* Biography Edit Modal */}
+      <BiographyEditModal
+        visible={biographyModalVisible}
+        onClose={handleCloseBiographyModal}
+        customer={selectedCustomerForBiography}
+        onSuccess={handleBiographySuccess}
       />
     </Layout>
   );

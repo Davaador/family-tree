@@ -28,10 +28,45 @@ function getAdminCustomerById(
   return apiClient.get(`/api/admin/customers/${id}`);
 }
 
+function addBiographyForCustomer(
+  customerId: number,
+  biography: CustomerModel.BiographyCustomer
+): Promise<CustomerModel.BiographyCustomer> {
+  return apiClient.post(
+    `/api/admin/customers/${customerId}/biography`,
+    biography
+  );
+}
+
+function getBiographyForCustomer(
+  customerId: number
+): Promise<CustomerModel.BiographyCustomer> {
+  return apiClient.get(`/api/admin/customers/${customerId}/biography`);
+}
+
+function getBiographyHistoryForCustomer(
+  customerId: number
+): Promise<CustomerModel.BiographyHistory[]> {
+  return apiClient.get(`/api/admin/customers/${customerId}/biography/history`);
+}
+
+function restoreBiographyVersionForCustomer(
+  customerId: number,
+  historyId: number
+): Promise<CustomerModel.BiographyCustomer> {
+  return apiClient.post(
+    `/api/admin/customers/${customerId}/biography/restore/${historyId}`
+  );
+}
+
 export {
   createAdminCustomer,
   getAdminList,
   deleteAdmin,
   updateAdmin,
   getAdminCustomerById,
+  addBiographyForCustomer,
+  getBiographyForCustomer,
+  getBiographyHistoryForCustomer,
+  restoreBiographyVersionForCustomer,
 };
