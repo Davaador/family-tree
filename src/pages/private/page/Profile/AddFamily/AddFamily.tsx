@@ -90,7 +90,13 @@ const AddFamily = () => {
               <Select
                 placeholder='Гэр бүлийн гишүүнээ сонгоно уу'
                 showSearch
+                size='large'
                 allowClear
+                className='rounded-lg'
+                dropdownMatchSelectWidth={false}
+                getPopupContainer={triggerNode =>
+                  triggerNode.parentNode || document.body
+                }
                 options={selectData.map(item => ({
                   value: item.id,
                   label: item.lastName
@@ -98,7 +104,11 @@ const AddFamily = () => {
                     .concat('. ')
                     .concat(item.firstName),
                 }))}
-              ></Select>
+                filterOption={(input, option) =>
+                  typeof option?.label === 'string' &&
+                  option.label.toLowerCase().includes(input.toLowerCase())
+                }
+              />
             </Form.Item>
           </Col>
           <Col className='gutter-row' xs={24} sm={24} md={12}>
