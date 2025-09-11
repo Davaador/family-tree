@@ -81,7 +81,7 @@ const customerListLoader = async ({ request }: LoaderFunctionArgs) => {
   const size = parseOrDefault(url.searchParams.get('perPage') || '', 10);
   const isSortAscending = parseOrDefault(
     url.searchParams.get('isSortAscending') || '',
-    0
+    1
   );
   const datas: CustomerListData = await getActiveCustomerList(
     size,

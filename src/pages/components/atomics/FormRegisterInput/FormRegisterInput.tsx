@@ -132,6 +132,7 @@ const FormRegisterInput = (props: RegisterInputProps) => {
                 {t('register.secondLetter')}
               </Text>
               <Select
+                showSearch
                 allowClear
                 placeholder={t('register.selectLetterPlaceholder')}
                 value={secondLetter}

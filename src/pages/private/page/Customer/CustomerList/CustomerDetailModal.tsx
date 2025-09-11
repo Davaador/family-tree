@@ -93,9 +93,9 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
           </Button>
         ),
       ].filter(Boolean)}
-      width={800}
+      width={window.innerWidth < 768 ? '95%' : 800}
       centered
-      className='customer-detail-modal'
+      className='customer-detail-modal mobile-modal'
       zIndex={10001}
     >
       <div className='p-4'>
@@ -174,7 +174,12 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
 
         {/* Personal Information */}
         <Card title='Хувийн мэдээлэл' className='mb-4'>
-          <Descriptions column={2} bordered>
+          <Descriptions
+            column={{ xs: 1, sm: 2 }}
+            bordered
+            size='small'
+            className='personal-info-descriptions'
+          >
             <Descriptions.Item label='Овог' span={1}>
               {customer.lastName}
             </Descriptions.Item>
